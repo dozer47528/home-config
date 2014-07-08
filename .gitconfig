@@ -1,0 +1,37 @@
+[user]
+	name = Doze
+	email = mail@dozer.cc
+[color]
+     status = auto
+     diff = auto
+     branch = auto
+     interactive = auto
+[alias]
+     st = status
+     ci = "commit -m"
+     br = branch
+     co = checkout
+     cia = "commit -am"
+     df = diff
+     dt = difftool
+     mg = "merge --no-ff"
+     mt = mergetool
+     ll = "log --oneline"
+     al = "add --all"
+     sts = "status -s"
+     cof = "checkout -f"
+     clf = "clean -fd"
+     rso = "remote show origin"
+     rs = "remote show"
+     bn = "branch --no-merged"
+     bm = "branch --merged"
+     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	quotepath = false
+	excludesfile = /Users/Dozer/.gitignore_global
+[push]
+	default = matching
+[diff]
+     tool = sourcetree
+[merge]
+     tool = sourcetree
