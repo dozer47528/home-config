@@ -55,6 +55,7 @@ export LANG=en_US.UTF-8
 
 #alias
 alias vi='vim'
+alias mvne='mvn eclipse:clean eclipse:eclipse'
 
 #other
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
