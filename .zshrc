@@ -46,8 +46,19 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-#include ~/.bash_profile
-source ~/.bash_profile
+# Include
+if [ -f ~/.env_profile ]; then
+        . ~/.env_profile
+fi
+if [ -f ~/.mac_profile ]; then
+        . ~/.mac_profile
+fi
+if [ -f ~/.linux_profile ]; then
+        . ~/.linux_profile
+fi
+if [ -f ~/.cygwin_profile ]; then
+        . ~/.cygwin_profile
+fi
 
 #setting
 export LC_ALL=en_US.UTF-8
