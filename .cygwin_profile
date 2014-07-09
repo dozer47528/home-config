@@ -1,0 +1,1 @@
+alias tmux='rm -rf /tmp/tmux* && tmux'
