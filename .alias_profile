@@ -1,3 +1,7 @@
+#other
 alias vi='vim'
+
+#maven
 alias mvne='mvn eclipse:clean eclipse:eclipse'
 alias mvna='mvn install package install'
+alias mvnupdate='mvn org.codehaus.mojo:versions-maven-plugin:2.1:set -DnewVersion='
