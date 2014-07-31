@@ -59,12 +59,11 @@ fi
 if [ -f ~/.cygwin_profile ]; then
         . ~/.cygwin_profile
 fi
+if [ -f ~/.alias_profile ]; then
+        . ~/.alias_profile
+fi
+
 
 #setting
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-#alias
-alias vi='vim'
-alias mvne='mvn eclipse:clean eclipse:eclipse'
-alias mvna='mvn install package install'
