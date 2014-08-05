@@ -5,3 +5,8 @@ alias vi='vim'
 alias mvne='mvn eclipse:clean eclipse:eclipse'
 alias mvna='mvn install package install'
 alias mvnupdate='mvn org.codehaus.mojo:versions-maven-plugin:2.1:set -DnewVersion='
+
+#ssh
+alias sshpi='ssh pi@raspberrypi'
+alias sshdpproxy='ssh yuyang.gong@192.168.8.171'
+sshdpbeta () { ssh -p58422 betauser@$1 }
