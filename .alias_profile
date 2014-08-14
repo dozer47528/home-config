@@ -10,4 +10,4 @@ sshpi () { ssh pi@raspberrypi }
 sshaliyun () { ssh root@121.199.27.20 }
 sshdpproxy () { ssh yuyang.gong@192.168.8.171 }
 sshdpbeta () { ssh -p58422 betauser@$1 }
-sshdpaplha () { ssh -p58422 dianping@$1 }
+sshdpalpha () { ssh -p58422 dianping@$1 }
