@@ -31,7 +31,3 @@
 	excludesfile = /Users/Dozer/.gitignore_global
 [push]
 	default = matching
-[diff]
-     tool = sourcetree
-[merge]
-     tool = sourcetree
