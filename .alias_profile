@@ -8,6 +8,7 @@ alias mvna='mvn clean install'
 #ssh
 sshpi () { ssh pi@raspberrypi }
 sshaliyun () { ssh root@121.199.27.20 }
+sshlecheng () { ssh root@42.96.150.189 }
 sshdpproxy () { ssh yuyang.gong@192.168.8.171 }
 sshdpbeta () { ssh -p58422 betauser@$1 }
 sshdpalpha () { ssh -p58422 root@$1 }
