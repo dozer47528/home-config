@@ -53,11 +53,16 @@ if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
 fi
 
-if [ $('uname') == 'Linux' ] && [ -f ~/.linux_profile ]; then
+if [[ $('uname') == 'Linux' && -f ~/.linux_profile ]]; then
     . ~/.linux_profile
-elif [ $('uname') == 'Darwin' ] && [ -f ./.mac_profile ]; then
+fi
+if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
     . ~/.mac_profile
 fi
+if [[ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" && -f ~/.cygwin_profile ]]; then
+    . ~/.cygwin_profile
+fi
+
 
 #autojump
 autoload -U compinit && compinit -u
