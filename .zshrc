@@ -47,17 +47,20 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 # Include
 if [ -f ~/.env_profile ]; then
-        . ~/.env_profile
+    . ~/.env_profile
 fi
 if [ -f ~/.alias_profile ]; then
-        . ~/.alias_profile
+    . ~/.alias_profile
 fi
 
-if [[ $('uname') == 'Linux' ]]; then
-    source .linux_profile
-elif  [[ $('uname') == 'Darwin' ]]; then
-    source .mac_profile
+if [ $('uname') == 'Linux' ] && [ -f ~/.linux_profile ]; then
+    . ~/.linux_profile
+elif [ $('uname') == 'Darwin' ] && [ -f ./.mac_profile ]; then
+    . ~/.mac_profile
 fi
+
+#autojump
+autoload -U compinit && compinit -u
 
 #setting
 export LC_ALL=en_US.UTF-8

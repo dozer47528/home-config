@@ -1,5 +1,1 @@
 alias tmux='rm -rf /tmp/tmux* && tmux'
-
-#autojump
-autoload -U compinit && compinit -u
-
