@@ -40,29 +40,24 @@ ZSH_THEME="kolo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew brew-cask sublime git autojump git-extras mvn osx tmux)
+plugins=(brew brew-cask git autojump git-extras mvn osx tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
 # Include
 if [ -f ~/.env_profile ]; then
         . ~/.env_profile
-fi
-if [ -f ~/.mac_profile ]; then
-        . ~/.mac_profile
-fi
-if [ -f ~/.linux_profile ]; then
-        . ~/.linux_profile
-fi
-if [ -f ~/.cygwin_profile ]; then
-        . ~/.cygwin_profile
 fi
 if [ -f ~/.alias_profile ]; then
         . ~/.alias_profile
 fi
 
+if [[ $('uname') == 'Linux' ]]; then
+    source .linux_profile
+elif  [[ $('uname') == 'Darwin' ]]; then
+    source .mac_profile
+fi
 
 #setting
 export LC_ALL=en_US.UTF-8
