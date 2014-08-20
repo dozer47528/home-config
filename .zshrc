@@ -52,19 +52,15 @@ if [ -f ~/.alias_profile ]; then
 fi
 
 if [[ $('uname') == 'Linux' && -f ~/.linux_profile ]]; then
-    echo Loading Linux ...
     . ~/.linux_profile
 fi
 if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
-    echo Loading Mac ...
     . ~/.mac_profile
 fi
 if [[ $('uname') == 'CYGWIN_NT62' && -f ~/.cygwin_profile ]]; then
-    echo Loading Cygwin ...
     . ~/.cygwin_profile
 fi
 
-echo Plugins = $plugins
 source $ZSH/oh-my-zsh.sh
 
 #setting
