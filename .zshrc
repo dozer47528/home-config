@@ -40,9 +40,7 @@ ZSH_THEME="kolo"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew brew-cask git autojump git-extras mvn osx tmux)
-
-source $ZSH/oh-my-zsh.sh
+plugins=(git autojump git-extras mvn tmux)
 
 # Customize to your needs...
 # Include
@@ -59,10 +57,11 @@ fi
 if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
     . ~/.mac_profile
 fi
-if [[ "$(expr substr $(uname -s) 1 6)" == "CYGWIN" && -f ~/.cygwin_profile ]]; then
+if [[ $('uname') == 'CYGWIN_NT62' && -f ~/.cygwin_profile ]]; then
     . ~/.cygwin_profile
 fi
 
+source $ZSH/oh-my-zsh.sh
 
 #autojump
 autoload -U compinit && compinit -u
