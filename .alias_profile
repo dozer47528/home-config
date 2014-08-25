@@ -1,7 +1,6 @@
 #ssh
-sshpi () { ~/bin/sshlogin 10.0.0.11 pi 22  }
-sshaliyun () { ~/bin/sshlogin 121.199.27.20 root 22 }
-sshlecheng () { ~/bin/sshlogin 42.96.150.189 root 22 }
-sshdpproxy () { ~/bin/sshlogin 192.168.8.171 yuyang.gong 22}
-sshdpbeta () { ~/bin/sshlogin $1 betauser 58422 $dpbeta_password }
-sshdpalpha() { ~/bin/sshlogin $1 root 58422 $dpalpha_password }
+pi_ssh () { ~/bin/sshlogin 10.0.0.11 pi 22  }
+lecheng_ssh () { ~/bin/sshlogin 42.96.150.189 root 22 }
+dpproxy_ssh () { ~/bin/sshlogin 192.168.8.172 yuyang.gong 22}
+dpbeta_ssh () { ~/bin/sshlogin $1 betauser 58422 $password_dpbeta }
+dpalpha_ssh () { ~/bin/sshlogin $1 root 58422 $password_dpalpha }
