@@ -16,7 +16,6 @@
     dt = difftool
     mg = "merge --no-ff"
     mt = mergetool
-    ll = "log --oneline"
     al = "add --all"
     sts = "status -s"
     cof = "checkout -f"
@@ -25,7 +24,6 @@
     rs = "remote show"
     bn = "branch --no-merged"
     bm = "branch --merged"
-    lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 [core]
     quotepath = false
 [push]
