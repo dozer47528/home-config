@@ -1,5 +1,4 @@
 #other
-alias vi='vim'
 
 #maven
 alias mvne='mvn eclipse:clean eclipse:eclipse'
