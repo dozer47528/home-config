@@ -1,6 +1,5 @@
 tmux set-option -g default-command "reattach-to-user-namespace -l zsh" &> /dev/null
 
-alias vim='mvim -v'
-alias vi='mvim -v'
+export PATH=/usr/local/bin:$PATH
 
 plugins=($plugins brew brew-cask osx)
