@@ -1,3 +1,5 @@
 tmux set-option -g default-command "reattach-to-user-namespace -l zsh" &> /dev/null
 
+alias vim='mvim -v'
+
 plugins=($plugins brew brew-cask osx)
