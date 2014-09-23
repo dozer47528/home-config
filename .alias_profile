@@ -1,3 +1,6 @@
+#other
+alias vi=vim
+
 #ssh
 pi_ssh () { ~/.bin/sshlogin my.dozer.cc pi 22 $password_pi }
 lecheng_ssh () { ~/.bin/sshlogin 42.96.150.189 root 22 $password_lecheng }
