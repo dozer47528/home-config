@@ -10,3 +10,7 @@ dpalpha_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dpalpha }
 
 #alias
 kill_by_port () { lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill -9 }
+
+#shortcut
+mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
+mvn_default () { rm ~/.m2/settings.xml }
