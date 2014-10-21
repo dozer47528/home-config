@@ -14,3 +14,7 @@ kill_by_port () { lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill -9 }
 #shortcut
 mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
 mvn_default () { rm ~/.m2/settings.xml }
+
+lion_qa () { cp /data/webapps/appenv.qa /data/webapps/appenv }
+lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
+lion_dev () { rm /data/webapps/appenv }
