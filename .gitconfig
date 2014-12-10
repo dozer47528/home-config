@@ -14,14 +14,12 @@
     cia = "commit -am"
     df = diff
     dt = difftool
-    mg = "merge --no-ff"
+    mg = merge
     mt = mergetool
     al = "add --all"
     sts = "status -s"
     cof = "checkout -f"
     clf = "clean -fd"
-    rso = "remote show origin"
-    rs = "remote show"
     bn = "branch --no-merged"
     bm = "branch --merged"
 [core]
