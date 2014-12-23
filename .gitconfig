@@ -24,5 +24,6 @@
     bm = "branch --merged"
 [core]
     quotepath = false
+    mergeoptions = --no-edit
 [push]
     default = matching
