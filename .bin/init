@@ -1,3 +1,6 @@
+rm -rf .oh-my-zsh
+rm -rf .vim/bundle/Vundle.vim
+
 git submodule init
 git submodule update
 
