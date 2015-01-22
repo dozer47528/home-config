@@ -2,4 +2,4 @@ tmux set-option -g default-command "reattach-to-user-namespace -l zsh" &> /dev/n
 
 export PATH=/usr/local/bin:$PATH
 
-plugins=($plugins brew brew-cask osx)
+plugins=($plugins brew brew-cask osx atom idea)
