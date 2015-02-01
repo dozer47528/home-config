@@ -10,6 +10,7 @@ dpalpha_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dpalpha }
 
 #alias
 kill_by_port () { lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill -9 }
+http_proxy () { polipo socksParentProxy=localhost:1080 proxyAddress=0.0.0.0 }
 
 #shortcut
 mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
