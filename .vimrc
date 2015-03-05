@@ -27,3 +27,4 @@ filetype plugin indent on    " required
 set number
 syntax enable
 set laststatus=2
+set clipboard=unnamed
