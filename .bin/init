@@ -1,4 +1,4 @@
-rm -rf .oh-my-zsh
+rm -rf .oh-my-fish
 rm -rf .vim/bundle/Vundle.vim
 
 git submodule init
