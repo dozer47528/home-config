@@ -44,9 +44,6 @@ plugins=(git autojump git-extras git-flow gitignore mvn bundler bower gitfast gi
 
 # Customize to your needs...
 # Include
-if [ -f ~/.env_profile ]; then
-    . ~/.env_profile
-fi
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
 fi
@@ -59,6 +56,10 @@ if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
 fi
 if [[ $('uname') == 'CYGWIN_NT-6.2' && -f ~/.cygwin_profile ]]; then
     . ~/.cygwin_profile
+fi
+
+if [ -f ~/.env_profile ]; then
+    . ~/.env_profile
 fi
 
 source $ZSH/oh-my-zsh.sh
