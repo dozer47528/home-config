@@ -6,22 +6,6 @@
     diff = auto
     branch = auto
     interactive = auto
-[alias]
-    st = status
-    ci = "commit -m"
-    br = branch
-    co = checkout
-    cia = "commit -am"
-    df = diff
-    dt = difftool
-    mg = merge
-    mt = mergetool
-    al = "add --all"
-    sts = "status -s"
-    cof = "checkout -f"
-    clf = "clean -fd"
-    bn = "branch --no-merged"
-    bm = "branch --merged"
 [core]
     quotepath = false
     mergeoptions = --no-edit
