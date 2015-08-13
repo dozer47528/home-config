@@ -4,7 +4,7 @@ alias vi=vim
 #ssh
 pi_ssh () { ~/.bin/sshlogin 10.0.0.11 pi 22 $password_pi }
 lecheng_ssh () { ~/.bin/sshlogin 42.96.150.189 root 22 $password_lecheng }
-dpproxy_ssh () { ~/.bin/sshlogin 192.168.8.172 yuyang.gong 22 $password_dpproxy }
+dpproxy_ssh () { ~/.bin/sshlogin 192.168.8.171 yuyang.gong 22 $password_dpproxy }
 dpbeta_ssh () { ~/.bin/sshlogin $1 betauser 58422 $password_dpbeta }
 dproot_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dproot }
 dppush_ssh () { ssh dp_readonly@$1 -p 58422 }
