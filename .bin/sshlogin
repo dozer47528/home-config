@@ -12,7 +12,6 @@ expect  {
 		interact
 	}
 	"*(yes/no)*" {
-		sleep 1
 		send "yes\r"
 		exp_continue
 	}
