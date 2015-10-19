@@ -23,3 +23,6 @@ mvn_default () { rm ~/.m2/settings.xml }
 lion_qa () { cp /data/webapps/appenv.qa /data/webapps/appenv }
 lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
 lion_dev () { rm /data/webapps/appenv }
+
+#proxy
+alias lantern=ALL_PROXY=http://127.0.0.1:8787
