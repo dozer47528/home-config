@@ -26,3 +26,6 @@ lion_dev () { rm /data/webapps/appenv }
 
 #proxy
 alias lantern=ALL_PROXY=http://127.0.0.1:8787
+
+#terminal-notifier
+alert_finish () { terminal-notifier -message `pwd` -title 'Finish'}
