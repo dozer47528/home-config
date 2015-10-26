@@ -1,5 +1,8 @@
 plugins=($plugins brew brew-cask osx)
 
+#terminal-notifier
+alert_finish () { terminal-notifier -message `pwd` -title 'Finish' -activate 'com.googlecode.iterm2'}
+
 
 local _idea_paths > /dev/null 2>&1
 _idea_paths=(
