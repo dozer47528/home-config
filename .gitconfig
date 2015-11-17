@@ -10,5 +10,6 @@
     quotepath = false
     mergeoptions = --no-edit
 	editor = /usr/bin/vim
+	trustctime = false
 [push]
     default = matching
