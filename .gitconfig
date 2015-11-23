@@ -11,4 +11,4 @@
     mergeoptions = --no-edit
 	editor = /usr/bin/vim
 [push]
-    default = matching
+    default = simple
