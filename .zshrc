@@ -54,7 +54,7 @@ fi
 if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
     . ~/.mac_profile
 fi
-if [[ $('uname') == 'CYGWIN_NT-6.2' && -f ~/.cygwin_profile ]]; then
+if [[ $('uname') =~ 'CYGWIN' && -f ~/.cygwin_profile ]]; then
     . ~/.cygwin_profile
 fi
 
