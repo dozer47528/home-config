@@ -12,4 +12,4 @@
 	editor = /usr/bin/vim
 	trustctime = false
 [push]
-    default = matching
+    default = simple
