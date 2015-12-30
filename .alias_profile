@@ -25,6 +25,6 @@ lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
 lion_dev () { rm /data/webapps/appenv }
 
 #proxy
-lantern (){ proxychains4 -f ~/.proxychains/lantern.conf $@ }
-ss (){ proxychains4 -f ~/.proxychains/ss.conf $@ }
+lantern (){ proxychains4 -q -f ~/.proxychains/lantern.conf $@ }
+ss (){ proxychains4 -q -f ~/.proxychains/ss.conf $@ }
 
