@@ -25,5 +25,6 @@ lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
 lion_dev () { rm /data/webapps/appenv }
 
 #proxy
-alias lantern=ALL_PROXY=http://127.0.0.1:8787
-alias shadowsocks=ALL_PROXY=socks5://127.0.0.1:1080
+lantern (){ proxychains4 -f ~/.proxychains/lantern.conf $@ }
+ss (){ proxychains4 -f ~/.proxychains/ss.conf $@ }
+
