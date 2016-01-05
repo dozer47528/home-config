@@ -3,3 +3,4 @@ plugins=($plugins brew brew-cask osx)
 # app alias
 alias idea="open -a '/Applications/IntelliJ IDEA 15.app'"
 alias pyc="open -a '/Applications/PyCharm.app'"
+alias ws="open -a '/Applications/WebStorm.app'"
