@@ -26,5 +26,5 @@ lion_dev () { rm /data/webapps/appenv }
 
 #proxy
 lantern (){ proxychains4 -q -f ~/.proxychains/lantern.conf $@ }
-ss (){ proxychains4 -q -f ~/.proxychains/ss.conf $@ }
+shadowsocks (){ proxychains4 -q -f ~/.proxychains/ss.conf $@ }
 
