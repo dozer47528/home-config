@@ -11,10 +11,13 @@ dppush_ssh () { ssh dp_readonly@$1 -p 58422 }
 dpalpha_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dpalpha }
 dpprd_ssh () { ~/.bin/sshproxy 192.168.8.171 yuyang.gong 22 $password_dpproxy $1 yuyang.gong 58422 $password_dpproxy  $2}
 dpppe_ssh () { ~/.bin/sshproxy 192.168.8.171 yuyang.gong 22 $password_dpproxy $1 pperd 58422 dianping@ppe $2} 
+amino-server-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@52.24.56.244}
+amino-server2-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.201.45.219}
+amino-toolbox-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.149.246.78}
+amino-sendy_-prd() {ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244}
+amino-toolbox-prd() { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@52.10.39.35}
 
 #alias
-kill_by_port () { lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill -9 }
-http_proxy () { polipo socksParentProxy=localhost:1080 proxyAddress=0.0.0.0 }
 
 #shortcut
 mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
