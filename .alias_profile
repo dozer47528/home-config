@@ -27,6 +27,8 @@ lion_qa () { cp /data/webapps/appenv.qa /data/webapps/appenv }
 lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
 lion_dev () { rm /data/webapps/appenv }
 
+pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
+
 #proxy
 lantern (){ proxychains4 -q -f ~/.proxychains/lantern.conf $@ }
 shadowsocks (){ proxychains4 -q -f ~/.proxychains/ss.conf $@ }
