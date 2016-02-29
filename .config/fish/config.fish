@@ -25,9 +25,9 @@ alias gb "git branch"
 alias ga "git add"
 alias gaa "git add ."
 alias gcm "git commit -m"
-alias grp "git rebase; and git push"
-alias gsr "git stash; and git rebase; and git stash pop"
-alias gsrp "git stash; and git rebase; and git push; and git stash pop"
+alias grp "git pull --rebase; and git push"
+alias gsr "git stash; and git pull --rebase; and git stash pop"
+alias gsrp "git stash; and git pull --rebase; and git push; and git stash pop"
 
 if test (uname) = Darwin
   alias idea "open -a '/Applications/IntelliJ IDEA 15.app'"
