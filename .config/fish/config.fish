@@ -2,6 +2,7 @@
 [ -f /usr/local/share/autojump/autojump.fish ]; and . /usr/local/share/autojump/autojump.fish
 
 #alias
+alias g git
 alias vi vim
 alias pip_update_all "pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
@@ -33,4 +34,8 @@ if test (uname) = Darwin
   alias pyc "open -a '/Applications/PyCharm.app'"
   alias ws "open -a '/Applications/WebStorm.app'"
   alias pps "open -a '/Applications/PhpStorm.app'"
+end
+
+if test -f ~/.config/fish/env.fish
+  source ~/.config/fish/env.fish
 end
