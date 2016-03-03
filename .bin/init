@@ -4,7 +4,6 @@ rm -rf .vim/bundle/Vundle.vim
 git submodule init
 git submodule update
 
-rm -rf $ZSH_CUSTOM/plugins
-ln -s ╰$HOME/.zsh-plugins $ZSH_CUSTOM/plugins
+ln -s $HOME/.zsh-plugins/* $ZSH_CUSTOM/plugins
 
 vim +PluginInstall +qall
