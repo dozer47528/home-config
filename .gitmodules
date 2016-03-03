@@ -4,3 +4,6 @@
 [submodule "Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
+[submodule ".zsh-plugins/zsh-autosuggestions"]
+	path = .zsh-plugins/zsh-autosuggestions
+	url = git://github.com/zsh-users/zsh-autosuggestions
