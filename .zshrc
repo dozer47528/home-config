@@ -44,18 +44,23 @@ plugins=(git autojump git-extras git-flow gitignore mvn bundler bower gitfast gi
 
 # Customize to your needs...
 # Include
+
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
 fi
 
 if [[ $('uname') == 'Linux' && -f ~/.linux_profile ]]; then
-    . ~/.linux_profile
 fi
+
 if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
-    . ~/.mac_profile
+	plugins=($plugins brew brew-cask osx)
+	alias idea="open -a '/Applications/IntelliJ IDEA 15.app'"
+	alias pyc="open -a '/Applications/PyCharm.app'"
+	alias ws="open -a '/Applications/WebStorm.app'"
+	alias pps="open -a '/Applications/PhpStorm.app'"
 fi
+
 if [[ $('uname') =~ 'CYGWIN' && -f ~/.cygwin_profile ]]; then
-    . ~/.cygwin_profile
 fi
 
 if [ -f ~/.env_profile ]; then
@@ -64,7 +69,7 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-#autojump
+fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
 autoload -U compinit && compinit -u
 
 #setting
