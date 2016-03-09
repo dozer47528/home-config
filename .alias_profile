@@ -18,6 +18,7 @@ amino-sendy_-prd() {ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244}
 amino-toolbox-prd() { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@52.10.39.35}
 
 #alias
+proxy_start() { nohup shadowsocks-local -c ~/.shadowsocks/config.json > shadowsocks.log & }
 
 #shortcut
 mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
