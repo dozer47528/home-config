@@ -49,18 +49,18 @@ if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
 fi
 
-if [[ $('uname') == 'Linux' && -f ~/.linux_profile ]]; then
+if [[ $('uname') == 'Linux' ]]; then
 fi
 
-if [[ $('uname') == 'Darwin' && -f ~/.mac_profile ]]; then
-	plugins=($plugins brew brew-cask osx)
-	alias idea="open -a '/Applications/IntelliJ IDEA 15.app'"
-	alias pyc="open -a '/Applications/PyCharm.app'"
-	alias ws="open -a '/Applications/WebStorm.app'"
-	alias pps="open -a '/Applications/PhpStorm.app'"
+if [[ $('uname') == 'Darwin' ]]; then
+    plugins=($plugins brew brew-cask osx)
+    alias idea="open -a '/Applications/IntelliJ IDEA 15.app'"
+    alias pyc="open -a '/Applications/PyCharm.app'"
+    alias ws="open -a '/Applications/WebStorm.app'"
+    alias pps="open -a '/Applications/PhpStorm.app'"
 fi
 
-if [[ $('uname') =~ 'CYGWIN' && -f ~/.cygwin_profile ]]; then
+if [[ $('uname') =~ 'CYGWIN' ]]; then
 fi
 
 if [ -f ~/.env_profile ]; then
