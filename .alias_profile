@@ -2,31 +2,15 @@
 alias vi=vim
 
 #ssh
-pi_ssh () { ~/.bin/sshlogin 10.0.0.11 pi 22 $password_pi }
-lecheng_ssh () { ~/.bin/sshlogin 42.96.150.189 root 22 $password_lecheng }
-dpproxy_ssh () { ~/.bin/sshlogin 192.168.8.171 yuyang.gong 22 $password_dpproxy }
-dpbeta_ssh () { ~/.bin/sshlogin $1 betauser 58422 $password_dpbeta }
-dproot_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dproot }
-dppush_ssh () { ssh dp_readonly@$1 -p 58422 }
-dpalpha_ssh () { ~/.bin/sshlogin $1 root 58422 $password_dpalpha }
-dpprd_ssh () { ~/.bin/sshproxy 192.168.8.171 yuyang.gong 22 $password_dpproxy $1 yuyang.gong 58422 $password_dpproxy  $2}
-dpppe_ssh () { ~/.bin/sshproxy 192.168.8.171 yuyang.gong 22 $password_dpproxy $1 pperd 58422 dianping@ppe $2} 
-amino-server-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@52.24.56.244}
-amino-server2-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.201.45.219}
-amino-toolbox-dev() {ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.149.246.78}
-amino-sendy_-prd() {ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244}
-amino-toolbox-prd() { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@52.10.39.35}
+alias amino-server-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@52.24.56.244"
+alias amino-server2-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.201.45.219"
+alias amino-toolbox-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.149.246.78"
+alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
+alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@52.10.39.35"
 
 #alias
 
 #shortcut
-mvn_dp () { cp ~/.m2/settings.xml.dp ~/.m2/settings.xml }
-mvn_default () { rm ~/.m2/settings.xml }
-
-lion_qa () { cp /data/webapps/appenv.qa /data/webapps/appenv }
-lion_alpha () { cp /data/webapps/appenv.alpha /data/webapps/appenv }
-lion_dev () { rm /data/webapps/appenv }
-
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
 
 #proxy
