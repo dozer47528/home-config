@@ -76,3 +76,6 @@ autoload -U compinit && compinit -u
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export CHEATCOLORS=true
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
