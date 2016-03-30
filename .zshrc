@@ -40,7 +40,7 @@ ZSH_THEME="bira"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git autojump git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip pyenv docker zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+plugins=(extract z git git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip pyenv docker zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 
 # Customize to your needs...
 # Include
@@ -70,12 +70,7 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
-autoload -U compinit && compinit -u
 
 #setting
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export CHEATCOLORS=true
-
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
