@@ -72,5 +72,5 @@ source $ZSH/oh-my-zsh.sh
 fpath=($ZSH_CUSTOM/plugins/zsh-completions/src $fpath)
 
 #setting
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+if which pyenv 2> /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init 2> /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
