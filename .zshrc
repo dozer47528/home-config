@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bira"
+ZSH_THEME="ys"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -53,7 +53,7 @@ if [[ $('uname') == 'Linux' ]]; then
 fi
 
 if [[ $('uname') == 'Darwin' ]]; then
-    plugins=($plugins brew brew-cask osx)
+    plugins=($plugins brew brew-cask)
     alias idea="open -a '/Applications/IntelliJ IDEA 15.app'"
     alias pyc="open -a '/Applications/PyCharm.app'"
     alias ws="open -a '/Applications/WebStorm.app'"
