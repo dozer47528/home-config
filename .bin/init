@@ -1,7 +1,9 @@
 rm -rf .oh-my-zsh
 rm -rf .vim/bundle/Vundle.vim
 rm -rf .zsh-plugins
-rm -rf $ZSH_CUSTOM/plugins/*
+rm -rf $ZSH_CUSTOM/plugins
+
+mkdir $ZSH_CUSTOM/plugins
 
 git submodule init
 git submodule update
