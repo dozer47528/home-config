@@ -7,6 +7,8 @@ alias amino-server2-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.201.45.219"
 alias amino-toolbox-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.200.10.206"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@54.200.119.198"
+alias vps1="ssh -p 29447 root@45.78.22.208"
+alias vps2="ssh -p 26171 root@23.83.237.224"
 
 #alias
 
@@ -14,7 +16,5 @@ alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@54.200.119.198
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
 
 #proxy
-alias ss="ALL_PROXY=socks5://127.0.0.1:1080"
-alias sss="nohup shadowsocks-local -c ~/.shadowsocks > /tmp/shadowsocks.log &"
 alias cc="ALL_PROXY=http://127.0.0.1:7777"
 alias ccc="nohup cow > /dev/null  &"
