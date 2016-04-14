@@ -1,1 +1,1 @@
-/Users/dozer/.vimrc
+../../.vimrc
