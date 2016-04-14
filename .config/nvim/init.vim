@@ -1,0 +1,1 @@
+/Users/dozer/.vimrc

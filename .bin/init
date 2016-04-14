@@ -1,3 +1,6 @@
+command -v vim >/dev/null 2>&1 || { echo >&2 "I require vim but it's not installed.  Aborting."; exit 1; }
+command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not installed.  Aborting."; exit 1; }
+
 rm -rf .oh-my-zsh
 rm -rf .vim/bundle/Vundle.vim
 rm -rf .zsh-plugins
