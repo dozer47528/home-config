@@ -9,5 +9,7 @@ git submodule init
 git submodule update
 
 ln -s $HOME/.zsh-plugins/* $HOME/.oh-my-zsh/custom/plugins
+mkdir -p ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
 
 vim +PluginInstall +qall
