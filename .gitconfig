@@ -13,3 +13,5 @@
 	trustctime = false
 [push]
     default = simple
+[mergetool]
+	keepBackup = false
