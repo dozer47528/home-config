@@ -17,5 +17,5 @@ alias vps2="ssh -p 26171 root@23.105.200.85"
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
 
 #proxy
-alias cc="ALL_PROXY=http://127.0.0.1:7777"
 alias ccc="nohup cow > /dev/null 2>&1 &"
+alias cc="ALL_PROXY=127.0.0.1:7777"
