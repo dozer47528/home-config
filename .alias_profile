@@ -10,7 +10,7 @@ alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@10.2.11.141"
 alias vps1="ssh -p 29447 root@45.78.22.208"
 alias vps2="ssh -p 26171 root@23.105.200.85"
-
+amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
 #alias
 
 #shortcut
