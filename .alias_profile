@@ -3,13 +3,13 @@ command -v nvim >/dev/null 2>&1 && { alias vim=nvim }
 alias vi=vim
 
 #ssh
-alias amino-server-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@52.24.56.244"
+alias amino-server-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.187.81.205"
 alias amino-server2-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.149.251.101"
 alias amino-toolbox-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.200.10.206"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@10.2.11.141"
-alias vps1="ssh -p 29447 root@45.78.22.208"
-alias vps2="ssh -p 26171 root@23.105.200.85"
+alias vps1="ssh -p 27288 root@45.78.22.208"
+alias vps2="ssh -p 26709 root@23.105.200.85"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
 #alias
 
