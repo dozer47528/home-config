@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+set timeout 30
+set ip [lindex $argv 0]
+set cmd [lindex $argv 1]
+
+spawn ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$ip
+expect  {
+	"*Welcome*" {
+		send "$cmd\r"
+		interact
+	}
+	"*(yes/no)*" {
+		send "yes\r"
+		exp_continue
+	}
+}
