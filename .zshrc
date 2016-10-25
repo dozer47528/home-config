@@ -36,3 +36,5 @@ command -v pyenv >/dev/null 2>&1 && {eval "$(pyenv init -)";}
 command -v pyenv-virtualenv-init>/dev/null 2>&1 && {eval "$(pyenv virtualenv-init -)";}
 
 autoload -U compinit && compinit
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
