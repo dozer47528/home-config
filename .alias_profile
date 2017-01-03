@@ -20,4 +20,5 @@ amino-deploy-all-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/ami
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
 
 #proxy
-alias ss="ALL_PROXY=127.0.0.1:1087"
+#alias ss="ALL_PROXY=127.0.0.1:1087"
+alias ss="ALL_PROXY=socks5://127.0.0.1:1086"
