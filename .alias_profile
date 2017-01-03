@@ -1,5 +1,4 @@
 #other
-# command -v nvim >/dev/null 2>&1 && { alias vim=nvim }
 alias vi=vim
 
 #ssh
@@ -11,6 +10,7 @@ alias vps3="ssh -p 27288 root@45.78.22.208"
 alias vps2="ssh -p 26709 root@23.105.200.85"
 alias vps1="ssh -p 29753 root@45.62.101.135"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
+amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@52.39.116.119 ssh ubuntu@$1 }
 
 #alias
 amino-deploy-web-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && sudo service NDNsfwDetection restart"}
@@ -20,6 +20,4 @@ amino-deploy-all-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/ami
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
 
 #proxy
-alias cc="ALL_PROXY=127.0.0.1:7777"
 alias ss="ALL_PROXY=127.0.0.1:1087"
-alias sp="ALL_PROXY=socks5://127.0.0.1:1080"
