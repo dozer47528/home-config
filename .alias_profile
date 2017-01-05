@@ -22,3 +22,23 @@ pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs 
 #proxy
 #alias ss="ALL_PROXY=127.0.0.1:1087"
 alias ss="ALL_PROXY=socks5://127.0.0.1:1086"
+
+# where proxy
+sss () {
+  export all_proxy=socks5://127.0.0.1:1086
+  echo "Shadowsock Proxy on"
+}
+
+ppp () {
+  export http_proxy="http://127.0.0.1:8899"
+  export https_proxy="http://127.0.0.1:8899"
+  echo "PlutoX Proxy on"
+}
+
+# where noproxy
+noproxy () {
+  unset http_proxy
+  unset https_proxy
+  unset all_proxy
+  echo "HTTP Proxy off"
+}
