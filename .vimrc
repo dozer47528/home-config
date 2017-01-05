@@ -28,3 +28,5 @@ set number
 syntax enable
 set laststatus=2
 set clipboard=unnamed
+set nocp
+set backspace=indent,eol,start
