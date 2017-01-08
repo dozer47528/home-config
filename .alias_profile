@@ -6,9 +6,8 @@ alias amino-server2-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.202.244.28"
 alias amino-toolbox-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.200.10.206"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@10.2.11.141"
-alias vps3="ssh -p 27288 root@45.78.22.208"
-alias vps2="ssh -p 26709 root@23.105.200.85"
-alias vps1="ssh -p 29753 root@45.62.101.135"
+alias vps2="ssh -p 27288 root@45.78.22.208"
+alias vps1="ssh root@45.32.45.172"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
 amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@52.39.116.119 ssh ubuntu@$1 }
 
@@ -42,5 +41,5 @@ noproxy () {
   unset http_proxy
   unset https_proxy
   unset all_proxy
-  echo "HTTP Proxy off"
+  echo "Proxy off"
 }
