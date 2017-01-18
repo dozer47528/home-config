@@ -13,6 +13,7 @@ amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@52.39.116.119 ssh ubuntu@$1 
 
 #alias
 amino-deploy-web-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
+amino-deploy-job-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && exit"}
 amino-deploy-nsfw-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDNsfwDetection restart && exit"}
 amino-deploy-all-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && sudo /etc/init.d/NDPush restart && sudo service NDNsfwDetection restart && exit"}
 amino-deploy-server-dev() {~/.bin/amino-dev-deploy 54.202.244.28 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c dev_ec2 -d /project/www-scripts -k key_store_dev && sudo service uwsgi restart && sudo /etc/init.d/NDPush restart && sudo service NDNsfwDetection restart && exit"}

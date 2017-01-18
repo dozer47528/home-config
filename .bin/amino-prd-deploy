@@ -3,7 +3,7 @@ set timeout 30
 set ip [lindex $argv 0]
 set cmd [lindex $argv 1]
 
-spawn ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$ip
+spawn ssh -t -o ForwardAgent=yes ubuntu@52.39.116.119 ssh ubuntu@$ip
 expect  {
 	"*Welcome*" {
 		send "$cmd\r"
