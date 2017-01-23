@@ -1,7 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 
-plugins=(extract z git git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip docker zsh-autosuggestions zsh-completions zsh_reload)
+plugins=(extract z git git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip docker zsh-autosuggestions zsh-completions zsh_reload zsh-syntax-highlighting)
 
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
@@ -27,8 +27,6 @@ if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
 
-plugins+=(zsh-syntax-highlighting)
-
 source $ZSH/oh-my-zsh.sh
 
 #setting
@@ -36,5 +34,3 @@ command -v pyenv >/dev/null 2>&1 && {eval "$(pyenv init -)";}
 command -v pyenv-virtualenv-init>/dev/null 2>&1 && {eval "$(pyenv virtualenv-init -)";}
 
 autoload -U compinit && compinit
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
