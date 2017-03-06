@@ -1,7 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 
-plugins=(extract z git git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip docker zsh-autosuggestions zsh-completions zsh_reload zsh-syntax-highlighting)
+plugins=(extract z git git-extras git-flow gitignore mvn bundler bower gitfast github npm vagrant python pip docker zsh-autosuggestions zsh-completions zsh_reload zsh-syntax-highlighting tmux)
 
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
