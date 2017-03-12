@@ -6,7 +6,7 @@ alias amino-server2-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.202.244.28"
 alias amino-toolbox-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@54.200.10.206"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="ssh -i ~/.ssh/NDProductionKey.pem ubuntu@10.2.11.120"
-alias vps2="ssh -p 27288 root@45.78.22.208"
+alias vps2="ssh -p 29440 root@45.78.22.208"
 alias vps3="ssh -p 29973 root@23.105.200.85"
 alias vps1="ssh root@45.32.45.172"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
