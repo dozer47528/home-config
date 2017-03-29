@@ -14,4 +14,6 @@
 [push]
     default = simple
 [mergetool]
-	keepBackup = false
+    keepBackup = false
+[diff]
+    external = ~/.bin/git-diff-wrapper.sh
