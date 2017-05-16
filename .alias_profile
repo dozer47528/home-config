@@ -12,6 +12,7 @@ alias vps3="ssh -p 29973 root@23.105.200.85"
 alias vps1="ssh root@45.32.45.172"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
 amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@52.39.116.119 ssh ubuntu@$1 }
+amino-dev-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@34.210.162.70 ssh ubuntu@$1 }
 
 #alias
 amino-deploy-f2e-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-f2e && sudo git pull && sudo ./deploy-prd.sh && exit"}
@@ -21,9 +22,9 @@ amino-deploy-nsfw-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/am
 amino-deploy-push-server-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDPushServer restart && sudo service NDPushDispatcher restart && exit"}
 amino-deploy-push-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo /etc/init.d/NDPush restart && exit"}
 amino-deploy-all-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && sudo /etc/init.d/NDPush restart && sudo service NDNsfwDetection restart && exit"}
-amino-deploy-server-dev() {~/.bin/amino-dev-deploy 54.202.244.28 "~/deploy.sh && exit"}
-amino-deploy-f2e-dev() {~/.bin/amino-dev-deploy 54.202.244.28 "~/deploy-f2e.sh && exit"}
-amino-deploy-toolbox-dev() {~/.bin/amino-dev-deploy 54.200.10.206 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
+amino-deploy-server-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy.sh && exit"}
+amino-deploy-f2e-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy-f2e.sh && exit"}
+amino-deploy-toolbox-dev() {~/.bin/amino-dev-deploy 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
 
 #shortcut
 pip_update_all () {pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U }
