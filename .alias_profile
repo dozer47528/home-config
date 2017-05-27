@@ -2,8 +2,8 @@
 alias vi=vim
 
 #ssh
-alias amino-server-dev="~/.bin/amino-dev-deploy 10.0.10.253"
-alias amino-toolbox-dev="~/.bin/amino-dev-deploy 10.0.10.64"
+alias amino-server-dev="amino-dev-proxy 10.0.10.253"
+alias amino-toolbox-dev="amino-dev-proxy 10.0.10.64"
 alias amino-vpn-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@34.210.162.70"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="amino-proxy 10.2.11.120"
