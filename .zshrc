@@ -32,5 +32,6 @@ source $ZSH/oh-my-zsh.sh
 #setting
 command -v pyenv >/dev/null 2>&1 && {eval "$(pyenv init -)";}
 command -v pyenv-virtualenv-init>/dev/null 2>&1 && {eval "$(pyenv virtualenv-init -)";}
+command -v rbenv >/dev/null 2>&1 && {eval "$(rbenv init -)"}
 
 autoload -U compinit && compinit
