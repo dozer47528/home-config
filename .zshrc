@@ -19,6 +19,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias pps="open -a '/Applications/PhpStorm.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+    export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
 if [[ $('uname') =~ 'CYGWIN' ]]; then
