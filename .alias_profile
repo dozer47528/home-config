@@ -27,7 +27,7 @@ amino-deploy-nsfw-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/am
 amino-deploy-push-server-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDPushServer restart && sudo service NDPushDispatcher restart && exit"}
 amino-deploy-push-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo /etc/init.d/NDPush restart && exit"}
 amino-deploy-all-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && sudo /etc/init.d/NDPush restart && sudo service NDNsfwDetection restart && exit"}
-amino-deploy-server-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy.sh && exit"}
+amino-deploy-server-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy-web.sh && exit"}
 amino-deploy-ws1-dev() {~/.bin/amino-dev-deploy 10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-ws2-dev() {~/.bin/amino-dev-deploy 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-f2e-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy-f2e.sh && exit"}
