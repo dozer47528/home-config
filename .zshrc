@@ -18,6 +18,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias ws="open -a '/Applications/WebStorm.app'"
     alias pps="open -a '/Applications/PhpStorm.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
+    alias sbl="open -a '/Applications/Sublime Text.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
     export HOMEBREW_NO_AUTO_UPDATE=1
 fi
