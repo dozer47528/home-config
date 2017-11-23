@@ -21,6 +21,7 @@ amino-dev-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@34.210.162.70 ssh ubuntu
 
 #alias
 amino-deploy-f2e-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-f2e && sudo git pull && sudo ./deploy-prd.sh && exit"}
+amino-deploy-api-flume-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/flume-config && sudo git pull && sudo /etc/init.d/FlumeService restart && exit"}
 amino-deploy-ws-prd () {~/.bin/amino-prd-deploy $1 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy.sh && exit"}
 amino-deploy-web-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
 amino-deploy-job-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && exit"}
