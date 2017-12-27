@@ -3,6 +3,7 @@ alias vi=vim
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 
 #ssh
+alias amino-dw-prd="ssh -i ~/.ssh/NDProductionKey.pem hadoop@hue.narvii.com"
 alias amino-server-dev="amino-dev-proxy 10.0.10.253"
 alias amino-ws1-dev="amino-dev-proxy 10.0.1.246"
 alias amino-ws2-dev="amino-dev-proxy 10.0.1.136"
@@ -10,7 +11,7 @@ alias amino-toolbox-dev="amino-dev-proxy 10.0.10.64"
 alias amino-vpn-dev="ssh -i ~/.ssh/NDDevKey.pem ubuntu@34.210.162.70"
 alias amino-metrics-dev="ssh -t -o 'ForwardAgent yes' ubuntu@34.210.162.70 ssh ec2-user@10.0.10.172"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
-alias amino-toolbox-prd="amino-proxy 10.2.11.120"
+alias amino-toolbox-prd="amino-proxy 10.2.11.79"
 alias amino-metrics-prd="amino-proxy 10.2.12.30"
 alias amino-flume-prd="amino-proxy 10.2.10.76"
 alias vps1="ssh -p 29440 root@45.78.22.208"
