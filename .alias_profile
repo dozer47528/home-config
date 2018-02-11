@@ -18,8 +18,8 @@ alias amino-flume-prd2="amino-proxy 10.2.10.9"
 alias vps1="ssh -p 29440 root@45.78.22.208"
 alias vps2="ssh -p 29973 root@23.105.200.85"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
-amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@52.39.116.119 ssh ubuntu@$1 }
-amino-dev-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@34.210.162.70 ssh ubuntu@$1 }
+amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@34.216.50.73 ssh ubuntu@$1 }
+amino-dev-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@35.167.200.148 ssh ubuntu@$1 }
 
 #alias
 amino-deploy-f2e-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-f2e && sudo git pull && sudo ./deploy-prd.sh && exit"}
