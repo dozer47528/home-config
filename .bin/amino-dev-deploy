@@ -3,7 +3,7 @@ set timeout 30
 set ip [lindex $argv 0]
 set cmd [lindex $argv 1]
 
-spawn ssh -t -o ForwardAgent=yes ubuntu@34.210.162.70 ssh ubuntu@$ip
+spawn ssh -t -o ForwardAgent=yes ubuntu@35.167.200.148 ssh ubuntu@$ip
 expect  {
 	"*Welcome*" {
 		send "$cmd\r"
