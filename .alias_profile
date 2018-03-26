@@ -14,6 +14,7 @@ alias amino-metrics-dev="ssh -t -o 'ForwardAgent yes' ubuntu@34.210.162.70 ssh e
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
 alias amino-toolbox-prd="amino-proxy 10.2.11.79"
 alias amino-metrics-prd="amino-proxy 10.2.12.30"
+alias amino-zeppelin-prd="amino-proxy 10.2.10.173"
 alias amino-flume-prd1="amino-proxy 10.2.10.153"
 alias amino-flume-prd2="amino-proxy 10.2.10.9"
 alias vps1="ssh -p 29440 root@45.78.22.208"
