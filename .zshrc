@@ -36,4 +36,3 @@ source $ZSH/oh-my-zsh.sh
 command -v pyenv >/dev/null 2>&1 && {eval "$(pyenv init -)";}
 command -v pyenv-virtualenv-init>/dev/null 2>&1 && {eval "$(pyenv virtualenv-init -)";}
 command -v rbenv >/dev/null 2>&1 && {eval "$(rbenv init -)"}
-fpath=(/usr/local/share/zsh-completions $fpath)
