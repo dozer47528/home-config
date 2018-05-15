@@ -1,5 +1,6 @@
 #other
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"
 
@@ -29,6 +30,7 @@ amino-deploy-api-flume-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/g
 amino-deploy-ws-prd () {~/.bin/amino-prd-deploy $1 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy.sh && exit"}
 amino-deploy-web-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
 amino-deploy-order-worker-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDOrderTaskWorker restart && exit"}
+amino-deploy-mod-worker-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDModEventWorker restart && exit"}
 amino-deploy-job-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && exit"}
 amino-deploy-nsfw-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDNsfwDetection restart && exit"}
 amino-deploy-push-dispatcher-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service NDPushDispatcher restart && exit"}
