@@ -1,5 +1,7 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 plugins=(extract z git git-extras git-flow gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
 
@@ -31,8 +33,3 @@ if [ -f ~/.env_profile ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-#setting
-command -v pyenv >/dev/null 2>&1 && {eval "$(pyenv init -)";}
-command -v pyenv-virtualenv-init>/dev/null 2>&1 && {eval "$(pyenv virtualenv-init -)";}
-command -v rbenv >/dev/null 2>&1 && {eval "$(rbenv init -)"}
