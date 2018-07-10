@@ -23,6 +23,8 @@ alias vps2="ssh -p 29973 root@23.105.200.85"
 amino-prd () { ssh -i ~/.ssh/NDProductionKey.pem ubuntu@$1 }
 amino-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@34.216.50.73 ssh ubuntu@$1 }
 amino-dev-proxy() { ssh -t -o 'ForwardAgent yes' ubuntu@35.167.200.148 ssh ubuntu@$1 }
+alias amino-package-build="pipenv run python deploy_server.py -c production_ec2 -d /tmp/amino-server-prod -k key_store_production"
+amino-package-upload() { aws deploy push --application-name AminoServer --s3-location "s3://narvii-code-deploy/AminoServer/AminoServer_\$(date -u +%Y%m%d%H%M%S).zip" --source /tmp/amino-server-prod --profile prod }
 
 #alias
 amino-deploy-f2e-prd () {~/.bin/amino-prd-deploy $1 "cd /project/app-src/git/amino-f2e && sudo git pull && sudo ./deploy-prd.sh && exit"}
