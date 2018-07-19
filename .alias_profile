@@ -22,7 +22,7 @@ amino-deploy-ws-prd () { ssh $1 "cd /project/src/amino-ws && sudo git pull --no-
 amino-deploy-web-prd () { ssh $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
 amino-deploy-push-server-prd () {ssh $1 "cd /project/src/amino-push && sudo git pull && ./deploy.sh && exit"}
 amino-deploy-server-dev() {ssh 10.0.10.253 "~/deploy-web.sh && exit"}
-amino-deploy-server-all-dev() {~/.bin/amino-dev-deploy 10.0.10.253 "~/deploy.sh && exit"}
+amino-deploy-server-all-dev() {ssh 10.0.10.253 "~/deploy.sh && exit"}
 amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
