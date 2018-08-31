@@ -28,7 +28,3 @@ amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pul
 amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
 
-#kubectl
-kube-tracing-dev() {kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=jaeger -o jsonpath='{.items[0].metadata.name}') 16686:16686}
-kube-grafana-dev() {kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 3000:3000 }
-kube-kiali-dev() {kubectl port-forward -n istio-system $(kubectl get pod -n istio-system -l app=kiali -o jsonpath='{.items[0].metadata.name}') 20001:20001}
