@@ -4,7 +4,6 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 plugins=(extract z git git-extras kubectl helm kube-ps1 git-flow gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
->>>>>>> Update plugins.
 
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
