@@ -29,3 +29,9 @@ amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pul
 amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
 
+#git commit alias
+gcmsg-feature() { git commit -m "[Feature] $1" }
+gcmsg-bug() { git commit -m "[Bug] $1" }
+gcmsg-misc() { git commit -m "[Misc] $1" }
+gcmsg-test() { git commit -m "[Test] $1" }
+gcmsg-refactor() { git commit -m "[Refactor] $1" }
