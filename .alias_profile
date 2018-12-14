@@ -29,6 +29,8 @@ amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pul
 amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
 
+kubeps() { source "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && PROMPT='$(kube_ps1)'$PROMPT }
+
 #git commit alias
 gcmsg-feature() { git commit -m "[Feature] $1" }
 gcmsg-bug() { git commit -m "[Bug] $1" }
