@@ -4,7 +4,6 @@ alias mysql="mysql --default-character-set utf8"
 alias vim=nvim
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"
-alias proxy="proxychains4 -f ~/.proxychains/ss.conf"
 
 #alias
 alias amino-server-dev="ssh 10.0.10.253"
@@ -16,21 +15,13 @@ alias amino-iportal-prd="ssh 10.2.11.79"
 alias amino-metrics-prd="ssh 10.2.12.13"
 alias amino-zeppelin-prd="ssh 10.2.10.173"
 alias amino-vpn-staff="ssh 10.2.10.94"
-alias vps1="ssh -p 29440 root@45.78.22.208"
-alias vps2="ssh -p 29973 root@23.105.200.85"
-alias amino-package-build="pipenv run python deploy_server.py -c production_ec2 -d /tmp/amino-server-prod -k key_store_production"
-amino-package-upload() { aws deploy push --application-name AminoServer --s3-location "s3://narvii-code-deploy/AminoServer/AminoServer_$(date -u +%Y%m%d%H%M%S).zip" --source /tmp/amino-server-prod --profile prod }
-amino-deploy-f2e-prd () { ssh $1 "cd /project/app-src/git/amino-f2e && sudo git pull && sudo ./deploy-prd.sh && exit"}
 amino-deploy-ws-prd () { ssh $1 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy.sh && exit"}
 amino-deploy-web-prd () { ssh $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
-amino-deploy-push-server-prd () {ssh $1 "cd /project/src/amino-push && sudo git pull && ./deploy.sh && exit"}
 amino-deploy-server-dev() {ssh 10.0.10.253 "~/deploy-web.sh && exit"}
 amino-deploy-server-all-dev() {ssh 10.0.10.253 "~/deploy.sh && exit"}
 amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
 amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
-
-kubeps() { source "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && PROMPT='$(kube_ps1)'$PROMPT }
 
 #git commit alias
 gcmsg-feature() { git commit -m "[Feature] $1" }
