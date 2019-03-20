@@ -18,3 +18,6 @@
 	keepBackup = false
 [include]
 	path = ~/.gitconfig_local
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+
