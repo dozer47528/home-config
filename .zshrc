@@ -14,7 +14,7 @@ fi
 
 if [[ $('uname') == 'Darwin' ]]; then
     ulimit -n 65536 65536
-    plugins+=(brew brew-cask)
+    plugins+=(brew)
     alias idea="open -a '/Applications/IntelliJ IDEA.app'"
     alias goland="open -a '/Applications/Goland.app'"
     alias pyc="open -a '/Applications/PyCharm.app'"
