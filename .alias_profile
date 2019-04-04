@@ -30,3 +30,6 @@ gcmsg-bug() { git commit -m "[Bug] $1" }
 gcmsg-misc() { git commit -m "[Misc] $1" }
 gcmsg-test() { git commit -m "[Test] $1" }
 gcmsg-refactor() { git commit -m "[Refactor] $1" }
+
+#kubernetes
+kube() {export KUBECONFIG=${HOME}/.kube/config-alternative && command -v kubeon > /dev/null && kubeon }

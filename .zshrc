@@ -22,9 +22,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
     export HOMEBREW_NO_AUTO_UPDATE=1
-    test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
     command -v trash > /dev/null && alias rm=trash
-    PS1='$(kube_ps1)'$PS1
 fi
 
 if [[ $('uname') =~ 'CYGWIN' ]]; then
@@ -35,3 +33,8 @@ if [ -f ~/.env_profile ]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+if [[ $('uname') == 'Darwin' ]]; then
+    test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+    PROMPT='$(kube_ps1)'$PROMPT
+fi
