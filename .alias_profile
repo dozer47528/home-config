@@ -32,5 +32,13 @@ gcmsg-test() { git commit -m "[Test] $1" }
 gcmsg-refactor() { git commit -m "[Refactor] $1" }
 
 #kubernetes
-kube-dev() {export KUBECONFIG=${HOME}/.kube/config-dev && command -v kubeon > /dev/null && kubeon }
-kube-prod() {export KUBECONFIG=${HOME}/.kube/config-prod && command -v kubeon > /dev/null && kubeon }
+kube-dev() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-dev ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
+kube-prod() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-prod ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}

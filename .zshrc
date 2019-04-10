@@ -38,3 +38,6 @@ if [[ $('uname') == 'Darwin' ]]; then
     test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
     PROMPT='$(kube_ps1)'$PROMPT
 fi
+
+# Create user level tmp
+(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
