@@ -42,3 +42,15 @@ kube-prod() {
     cp ${HOME}/.kube/config-prod ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
+kops-dev(){
+export KOPS_STATE_STORE=s3://pebkit-k8s
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile kops) # based on the profile name on your laptop
+export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile kops) # based on the profile name on your laptop
+export VPC_ID=vpc-66bfcb03
+}
+kops-prod(){
+export KOPS_STATE_STORE=s3://narvii-k8s
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile kops-prod) # based on the profile name on your laptop
+export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile kops-prod) # based on the profile name on your laptop
+export VPC_ID=vpc-b1981dd5
+}
