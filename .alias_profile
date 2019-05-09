@@ -4,7 +4,7 @@ alias mysql="mysql --default-character-set utf8"
 alias vim=nvim
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"
-alias sketch-export="find . -name \"*.sketch\" | xargs -I {} /Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool export pages --formats=jpg \"{}\""
+alias sketch-export="find . -name \"*.sketch\" | xargs -I {} /Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool export pages --formats=jpg --use-id-for-name=YES \"{}\""
 
 #alias
 alias amino-server-dev="ssh 10.0.10.253"
