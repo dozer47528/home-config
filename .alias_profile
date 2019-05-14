@@ -54,3 +54,6 @@ export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile kops-pr
 export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile kops-prod) # based on the profile name on your laptop
 export VPC_ID=vpc-b1981dd5
 }
+kube-describe-nodes () {
+kubectl get nodes -L team  | grep -v data | grep -v master | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
+}
