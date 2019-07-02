@@ -7,22 +7,22 @@ alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/ske
 alias sketch-export="find . -name \"*.sketch\" | xargs -I {} /Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool export pages --formats=jpg --use-id-for-name=YES \"{}\""
 
 #alias
-alias amino-server-dev="ssh 10.0.10.253"
-alias amino-ws1-dev="ssh 10.0.1.246"
-alias amino-ws2-dev="ssh 10.0.1.136"
-alias amino-iportal-dev="ssh 10.0.10.64"
+alias amino-server-dev="ssh ubuntu@10.0.10.253"
+alias amino-ws1-dev="ssh ubuntu@10.0.1.246"
+alias amino-ws2-dev="ssh ubuntu@10.0.1.136"
+alias amino-iportal-dev="ssh ubuntu@10.0.10.64"
 alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
-alias amino-iportal-prd="ssh 10.2.11.79"
-alias amino-metrics-prd="ssh 10.2.12.13"
-alias amino-zeppelin-prd="ssh 10.2.10.173"
-alias amino-vpn-staff="ssh 10.2.10.94"
+alias amino-iportal-prd="ssh ubuntu@10.2.11.79"
+alias amino-metrics-prd="ssh ubuntu@10.2.12.13"
+alias amino-zeppelin-prd="ssh ubuntu@10.2.10.173"
+alias amino-vpn-staff="ssh ubuntu@10.2.10.94"
 amino-deploy-ws-prd () { ssh $1 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy.sh && exit"}
 amino-deploy-web-prd () { ssh $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
-amino-deploy-server-dev() {ssh 10.0.10.253 "~/deploy-web.sh && exit"}
-amino-deploy-server-all-dev() {ssh 10.0.10.253 "~/deploy.sh && exit"}
-amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
-amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
-amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
+amino-deploy-server-dev() {ssh ubuntu@10.0.10.253 "~/deploy-web.sh && exit"}
+amino-deploy-server-all-dev() {ssh ubuntu@10.0.10.253 "~/deploy.sh && exit"}
+amino-deploy-ws1-dev() {ssh ubuntu@10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
+amino-deploy-ws2-dev() {ssh ubuntu@10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
+amino-deploy-iportal-dev() {ssh ubuntu@10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
 
 #git commit alias
 gcmsg-feature() { git commit -m "[Feature] $1" }
