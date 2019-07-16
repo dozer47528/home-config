@@ -7,7 +7,7 @@ alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/ske
 alias sketch-export="find . -name \"*.sketch\" | xargs -I {} /Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool export pages --formats=jpg --use-id-for-name=YES \"{}\""
 
 #alias
-alist amino-k8s-dev="ssh 10.0.10.143"
+alias amino-k8s-dev="ssh 10.0.10.143"
 alias amino-server-dev="ssh 10.0.10.253"
 alias amino-ws1-dev="ssh 10.0.1.246"
 alias amino-ws2-dev="ssh 10.0.1.136"
