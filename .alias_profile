@@ -56,5 +56,5 @@ export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile
 export VPC_ID=vpc-b1981dd5
 }
 kube-describe-nodes () {
-kubectl get nodes -L team  | grep -v data | grep -v master | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
+kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
 }
