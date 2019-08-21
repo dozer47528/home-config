@@ -13,7 +13,6 @@ if [[ $('uname') == 'Linux' ]]; then
 fi
 
 if [[ $('uname') == 'Darwin' ]]; then
-    ulimit -n 65536 65536
     plugins+=(brew)
     alias idea="open -a '/Applications/IntelliJ IDEA.app'"
     alias goland="open -a '/Applications/Goland.app'"
