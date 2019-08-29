@@ -39,6 +39,11 @@ kube-dev() {
     cp ${HOME}/.kube/config-dev ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
+kube-pebkit-default() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-pebkit-default ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
 kube-prod() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-prod ~/.tmp/${uuid}
