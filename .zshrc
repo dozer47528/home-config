@@ -38,12 +38,5 @@ if [[ $('uname') == 'Darwin' ]]; then
     PROMPT='$(kube_ps1)'$PROMPT
 fi
 
-# Completion
-mkdir -p ~/.zsh/completion/
-command -v eksctl > /dev/null && eksctl completion zsh > ~/.zsh/completion/_eksctl
-fpath=($fpath ~/.zsh/completion)
-autoload -U compinit
-compinit
-
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
