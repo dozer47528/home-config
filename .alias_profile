@@ -34,33 +34,26 @@ gcmsg-test() { git commit -m "[Test] $1" }
 gcmsg-refactor() { git commit -m "[Refactor] $1" }
 
 #kubernetes
-kube-dev() {
+kd() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-dev ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
-kube-pebkit-default() {
+kpd() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-pebkit-default ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
-kube-prod() {
+kp() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-prod ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
-kops-dev(){
-export KOPS_STATE_STORE=s3://pebkit-k8s
-export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile kops) # based on the profile name on your laptop
-export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile kops) # based on the profile name on your laptop
-export VPC_ID=vpc-66bfcb03
-}
-kops-prod(){
-export KOPS_STATE_STORE=s3://narvii-k8s
-export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id --profile kops-prod) # based on the profile name on your laptop
-export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key --profile kops-prod) # based on the profile name on your laptop
-export VPC_ID=vpc-b1981dd5
+knd() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-narvii-default ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
 kube-describe-nodes () {
-kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
+    kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
 }
