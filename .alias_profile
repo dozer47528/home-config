@@ -57,3 +57,6 @@ knd() {
 kube-describe-nodes () {
     kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
 }
+kube-describe-nodes-lite () {
+    kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes | grep 'Allocated resources' -A 6
+}
