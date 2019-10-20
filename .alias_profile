@@ -33,6 +33,25 @@ gcmsg-misc() { git commit -m "[Misc] $1" }
 gcmsg-test() { git commit -m "[Test] $1" }
 gcmsg-refactor() { git commit -m "[Refactor] $1" }
 
+#vpn
+vpn-dev() {
+sudo openconnect -c $HOME/Documents/Amino/vpn/dev.p12  --cafile=$HOME/.cisco/certificates/ca/ac.pebkit.com.pem -v https://ac.pebkit.com
+}
+
+vpn-prd(){
+sudo openconnect -c $HOME/Documents/Amino/vpn/prd.p12  --cafile=$HOME/.cisco/certificates/ca/ac2.narvii.com.pem -v https://ac2.narvii.com
+}
+
+#docker
+docker-login-dev() {
+$(aws ecr get-login --no-include-email --region us-west-2)
+}
+
+
+docker-login-prd() {
+$(aws ecr get-login --no-include-email --profile prd --region us-west-2)
+}
+
 #kubernetes
 kd() {
     uuid=$(uuidgen)

@@ -18,6 +18,8 @@
 	keepBackup = false
 [include]
 	path = ~/.gitconfig_local
+[includeIf "gitdir:~/Projects/narvii/"]
+  path = .gitconfig_narvii
+
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
-
