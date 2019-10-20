@@ -33,6 +33,8 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
 if [[ $('uname') == 'Darwin' ]]; then
     test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
     PROMPT='$(kube_ps1)'$PROMPT
