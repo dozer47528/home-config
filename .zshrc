@@ -16,7 +16,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     plugins+=(brew)
     alias idea="open -a '/Applications/IntelliJ IDEA.app'"
     alias goland="open -a '/Applications/Goland.app'"
-    alias pyc="open -a '/Applications/PyCharm.app'"
+    alias charm="open -a '/Applications/PyCharm.app'"
     alias ws="open -a '/Applications/WebStorm.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
