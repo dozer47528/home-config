@@ -24,16 +24,11 @@ if [[ $('uname') == 'Darwin' ]]; then
     command -v trash > /dev/null && alias rm=trash
 fi
 
-if [[ $('uname') =~ 'CYGWIN' ]]; then
-fi
-
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
 
 source $ZSH/oh-my-zsh.sh
-
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 if [[ $('uname') == 'Darwin' ]]; then
     test -e "/usr/local/opt/kube-ps1/share/kube-ps1.sh" && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
@@ -42,3 +37,8 @@ fi
 
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
+
+# Completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(/usr/local/share/zsh/site-functions $fpath)
+rm -f ~/.zcompdump; compinit
