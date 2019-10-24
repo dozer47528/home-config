@@ -55,17 +55,12 @@ $(aws ecr get-login --no-include-email --profile prd --region us-west-2)
 #kubernetes
 kd() {
     uuid=$(uuidgen)
-    cp ${HOME}/.kube/config-dev ~/.tmp/${uuid}
+    cp ${HOME}/.kube/config-data ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
 kpd() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-pebkit-default ~/.tmp/${uuid}
-    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
-}
-kp() {
-    uuid=$(uuidgen)
-    cp ${HOME}/.kube/config-prod ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
 }
 knd() {
