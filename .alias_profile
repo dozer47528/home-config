@@ -74,3 +74,14 @@ kube-describe-nodes () {
 kube-describe-nodes-lite () {
     kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes | grep 'Allocated resources' -A 6
 }
+
+# amino
+session-email(){
+    PYTHONPATH=./ python ndc/scripts/generate_session_token.py -e $1
+}
+session-uid(){
+    PYTHONPATH=./ python ndc/scripts/generate_session_token.py -u $1
+}
+app-ads(){
+aws s3 cp ~/Downloads/app-ads.txt s3://cdn.narvii.com/permalink-misc/app-ads.txt --profile prd --cache-control "private, no-store, max-age=0, no-cache, must-revalidate, post-check=0, pre-check=0"
+}
