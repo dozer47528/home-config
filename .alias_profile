@@ -82,6 +82,4 @@ session-email(){
 session-uid(){
     PYTHONPATH=./ python ndc/scripts/generate_session_token.py -u $1
 }
-app-ads(){
-aws s3 cp ~/Downloads/app-ads.txt s3://cdn.narvii.com/permalink-misc/app-ads.txt --profile prd --cache-control "private, no-store, max-age=0, no-cache, must-revalidate, post-check=0, pre-check=0"
-}
+alias aws-prd="aws --profile prd"
