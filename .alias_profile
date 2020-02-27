@@ -53,7 +53,10 @@ $(aws ecr get-login --no-include-email --profile prd --region us-west-2)
 }
 
 #kubernetes
-kd() {
+
+alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker"
+
+kube-old() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config-data ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
