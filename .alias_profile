@@ -33,6 +33,13 @@ gcmsg-misc() { git commit -m "[Misc] $1" }
 gcmsg-test() { git commit -m "[Test] $1" }
 gcmsg-refactor() { git commit -m "[Refactor] $1" }
 
+# http proxy
+
+http_proxy(){
+sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0
+export http_proxy=http://100.64.0.0:1087;export https_proxy=http://100.64.0.0:1087;
+export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/12
+}
 #vpn
 vpn-dev() {
 sudo openconnect -c $HOME/Documents/Amino/vpn/dev.p12  --cafile=$HOME/.cisco/certificates/ca/ac.pebkit.com.pem -v https://ac.pebkit.com
