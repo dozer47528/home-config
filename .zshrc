@@ -18,6 +18,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias goland="open -a '/Applications/Goland.app'"
     alias charm="open -a '/Applications/PyCharm.app'"
     alias ws="open -a '/Applications/WebStorm.app'"
+    alias clion="open -a '/Applications/CLion.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
     export HOMEBREW_NO_AUTO_UPDATE=1
