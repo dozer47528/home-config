@@ -1,0 +1,95 @@
+#other
+alias vi=nvim
+alias mysql="mysql --default-character-set utf8"
+alias vim=nvim
+alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
+alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"
+alias sketch-export="find . -name \"*.sketch\" | xargs -I {} /Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool export pages --formats=jpg --use-id-for-name=YES \"{}\""
+
+#alias
+alias amino-k8s-dev="ssh 10.0.10.143"
+alias amino-server-dev="ssh 10.0.10.253"
+alias amino-ws1-dev="ssh 10.0.1.246"
+alias amino-ws2-dev="ssh 10.0.1.136"
+alias amino-iportal-dev="ssh 10.0.10.64"
+alias amino-sendy-prd="ssh -i ~/.ssh/SendyAWS.pem ubuntu@52.35.123.244"
+alias amino-iportal-prd="ssh 10.2.11.79"
+alias amino-k8s-prd="ssh 10.2.10.238"
+alias amino-metrics-prd="ssh 10.2.12.13"
+alias amino-zeppelin-prd="ssh 10.2.10.173"
+alias amino-vpn-staff="ssh 10.2.10.94"
+amino-deploy-ws-prd () { ssh $1 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy.sh && exit"}
+amino-deploy-web-prd () { ssh $1 "cd /project/app-src/git/amino-server && sudo git pull &&  sudo python deploy_server.py -c production_ec2 -d /project/www-scripts -k key_store_production && sudo service uwsgi restart && exit"}
+amino-deploy-server-dev() {ssh 10.0.10.253 "/project/deploy-web.sh && exit"}
+amino-deploy-server-all-dev() {ssh 10.0.10.253 "/project/deploy.sh && exit"}
+amino-deploy-ws1-dev() {ssh 10.0.1.246 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
+amino-deploy-ws2-dev() {ssh 10.0.1.136 "cd /project/src/amino-ws && sudo git pull --no-edit && ./deploy-dev.sh && exit"}
+amino-deploy-iportal-dev() {ssh 10.0.10.64 "cd /home/ubuntu/amino-toolbox-config && ./deploy.sh && exit"}
+
+#git commit alias
+gcmsg-feature() { git commit -m "[Feature] $1" }
+gcmsg-bug() { git commit -m "[Bug] $1" }
+gcmsg-misc() { git commit -m "[Misc] $1" }
+gcmsg-test() { git commit -m "[Test] $1" }
+gcmsg-refactor() { git commit -m "[Refactor] $1" }
+
+# http proxy
+
+http_proxy(){
+sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0
+export http_proxy=http://100.64.0.0:1087;export https_proxy=http://100.64.0.0:1087;
+export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/12
+}
+#vpn
+vpn-dev() {
+sudo openconnect -c $HOME/Documents/Amino/vpn/dev.p12  --cafile=$HOME/.cisco/certificates/ca/ac.pebkit.com.pem -v https://ac.pebkit.com
+}
+
+vpn-prd(){
+sudo openconnect -c $HOME/Documents/Amino/vpn/prd.p12  --cafile=$HOME/.cisco/certificates/ca/ac2.narvii.com.pem -v https://ac2.narvii.com
+}
+
+#docker
+docker-login-dev() {
+$(aws ecr get-login --no-include-email --region us-west-2)
+}
+
+
+docker-login-prd() {
+$(aws ecr get-login --no-include-email --profile prd --region us-west-2)
+}
+
+#kubernetes
+
+alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker"
+
+kube-old() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-data ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
+kpd() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-pebkit-default ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
+knd() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config-narvii-default ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
+kube-describe-nodes () {
+    kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes
+}
+kube-describe-nodes-lite () {
+    kubectl get nodes -l purpose=general | tail -n +2 | awk '{print $1}' | xargs kubectl describe nodes | grep 'Allocated resources' -A 6
+}
+
+# amino
+session-email(){
+    PYTHONPATH=./ python ndc/scripts/generate_session_token.py -e $1
+}
+session-uid(){
+    PYTHONPATH=./ python ndc/scripts/generate_session_token.py -u $1
+}
+alias aws-prd="aws --profile prd"
