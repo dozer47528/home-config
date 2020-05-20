@@ -20,6 +20,7 @@
 	path = ~/.gitconfig_local
 [includeIf "gitdir:~/Projects/narvii/"]
   path = .gitconfig_narvii
-
+[includeIf "gitdir:~/Projects/trip/"]
+  path = .gitconfig_trip
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
