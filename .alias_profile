@@ -4,16 +4,23 @@ alias mysql="mysql --default-character-set utf8"
 alias vim=nvim
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
 
-#alias
+#http proxy
 
-# http proxy
+alias lo0-alias="sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0"
 
 http_proxy(){
-sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0
-export http_proxy=http://100.64.0.0:1087;export https_proxy=http://100.64.0.0:1087;
-export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/12
+    export http_proxy=http://100.64.0.0:1087;export https_proxy=http://100.64.0.0:1087;
+    export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/12
 }
 
+http_proxy_nas(){
+    export http_proxy=http://192.168.11.11:1087;export https_proxy=http://192.168.11.11:1087;
+    export NO_PROXY=localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/12
+}
+http_no_proxy(){
+    unset http_proxy
+    unset NO_PROXY
+}
 
 #kubernetes
 alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker"
