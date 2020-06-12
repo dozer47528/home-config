@@ -1,7 +1,11 @@
-#other
-alias mysql="mysql --default-character-set utf8"
+# other
 
-#http proxy
+alias mysql="mysql --default-character-set utf8"
+notify(){
+    osascript -e "display notification \"$1\" with title \"zsh notification\""
+}
+
+# proxy
 
 alias lo0-alias="sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0"
 
@@ -16,10 +20,21 @@ http_proxy_nas(){
     export https_proxy=http://192.168.11.11:1087
     export no_proxy=localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 }
+
+http_proxy_trip(){
+    export http_proxy=http://hkproxy.cn1.global.ctrip.com:8080
+    export https_proxy=http://hkproxy.cn1.global.ctrip.com:8080
+    export no_proxy=localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+}
+
 http_no_proxy(){
     unset http_proxy
     unset https_proxy
     unset NO_PROXY
+}
+
+pac_lan_trip(){
+    networksetup -setautoproxyurl "USB 10/100/1000 LAN" "http://pac.cn1.global.ctrip.com/proxy.pac"
 }
 
 #kubernetes
