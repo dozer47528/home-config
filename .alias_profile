@@ -12,7 +12,7 @@ alias lo0-alias="sudo ifconfig lo0 alias 100.64.0.0 255.255.255.0"
 http_proxy(){
     export http_proxy=http://100.64.0.0:1087
     export https_proxy=http://100.64.0.0:1087
-    export no_proxy=localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
+    export no_proxy=localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0
 }
 
 http_proxy_nas(){
