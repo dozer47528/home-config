@@ -1,5 +1,7 @@
 # other
 
+alias tt="tmux -CC attach || tmux -CC"
+
 alias mysql="mysql --default-character-set utf8"
 notify(){
     osascript -e "display notification \"$1\" with title \"zsh notification\""
