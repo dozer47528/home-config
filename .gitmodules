@@ -11,5 +11,5 @@
 	path = .zsh-plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule ".zsh-themes/powerlevel10k"]
-	path = .zsh-themes/highlighting
+	path = .zsh-themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git

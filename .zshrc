@@ -1,5 +1,6 @@
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="ys"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+source ~/.p10k.zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
