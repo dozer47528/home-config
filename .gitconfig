@@ -1,26 +1,26 @@
 [user]
-	name = Dozer
-	email = mail@dozer.cc
+    name = Dozer
+    email = mail@dozer.cc
 [color]
-	status = auto
-	diff = auto
-	branch = auto
-	interactive = auto
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
 [core]
-	quotepath = false
-	mergeoptions = --no-edit
-	editor = /usr/bin/vim
-	trustctime = false
-	excludesfile = ~/.gitignore_global
+    quotepath = false
+    mergeoptions = --no-edit
+    editor = /usr/bin/vim
+    trustctime = false
+    excludesfile = ~/.gitignore_global
 [push]
-	default = simple
+    default = simple
+[pull]
+    rebase = true
 [mergetool]
-	keepBackup = false
+    keepBackup = false
 [include]
-	path = ~/.gitconfig_local
+    path = ~/.gitconfig_local
 [includeIf "gitdir:~/Projects/narvii/"]
-  path = .gitconfig_narvii
+    path = .gitconfig_narvii
 [includeIf "gitdir:~/Projects/trip/"]
-  path = .gitconfig_trip
-[url "git@bitbucket.org:"]
-	insteadOf = https://bitbucket.org/
+    path = .gitconfig_trip
