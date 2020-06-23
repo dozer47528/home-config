@@ -4,13 +4,12 @@ command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not ins
 rm -rf .oh-my-zsh
 rm -rf .vim/bundle/Vundle.vim
 rm -rf .zsh-plugins
-rm -rf .config/nvim
+rm -rf .zsh-themes
 
 git submodule init
 git submodule update
 
 ln -s $HOME/.zsh-plugins/* $HOME/.oh-my-zsh/custom/plugins
-mkdir -p .config/nvim
-ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+ln -s $HOME/.zsh-themes/* $HOME/.oh-my-zsh/custom/themes
 
 vim +PluginInstall +qall
