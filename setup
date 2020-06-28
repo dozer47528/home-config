@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Check working directory
+if [ $HOME == $PWD ]; then
+  echo "Error: can not put this project in home directory!"
+  exit -1
+fi
+
+if [ ! -f "$PWD/setup" ]; then
+  echo "Error: please run this command under project directory!"
+  exit -1
+fi
+
 # Check dependency
 command -v vim >/dev/null 2>&1 || { echo >&2 "I require vim but it's not installed.  Aborting."; exit 1; }
 command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not installed.  Aborting."; exit 1; }
