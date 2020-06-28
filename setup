@@ -15,8 +15,8 @@ git submodule init
 git submodule update
 
 # Link plugins and themes
-ln -fs $HOME/.zsh-plugins/* $HOME/.oh-my-zsh/custom/plugins
-ln -fs $HOME/.zsh-themes/* $HOME/.oh-my-zsh/custom/themes
+ln -fs $PWD/.zsh-plugins/* $PWD/.oh-my-zsh/custom/plugins
+ln -fs $PWD/.zsh-themes/* $PWD/.oh-my-zsh/custom/themes
 
 # Link to home
 ls -A | grep -v '^setup$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} rm -rf $HOME/{}
