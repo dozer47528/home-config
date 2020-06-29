@@ -24,6 +24,9 @@ if [[ $('uname') == 'Darwin' ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
     export HOMEBREW_NO_AUTO_UPDATE=1
     command -v trash > /dev/null && alias rm=trash
+    
+    # cleanup bazel cache
+    ls -t /private/var/tmp/_bazel_dozer/disk_cache/ | tail -n +100000 | xargs -I {} rm -rf /private/var/tmp/_bazel_dozer/disk_cache/{}
 fi
 
 if [ -f ~/.env_profile ]; then
