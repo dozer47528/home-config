@@ -34,7 +34,6 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias clion="open -a '/Applications/CLion.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     command -v trash > /dev/null && alias rm=trash
-    ls -t /private/var/tmp/_bazel_dozer/disk_cache/ | tail -n +100000 | xargs -I {} rm -rf /private/var/tmp/_bazel_dozer/disk_cache/{}
 fi
 
 # Create user level tmp
