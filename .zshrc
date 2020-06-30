@@ -1,10 +1,22 @@
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/.p10k.zsh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 plugins=(extract z git tmux git-extras kubectl kube-ps1 helm gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
+
+if [[ $('uname') == 'Darwin' ]]; then
+    plugins+=(brew)
+    export HOMEBREW_NO_AUTO_UPDATE=1
+fi
+
+source $ZSH/oh-my-zsh.sh
+
+source ~/.p10k.zsh
+
+if [ -f ~/.env_profile ]; then
+    . ~/.env_profile
+fi
 
 if [ -f ~/.alias_profile ]; then
     . ~/.alias_profile
@@ -22,18 +34,10 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias clion="open -a '/Applications/CLion.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-    export HOMEBREW_NO_AUTO_UPDATE=1
     command -v trash > /dev/null && alias rm=trash
-    
     # cleanup bazel cache
     ls -t /private/var/tmp/_bazel_dozer/disk_cache/ | tail -n +100000 | xargs -I {} rm -rf /private/var/tmp/_bazel_dozer/disk_cache/{}
 fi
-
-if [ -f ~/.env_profile ]; then
-    . ~/.env_profile
-fi
-
-source $ZSH/oh-my-zsh.sh
 
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
@@ -41,4 +45,5 @@ source $ZSH/oh-my-zsh.sh
 # Completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
-rm -f ~/.zcompdump; compinit
+autoload -Uz compinit
+compinit
