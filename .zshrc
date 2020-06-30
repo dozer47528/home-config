@@ -33,9 +33,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias ws="open -a '/Applications/WebStorm.app'"
     alias clion="open -a '/Applications/CLion.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
-    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
     command -v trash > /dev/null && alias rm=trash
-    # cleanup bazel cache
     ls -t /private/var/tmp/_bazel_dozer/disk_cache/ | tail -n +100000 | xargs -I {} rm -rf /private/var/tmp/_bazel_dozer/disk_cache/{}
 fi
 
