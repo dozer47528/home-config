@@ -5,15 +5,6 @@ export LANG=en_US.UTF-8
 
 plugins=(extract z git tmux git-extras kubectl kube-ps1 helm gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
 
-if [[ $('uname') == 'Darwin' ]]; then
-    plugins+=(brew)
-    export HOMEBREW_NO_AUTO_UPDATE=1
-fi
-
-source $ZSH/oh-my-zsh.sh
-
-source ~/.p10k.zsh
-
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
@@ -27,14 +18,18 @@ fi
 
 if [[ $('uname') == 'Darwin' ]]; then
     plugins+=(brew)
+    export HOMEBREW_NO_AUTO_UPDATE=1
     alias idea="open -a '/Applications/IntelliJ IDEA.app'"
     alias goland="open -a '/Applications/Goland.app'"
     alias charm="open -a '/Applications/PyCharm.app'"
     alias ws="open -a '/Applications/WebStorm.app'"
     alias clion="open -a '/Applications/CLion.app'"
     alias vs="open -a '/Applications/Visual Studio Code.app'"
-    command -v trash > /dev/null && alias rm=trash
 fi
+
+source $ZSH/oh-my-zsh.sh
+
+source ~/.p10k.zsh
 
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
@@ -44,3 +39,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
+
+# Replace rm with trash in macOS
+if [[ $('uname') == 'Darwin' ]]; then
+    command -v trash > /dev/null && alias rm=trash
+fi
