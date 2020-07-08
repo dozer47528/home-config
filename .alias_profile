@@ -40,7 +40,7 @@ pac_lan_trip(){
 }
 
 #kubernetes
-alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker"
+alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker:latest"
 
 ntgxy-e() {
     uuid=$(uuidgen)
