@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Check working directory
 if [ $HOME == $PWD ]; then
   echo "Error: can not put this project in home directory!"

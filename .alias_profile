@@ -42,3 +42,8 @@ pac_lan_trip(){
 #kubernetes
 alias kd="kubectl debug --agentless=true --port-forward=true --image=aminoapps/devops-toolkits-docker"
 
+ntgxy-e() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/ntgxy-e ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+}
