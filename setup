@@ -41,4 +41,5 @@ ls -A | grep -v '^setup$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I 
 vim +PluginInstall +qall
 
 # Change defaull shell
+echo "Input password for change default shell"
 chsh -s `which zsh`
