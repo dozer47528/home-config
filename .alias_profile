@@ -40,7 +40,6 @@ pac_lan_trip(){
 }
 
 #kubernetes
-alias kd="kubectl debug --agentless=true --port-forward=true --image=dozer47528/devops-toolkits-docker:latest"
 
 ntgxy-e() {
     uuid=$(uuidgen)
