@@ -41,6 +41,12 @@ pac_lan_trip(){
 
 #kubernetes
 
+km() {
+    uuid=$(uuidgen)
+    cp ${HOME}/.kube/config ~/.tmp/${uuid}
+    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon
+}
+
 ntgxy-e() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/ntgxy-e ~/.tmp/${uuid}
