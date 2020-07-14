@@ -3,6 +3,9 @@
 alias tt="tmux -CC attach || tmux -CC"
 
 alias mysql="mysql --default-character-set utf8"
+
+alias dlv-attach="dlv --listen=:18080 --headless=true --api-version=2 attach"
+
 notify(){
     osascript -e "display notification \"$1\" with title \"zsh notification\""
 }
@@ -44,11 +47,11 @@ pac_lan_trip(){
 km() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config ~/.tmp/${uuid}
-    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon
+    export KUBECONFIG=${HOME}/.tmp/${uuid}
 }
 
 ntgxy-e() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/ntgxy-e ~/.tmp/${uuid}
-    export KUBECONFIG=${HOME}/.tmp/${uuid} && command -v kubeon > /dev/null && kubeon    
+    export KUBECONFIG=${HOME}/.tmp/${uuid}
 }
