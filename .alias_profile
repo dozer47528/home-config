@@ -4,7 +4,7 @@ alias tt="tmux -CC attach || tmux -CC"
 
 alias mysql="mysql --default-character-set utf8"
 
-alias dlv-attach="dlv --listen=:18080 --headless=true --api-version=2 attach"
+alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 
 notify(){
     osascript -e "display notification \"$1\" with title \"zsh notification\""
@@ -43,6 +43,10 @@ pac_lan_trip(){
 }
 
 #kubernetes
+
+pod-name(){
+    kubectl get pod -l app=$1 -o jsonpath="{.items[0].metadata.name}"
+}
 
 km() {
     uuid=$(uuidgen)
