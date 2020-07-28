@@ -24,3 +24,5 @@
 	path = .gitconfig_narvii
 [includeIf "gitdir:~/Projects/trip/"]
 	path = .gitconfig_trip
+[url "git@git.dev.sh.ctripcorp.com:ctripgo"]
+	insteadOf = https://github.com/ctripcorp
