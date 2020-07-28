@@ -21,7 +21,7 @@ command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not ins
 
 # Reset submodules
 rm -rf .oh-my-zsh
-rm -rf .vim/bundle/Vundle.vim
+rm -rf .vim
 rm -rf .zsh-plugins
 rm -rf .zsh-themes
 
