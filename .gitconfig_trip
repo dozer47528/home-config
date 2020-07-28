@@ -1,3 +1,5 @@
 [user]
 	name = Gong Yuyang （龚昱阳）
 	email = yy_gong@trip.com
+[url "git@git.dev.sh.ctripcorp.com:ctripgo"]
+	insteadOf = https://github.com/ctripcorp
