@@ -48,7 +48,7 @@ pod-name(){
     kubectl get pod -l app=$1 -o jsonpath="{.items[0].metadata.name}"
 }
 
-km() {
+kd() {
     uuid=$(uuidgen)
     cp ${HOME}/.kube/config ~/.tmp/${uuid}
     export KUBECONFIG=${HOME}/.tmp/${uuid}
