@@ -5,14 +5,6 @@ export LANG=en_US.UTF-8
 
 plugins=(extract z git tmux git-extras kubectl kube-ps1 helm gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
 
-if [ -f ~/.env_profile ]; then
-    . ~/.env_profile
-fi
-
-if [ -f ~/.alias_profile ]; then
-    . ~/.alias_profile
-fi
-
 if [[ $('uname') == 'Linux' ]]; then
 fi
 
@@ -37,10 +29,12 @@ source ~/.p10k.zsh
 # Completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
-# Replace rm with trash in macOS
-if [[ $('uname') == 'Darwin' ]]; then
-    command -v trash > /dev/null && alias rm=trash
+if [ -f ~/.env_profile ]; then
+    . ~/.env_profile
+fi
+
+if [ -f ~/.alias_profile ]; then
+    . ~/.alias_profile
 fi

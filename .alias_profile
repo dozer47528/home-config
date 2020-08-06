@@ -48,14 +48,20 @@ pod-name(){
     kubectl get pod -l app=$1 -o jsonpath="{.items[0].metadata.name}"
 }
 
-kd() {
+kk() {
     uuid=$(uuidgen)
-    cp ${HOME}/.kube/config ~/.tmp/${uuid}
+    if [[ $1 == "default" ]]; then
+        cp ${HOME}/.kube/config ~/.tmp/${uuid}
+    else
+        cp ${HOME}/.kube/clusters/$1 ~/.tmp/${uuid}
+    fi
     export KUBECONFIG=${HOME}/.tmp/${uuid}
 }
 
-ntgxy-e() {
-    uuid=$(uuidgen)
-    cp ${HOME}/.kube/ntgxy-e ~/.tmp/${uuid}
-    export KUBECONFIG=${HOME}/.tmp/${uuid}
+_kk_completions()
+{
+   COMPREPLY+=("default")
+   COMPREPLY+=(`ls ~/.kube/clusters`)
 }
+
+complete -F _kk_completions kk
