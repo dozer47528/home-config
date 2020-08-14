@@ -53,7 +53,7 @@ minikube-cache-image(){
 
     for i in ${MINIKUBE_CACHED_IMAGES[@]}; do
         docker pull $i
-        if ! test -f "~/.minikube/cache/images/${i/:/_}"; then
+        if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
             mkdir -p ~/.minikube/cache/images/${i/:/_}
             rm -r ~/.minikube/cache/images/${i/:/_}
         fi
