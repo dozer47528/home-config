@@ -3,7 +3,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-plugins=(extract z git tmux git-extras kubectl kube-ps1 helm gitignore mvn bower gitfast github npm python pip docker zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
