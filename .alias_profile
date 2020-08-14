@@ -44,6 +44,24 @@ pac_lan_trip(){
 
 #kubernetes
 
+minikube-cache-image(){
+    MINIKUBE_CACHED_IMAGES+=(
+        aylei/debug-agent:latest
+        dozer47528/devops-toolkits-docker:latest
+        nginx:stable
+    )
+
+    for i in ${MINIKUBE_CACHED_IMAGES[@]}; do
+        docker pull $i
+        if ! test -f "~/.minikube/cache/images/${i/:/_}"; then
+            mkdir -p ~/.minikube/cache/images/${i/:/_}
+            rm -r ~/.minikube/cache/images/${i/:/_}
+        fi
+        docker save $i -o ~/.minikube/cache/images/${i/:/_}
+        minikube cache add $i
+    done
+}
+
 pod-name(){
     kubectl get pod -l app=$1 -o jsonpath="{.items[0].metadata.name}"
 }
