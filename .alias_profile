@@ -44,13 +44,13 @@ pac_lan_trip(){
 
 #kubernetes
 
-minikube-cache-image(){
-    MINIKUBE_CACHED_IMAGES+=(
-        aylei/debug-agent:latest
-        dozer47528/devops-toolkits-docker:latest
-        nginx:stable
-    )
+MINIKUBE_CACHED_IMAGES+=(
+    aylei/debug-agent:latest
+    dozer47528/devops-toolkits-docker:latest
+    nginx:stable
+)
 
+minikube-cache-image(){
     for i in ${MINIKUBE_CACHED_IMAGES[@]}; do
         docker pull $i
         if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
