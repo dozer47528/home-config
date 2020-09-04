@@ -30,6 +30,7 @@ minikube-cache-image(){
 }
 
 # Load host docker images to Kind on-demand, need to run it after create Kind cluster everytime.
+# You pass the group name to this command like: `kind-load-images nginx`
 kind-load-images(){
     for i in ${KUBE_CACHED_IMAGES[@]}; do
         image=$(echo $i | awk -F ',' '{print $1}')
