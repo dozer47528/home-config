@@ -6,20 +6,19 @@ alias mysql="mysql --default-character-set utf8"
 
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 
-#kubernetes
+# Kubernetes
 
+# Format: image-name[,group-name]
 KUBE_CACHED_IMAGES+=(
-    debug,aylei/debug-agent:latest
-    debug,dozer47528/devops-toolkits-docker:latest
-    nginx,nginx:stable
+    aylei/debug-agent:latest
+    dozer47528/devops-toolkits-docker:latest
+    nginx:stable,nginx
 )
 
+# Load images to minikube, do not need to run it after create Minikube cluster everytime.
 minikube-cache-image(){
     for i in ${KUBE_CACHED_IMAGES[@]}; do
-        if [[ $(echo $i | awk -F ',' '{print $2}') != "" ]]; then
-            i=$(echo $i | awk -F ',' '{print $2}')
-        fi
-
+        i=$(echo $i | awk -F ',' '{print $1}')
         docker pull $i
         if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
             mkdir -p ~/.minikube/cache/images/${i/:/_}
@@ -30,23 +29,21 @@ minikube-cache-image(){
     done
 }
 
+# Load host docker images to Kind on-demand, need to run it after create Kind cluster everytime.
 kind-load-images(){
     for i in ${KUBE_CACHED_IMAGES[@]}; do
-        group=$(echo $i | awk -F ',' '{print $1}')
-        image=$(echo $i | awk -F ',' '{print $2}')
-        if [[ $image == "" ]]; then
-            image=$group
-            group=""
-        fi
-
-        if [[ $1 == $group ]] || [[ $1 == "" ]]; then
+        image=$(echo $i | awk -F ',' '{print $1}')
+        group=$(echo $i | awk -F ',' '{print $2}')
+        if [[ $1 == $group ]] || [[ $1 == "all" ]]; then
             docker pull $image
             kind load docker-image $image
         fi
     done
 }
 
+# Completions for `kind-load-images` command
 _kind-load-images_completions(){
+    COMPREPLY+=("all")
     for i in ${KUBE_CACHED_IMAGES[@]}; do
         group=$(echo $i | awk -F ',' '{print $1}')
         image=$(echo $i | awk -F ',' '{print $2}')
@@ -55,8 +52,8 @@ _kind-load-images_completions(){
         fi
     done
 }
-
 complete -F _kind-load-images_completions kind-load-images
+
 
 pod-name(){
     kubectl get pod -l app=$1 -o jsonpath="{.items[0].metadata.name}"
