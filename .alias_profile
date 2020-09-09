@@ -46,8 +46,8 @@ kind-load-images(){
 _kind-load-images_completions(){
     COMPREPLY+=("all")
     for i in ${KUBE_CACHED_IMAGES[@]}; do
-        group=$(echo $i | awk -F ',' '{print $1}')
-        image=$(echo $i | awk -F ',' '{print $2}')
+        image=$(echo $i | awk -F ',' '{print $1}')
+        group=$(echo $i | awk -F ',' '{print $2}')
         if [[ $image != "" ]] && (! [[ " ${COMPREPLY[@]} " =~ " ${group} " ]]); then
             COMPREPLY+=("$group")
         fi
