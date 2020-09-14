@@ -10,9 +10,9 @@ alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 
 # Format: image-name[,group-name]
 KUBE_CACHED_IMAGES+=(
-    aylei/debug-agent:latest
-    dozer47528/devops-toolkits-docker:latest
-    nginx:stable,nginx
+    aylei/debug-agent:latest,debug
+    dozer47528/devops-toolkits-docker:latest,debug
+    nginx:stable,debug
 )
 
 # Load images to minikube, do not need to run it after create Minikube cluster everytime.
