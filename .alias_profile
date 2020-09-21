@@ -1,4 +1,34 @@
-# other
+#!/bin/bash
+
+# ===== Env =====
+
+if [[ "$PROJECT_HOME" == "" ]] then
+    echo "Missing Environment Variable `PROJECT_HOME`"
+fi
+
+# Golang
+if [[ "$PROJECT_HOME" != "" ]] then
+    export GOPATH="$PROJECT_HOME/go"
+    export PATH="$GOPATH/bin:$PATH"
+fi
+
+# Istio
+
+if [[ "$HOME/Projects/istio/istio-$ISTIO_VERSION/bin" != "" ]] then
+    export PATH=$HOME/Projects/istio/istio-$ISTIO_VERSION/bin:$PATH
+    source /Users/dozer/Projects/istio/istio-$ISTIO_VERSION/tools/_istioctl
+
+    if [[ ! -f "/tmp/istio-$ISTIO_VERSION.json" ]] then
+        istioctl profile dump demo -o json > /tmp/istio-$ISTIO_VERSION.json
+    fi
+fi
+
+# Kubernetes
+
+export PATH="$HOME/.krew/bin:$PATH"
+
+
+# ===== Misc =====
 
 alias tt="tmux -CC attach || tmux -CC"
 
@@ -6,14 +36,25 @@ alias mysql="mysql --default-character-set utf8"
 
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 
-# Kubernetes
+# ===== Kubernetes =====
 
 # Format: image-name[,group-name]
-KUBE_CACHED_IMAGES+=(
+KUBE_CACHED_IMAGES=(
     aylei/debug-agent:latest,debug
     dozer47528/devops-toolkits-docker:latest,debug
     nginx:stable,debug
 )
+
+if [[ "$HOME/Projects/istio/istio-$ISTIO_VERSION/bin" != "" ]] then
+    KUBE_CACHED_IMAGES+=(
+        istio/proxyv2:${ISTIO_VERSION},istio
+        istio/pilot:${ISTIO_VERSION},istio
+        quay.io/kiali/kiali:$(istioctl profile dump demo -o json | jq '..|.kiali?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        grafana/grafana:$(istioctl profile dump demo -o json | jq '..|.grafana?.image?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        prom/prometheus:$(istioctl profile dump demo -o json | jq '..|.prometheus?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        jaegertracing/all-in-one:$(istioctl profile dump demo -o json | jq '..|.jaeger?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+    )
+fi
 
 # Load images to minikube, do not need to run it after create Minikube cluster everytime.
 minikube-cache-image(){
@@ -43,6 +84,7 @@ kind-load-images(){
 }
 
 # Completions for `kind-load-images` command
+
 _kind-load-images_completions(){
     COMPREPLY+=("all")
     for i in ${KUBE_CACHED_IMAGES[@]}; do
