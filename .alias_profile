@@ -36,6 +36,10 @@ alias mysql="mysql --default-character-set utf8"
 
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 
+alias kind="KUBECONFIG=$HOME/.kube/config kind"
+
+alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
+
 # ===== Kubernetes =====
 
 # Format: image-name[,group-name]
