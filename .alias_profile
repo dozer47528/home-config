@@ -13,10 +13,9 @@ if [[ "$PROJECT_HOME" != "" ]] then
 fi
 
 # Istio
-
-if [[ "$HOME/Projects/istio/istio-$ISTIO_VERSION/bin" != "" ]] then
-    export PATH=$HOME/Projects/istio/istio-$ISTIO_VERSION/bin:$PATH
-    source /Users/dozer/Projects/istio/istio-$ISTIO_VERSION/tools/_istioctl
+if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] then
+    export PATH=$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin:$PATH
+    source $PROJECT_HOME/istio/istio-$ISTIO_VERSION/tools/_istioctl
 
     if [[ ! -f "/tmp/istio-$ISTIO_VERSION.json" ]] then
         istioctl profile dump demo -o json > /tmp/istio-$ISTIO_VERSION.json
@@ -49,7 +48,7 @@ KUBE_CACHED_IMAGES=(
     nginx:stable,debug
 )
 
-if [[ "$HOME/Projects/istio/istio-$ISTIO_VERSION/bin" != "" ]] then
+if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] && [[ -x "$(command -v jq)" ]] then
     KUBE_CACHED_IMAGES+=(
         istio/proxyv2:${ISTIO_VERSION},istio
         istio/pilot:${ISTIO_VERSION},istio
