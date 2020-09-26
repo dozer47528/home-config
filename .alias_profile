@@ -122,3 +122,24 @@ _kk_completions(){
 }
 
 complete -F _kk_completions kk
+
+
+# External Disk
+
+external-mount(){
+
+MOUNT_SOURCE_HOME=/Volumes/External
+
+MOUNT_TARGECTS=(
+    "/Users/dozer/.minikube"
+    "/Users/dozer/Library/Containers/com.docker.docker"
+    "/Users/dozer/Projects"
+)
+
+for t in ${MOUNT_TARGECTS[@]}; do
+    mkdir -p "${MOUNT_SOURCE_HOME}${t}"
+    rm -r "${t}"
+    ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+done
+
+}
