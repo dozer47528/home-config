@@ -46,10 +46,12 @@ KUBE_CACHED_IMAGES=(
     aylei/debug-agent:latest,debug
     dozer47528/devops-toolkits-docker:latest,debug
     nginx:stable,debug
+    golang:1.15,debug
 )
 
 if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] && [[ -x "$(command -v jq)" ]] then
     KUBE_CACHED_IMAGES+=(
+        docker.io/istio/proxyv2:${ISTIO_VERSION},istio
         istio/proxyv2:${ISTIO_VERSION},istio
         istio/pilot:${ISTIO_VERSION},istio
         quay.io/kiali/kiali:$(istioctl profile dump demo -o json | jq '..|.kiali?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
@@ -61,6 +63,8 @@ fi
 
 # Load images to minikube, do not need to run it after create Minikube cluster everytime.
 minikube-cache-image(){
+    minikube cache list | xargs minikube cache delete
+    rm -rf ~/.minikube/cache/images/*
     for i in ${KUBE_CACHED_IMAGES[@]}; do
         i=$(echo $i | awk -F ',' '{print $1}')
         docker pull $i
