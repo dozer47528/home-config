@@ -19,6 +19,7 @@ if [[ $('uname') == 'Darwin' ]]; then
     alias vs="open -a '/Applications/Visual Studio Code.app'"
 fi
 
+export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 
 source ~/.p10k.zsh

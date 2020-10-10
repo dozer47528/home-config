@@ -45,6 +45,7 @@ alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 KUBE_CACHED_IMAGES=(
     aylei/debug-agent:latest,debug
     dozer47528/devops-toolkits-docker:latest,debug
+    dozer47528/devops-toolkits-docker:benchmark,debug
     nginx:stable,debug
     golang:1.15,debug
 )
