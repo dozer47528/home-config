@@ -55,10 +55,10 @@ if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] && [[ -x "$(command -
         docker.io/istio/proxyv2:${ISTIO_VERSION},istio
         istio/proxyv2:${ISTIO_VERSION},istio
         istio/pilot:${ISTIO_VERSION},istio
-        quay.io/kiali/kiali:$(istioctl profile dump demo -o json | jq '..|.kiali?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        grafana/grafana:$(istioctl profile dump demo -o json | jq '..|.grafana?.image?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        prom/prometheus:$(istioctl profile dump demo -o json | jq '..|.prometheus?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        jaegertracing/all-in-one:$(istioctl profile dump demo -o json | jq '..|.jaeger?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        quay.io/kiali/kiali:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.kiali?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        grafana/grafana:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.grafana?.image?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        prom/prometheus:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.prometheus?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        jaegertracing/all-in-one:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.jaeger?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
     )
 fi
 
