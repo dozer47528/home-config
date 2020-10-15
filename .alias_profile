@@ -39,7 +39,13 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-# ===== Kubernetes =====
+# ===== Trip Laptop =====
+
+proxy-trip-laptop(){
+    LAN_IP=$(ip addr show $(ip -4 route ls | grep default | awk '{print $5}') | grep 'inet ' |  perl -pe 's/(.*inet )(\d+\.\d+\.\d+\.\d+)(\/\d+.*)/$2/g')
+    ssh trip.dozer.cc -- "cat /etc/resolv.conf | perl -pe 's/^nameserver.*/nameserver 198.18.0.2/g' | sudo tee /etc/resolv.conf"
+    ssh trip.dozer.cc -- "sudo ip route add default via $LAN_IP"
+}
 
 # Forward laptop minikube
 forward-trip-laptop-minikube(){
@@ -55,6 +61,8 @@ forward-trip-laptop-minikube(){
     echo "kubeconfig: $HOME/.kube/clusters/trip-laptop"
     ssh -NT -L localhost:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc
 }
+
+# ===== Kubernetes =====
 
 # Format: image-name[,group-name]
 KUBE_CACHED_IMAGES=(
