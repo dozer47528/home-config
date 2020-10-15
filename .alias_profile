@@ -41,6 +41,20 @@ alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
 # ===== Kubernetes =====
 
+# Forward laptop minikube
+forward-trip-laptop-minikube(){
+    scp trip.dozer.cc:/home/dozer/.kube/config ~/.kube/clusters/trip-laptop
+    mkdir -p ~/.kube/clusters/trip-laptop-cert
+    scp trip.dozer.cc:/home/dozer/.minikube/ca.crt ~/.kube/clusters/trip-laptop-cert/ca.crt
+    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.crt ~/.kube/clusters/trip-laptop-cert/client.crt
+    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.key ~/.kube/clusters/trip-laptop-cert/client.key
+    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.server' https://localhost:8443
+    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.certificate-authority' $HOME/.kube/clusters/trip-laptop-cert/ca.crt
+    yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-certificate' $HOME/.kube/clusters/trip-laptop-cert/client.crt
+    yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-key' $HOME/.kube/clusters/trip-laptop-cert/client.key
+    ssh -NT -L localhost:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc
+}
+
 # Format: image-name[,group-name]
 KUBE_CACHED_IMAGES=(
     aylei/debug-agent:latest,debug
