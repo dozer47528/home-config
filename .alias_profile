@@ -59,12 +59,12 @@ trip-laptop-forward-minikube(){
     scp trip.dozer.cc:/home/dozer/.minikube/ca.crt ~/.kube/clusters/trip-laptop-cert/ca.crt
     scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.crt ~/.kube/clusters/trip-laptop-cert/client.crt
     scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.key ~/.kube/clusters/trip-laptop-cert/client.key
-    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.server' https://localhost:8443
+    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.server' https://127.0.0.1:8443
     yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.certificate-authority' $HOME/.kube/clusters/trip-laptop-cert/ca.crt
     yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-certificate' $HOME/.kube/clusters/trip-laptop-cert/client.crt
     yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-key' $HOME/.kube/clusters/trip-laptop-cert/client.key
     echo "kubeconfig: $HOME/.kube/clusters/trip-laptop"
-    ssh -NT -L localhost:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc
+    ssh -NT -L 127.0.0.1:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc
 }
 
 # ===== Kubernetes =====
