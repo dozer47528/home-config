@@ -31,6 +31,8 @@ export PATH="$HOME/.krew/bin:$PATH"
 
 alias tt="tmux -CC attach || tmux -CC"
 
+alias kn="kubens"
+
 alias mysql="mysql --default-character-set utf8"
 
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
