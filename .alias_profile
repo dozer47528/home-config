@@ -41,31 +41,32 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-# ===== Trip Laptop =====
+# ===== Trip Desktop =====
 
-trip-laptop-enable-proxy(){
+trip-desktop-enable-proxy(){
     LAN_IP=$(ip addr show $(ip -4 route ls | grep default | awk '{print $5}') | grep 'inet ' |  perl -pe 's/(.*inet )(\d+\.\d+\.\d+\.\d+)(\/\d+.*)/$2/g')
     ssh trip.dozer.cc -- "cat /etc/resolv.conf | perl -pe 's/^nameserver.*/nameserver 198.18.0.2/g' | sudo tee /etc/resolv.conf"
     ssh trip.dozer.cc -- "sudo ip route add default via $LAN_IP"
 }
 
-trip-laptop-disable-proxy(){
+trip-desktop-disable-proxy(){
     ssh trip.dozer.cc -- "cat /etc/resolv.conf | perl -pe 's/^nameserver.*/nameserver 127.0.0.53/g' | sudo tee /etc/resolv.conf"
     ssh trip.dozer.cc -- "sudo ip route delete default"
 }
 
-# Forward laptop minikube
-trip-laptop-forward-minikube(){
-    scp trip.dozer.cc:/home/dozer/.kube/config ~/.kube/clusters/trip-laptop
-    mkdir -p ~/.kube/clusters/trip-laptop-cert
-    scp trip.dozer.cc:/home/dozer/.minikube/ca.crt ~/.kube/clusters/trip-laptop-cert/ca.crt
-    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.crt ~/.kube/clusters/trip-laptop-cert/client.crt
-    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.key ~/.kube/clusters/trip-laptop-cert/client.key
-    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.server' https://127.0.0.1:8443
-    yq w -i ~/.kube/clusters/trip-laptop 'clusters[0].cluster.certificate-authority' $HOME/.kube/clusters/trip-laptop-cert/ca.crt
-    yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-certificate' $HOME/.kube/clusters/trip-laptop-cert/client.crt
-    yq w -i ~/.kube/clusters/trip-laptop 'users[0].user.client-key' $HOME/.kube/clusters/trip-laptop-cert/client.key
-    echo "kubeconfig: $HOME/.kube/clusters/trip-laptop"
+# Forward desktop minikube
+trip-desktop-forward-minikube(){
+    scp trip.dozer.cc:/home/dozer/.kube/config ~/.kube/clusters/trip-desktop
+    mkdir -p ~/.kube/clusters/trip-desktop-cert
+    scp trip.dozer.cc:/home/dozer/.minikube/ca.crt ~/.kube/clusters/trip-desktop-cert/ca.crt
+    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.crt ~/.kube/clusters/trip-desktop-cert/client.crt
+    scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.key ~/.kube/clusters/trip-desktop-cert/client.key
+    yq w -i ~/.kube/clusters/trip-desktop 'clusters[0].cluster.server' https://127.0.0.1:8443
+    yq w -i ~/.kube/clusters/trip-desktop 'clusters[0].cluster.certificate-authority' $HOME/.kube/clusters/trip-desktop-cert/ca.crt
+    yq w -i ~/.kube/clusters/trip-desktop 'users[0].user.client-certificate' $HOME/.kube/clusters/trip-desktop-cert/client.crt
+    yq w -i ~/.kube/clusters/trip-desktop 'users[0].user.client-key' $HOME/.kube/clusters/trip-desktop-cert/client.key
+    cat ~/.kube/clusters/trip-desktop | perl -pe 's/minikube/trip-desktop/g' | tee ~/.kube/clusters/trip-desktop > /dev/null
+    echo "kubeconfig: $HOME/.kube/clusters/trip-desktop"
     ssh -NT -L 127.0.0.1:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc
 }
 
