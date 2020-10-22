@@ -83,6 +83,7 @@ KUBE_CACHED_IMAGES=(
     dozer47528/devops-toolkits-docker:benchmark,debug
     nginx:stable,debug
     golang:1.15,debug
+    k8s.gcr.io/metrics-server-amd64:v0.2.1,debug
 )
 
 if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]] then
