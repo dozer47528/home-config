@@ -31,7 +31,12 @@ export PATH="$HOME/.krew/bin:$PATH"
 
 alias tt="tmux -CC attach || tmux -CC"
 
-alias kn="kubens"
+if command -v kubens > /dev/null
+then
+    alias kn="kubens"
+else
+    alias kn="kubectl ns"
+fi
 
 alias mysql="mysql --default-character-set utf8"
 
