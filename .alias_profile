@@ -13,13 +13,10 @@ if [[ "$PROJECT_HOME" != "" ]] then
 fi
 
 # Istio
-if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] then
-    export PATH=$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin:$PATH
-    source $PROJECT_HOME/istio/istio-$ISTIO_VERSION/tools/_istioctl
-
-    if [[ ! -f "/tmp/istio-$ISTIO_VERSION.json" ]] then
-        istioctl profile dump demo -o json > /tmp/istio-$ISTIO_VERSION.json
-    fi
+export ISTIO_HOME=$PROJECT_HOME/istio/istio-$ISTIO_VERSION
+if [[ -d "$ISTIO_HOME" ]] then
+    export PATH=$ISTIO_HOME/bin:$PATH
+    source $ISTIO_HOME/tools/_istioctl
 fi
 
 # Kubernetes
@@ -88,15 +85,14 @@ KUBE_CACHED_IMAGES=(
     golang:1.15,debug
 )
 
-if [[ -d "$PROJECT_HOME/istio/istio-$ISTIO_VERSION/bin" ]] && [[ -x "$(command -v jq)" ]] then
+if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]] then
     KUBE_CACHED_IMAGES+=(
         docker.io/istio/proxyv2:${ISTIO_VERSION},istio
         istio/proxyv2:${ISTIO_VERSION},istio
         istio/pilot:${ISTIO_VERSION},istio
-        quay.io/kiali/kiali:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.kiali?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        grafana/grafana:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.grafana?.image?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        prom/prometheus:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.prometheus?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
-        jaegertracing/all-in-one:$(cat /tmp/istio-$ISTIO_VERSION.json | jq '..|.jaeger?.tag?' | grep -v null | sed 's/"//g'),istio-telemetry
+        $(cat $ISTIO_HOME/samples/addons/prometheus.yaml | grep "jimmidyson/configmap-reload:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
+        $(cat $ISTIO_HOME/samples/addons/prometheus.yaml | grep "prom/prometheus:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
+        $(cat $ISTIO_HOME/samples/addons/grafana.yaml | grep "grafana/grafana:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
     )
 fi
 
