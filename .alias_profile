@@ -103,9 +103,12 @@ if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]] then
 fi
 
 # Load images to minikube, do not need to run it after create Minikube cluster everytime.
-minikube-cache-image(){
+minikube-remove-image(){
     minikube cache list | xargs minikube cache delete
     rm -rf ~/.minikube/cache/images/*
+}
+
+minikube-cache-image(){
     for i in ${KUBE_CACHED_IMAGES[@]}; do
         i=$(echo $i | awk -F ',' '{print $1}')
         docker pull $i
