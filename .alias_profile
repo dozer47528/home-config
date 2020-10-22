@@ -93,6 +93,12 @@ if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]] then
         $(cat $ISTIO_HOME/samples/addons/prometheus.yaml | grep "jimmidyson/configmap-reload:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
         $(cat $ISTIO_HOME/samples/addons/prometheus.yaml | grep "prom/prometheus:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
         $(cat $ISTIO_HOME/samples/addons/grafana.yaml | grep "grafana/grafana:" | perl -pe 's/.*"(.*)".*/$1/g'),istio-telemetry
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-details-v1:" | sed 's/image: //g' ),istio-demo
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-ratings-v1:" | sed 's/image: //g' ),istio-demo
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-reviews-v1:" | sed 's/image: //g' ),istio-demo
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-reviews-v2:" | sed 's/image: //g' ),istio-demo
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-reviews-v3:" | sed 's/image: //g' ),istio-demo
+        $(cat $ISTIO_HOME/samples/bookinfo/platform/kube/bookinfo.yaml | grep "docker.io/istio/examples-bookinfo-productpage-v1:" | sed 's/image: //g' ),istio-demo
     )
 fi
 
