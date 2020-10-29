@@ -56,6 +56,10 @@ trip-desktop-disable-proxy(){
     ssh trip.dozer.cc -- "sudo ip route delete default"
 }
 
+trip-desktop-reenable-proxy(){
+    trip-desktop-disable-proxy && trip-desktop-enable-proxy
+}
+
 # Forward desktop minikube
 trip-desktop-forward-minikube(){
     scp trip.dozer.cc:/home/dozer/.kube/config ~/.kube/clusters/trip-desktop
