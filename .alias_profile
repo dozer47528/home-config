@@ -43,6 +43,8 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
+alias minikube-docker="eval $(KUBECONFIG=$HOME/.kube/config minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker"
+
 # ===== Trip Desktop =====
 
 trip-desktop-enable-proxy(){
