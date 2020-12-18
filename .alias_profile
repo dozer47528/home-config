@@ -2,6 +2,8 @@
 
 # ===== Env =====
 
+export PPROF_TMPDIR=/tmp/pprof
+
 if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
