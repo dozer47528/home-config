@@ -28,6 +28,11 @@ export PATH="$HOME/.krew/bin:$PATH"
 
 # ===== Misc =====
 
+git-clean-branch(){
+    git branch -d `git branch --merged | grep -v '\*'`
+    git remote prune `git remote`
+}
+
 alias tt="tmux -CC attach || tmux -CC"
 
 if command -v kubens > /dev/null
