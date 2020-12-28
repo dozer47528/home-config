@@ -50,7 +50,10 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-alias minikube-docker="eval $(KUBECONFIG=$HOME/.kube/config minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker"
+if minikube -p minikube docker-env > /dev/null 2>&1
+then
+    alias minikube-docker="eval $(minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker"
+fi
 
 # ===== Trip Desktop =====
 
