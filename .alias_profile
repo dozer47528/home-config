@@ -79,10 +79,10 @@ trip-desktop-forward-minikube(){
     scp trip.dozer.cc:/home/dozer/.minikube/ca.crt ~/.kube/clusters/trip-desktop-cert/ca.crt
     scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.crt ~/.kube/clusters/trip-desktop-cert/client.crt
     scp trip.dozer.cc:/home/dozer/.minikube/profiles/minikube/client.key ~/.kube/clusters/trip-desktop-cert/client.key
-    yq w -i ~/.kube/clusters/trip-desktop 'clusters[0].cluster.server' https://127.0.0.1:8443
-    yq w -i ~/.kube/clusters/trip-desktop 'clusters[0].cluster.certificate-authority' $HOME/.kube/clusters/trip-desktop-cert/ca.crt
-    yq w -i ~/.kube/clusters/trip-desktop 'users[0].user.client-certificate' $HOME/.kube/clusters/trip-desktop-cert/client.crt
-    yq w -i ~/.kube/clusters/trip-desktop 'users[0].user.client-key' $HOME/.kube/clusters/trip-desktop-cert/client.key
+    yq eval -i ".clusters[0].cluster.server = \"https://127.0.0.1:8443\"" ~/.kube/clusters/trip-desktop
+    yq eval -i ".clusters[0].cluster.certificate-authority = \"$HOME/.kube/clusters/trip-desktop-cert/ca.crt\"" ~/.kube/clusters/trip-desktop
+    yq eval -i ".users[0].user.client-certificate = \"$HOME/.kube/clusters/trip-desktop-cert/client.crt\"" ~/.kube/clusters/trip-desktop
+    yq eval -i ".users[0].user.client-key = \"$HOME/.kube/clusters/trip-desktop-cert/client.key\"" ~/.kube/clusters/trip-desktop
     cat ~/.kube/clusters/trip-desktop | perl -pe 's/minikube/trip-desktop/g' | tee ~/.kube/clusters/trip-desktop > /dev/null
     ssh -NT -L 127.0.0.1:8443:$(ssh trip.dozer.cc -- minikube ip):8443 trip.dozer.cc || true
     rm -rf $HOME/.kube/clusters/trip-desktop
