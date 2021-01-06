@@ -25,7 +25,6 @@ fi
 
 export PATH="$HOME/.krew/bin:$PATH"
 
-
 # ===== Misc =====
 
 git-clean-branch(){
@@ -50,10 +49,9 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-if minikube -p minikube docker-env > /dev/null 2>&1
-then
-    alias minikube-docker="eval $(minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker"
-fi
+minikube-docker(){
+    eval $(minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker $@
+}
 
 # ===== Trip Desktop =====
 
@@ -187,19 +185,17 @@ complete -F _kk_completions kk
 # External Disk
 
 external-mount(){
+    MOUNT_SOURCE_HOME=/Volumes/External
 
-MOUNT_SOURCE_HOME=/Volumes/External
+    MOUNT_TARGECTS=(
+        "/Users/dozer/.minikube"
+        "/Users/dozer/Library/Containers/com.docker.docker"
+        "/Users/dozer/Projects"
+    )
 
-MOUNT_TARGECTS=(
-    "/Users/dozer/.minikube"
-    "/Users/dozer/Library/Containers/com.docker.docker"
-    "/Users/dozer/Projects"
-)
-
-for t in ${MOUNT_TARGECTS[@]}; do
-    mkdir -p "${MOUNT_SOURCE_HOME}${t}"
-    rm -r "${t}"
-    ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
-done
-
+    for t in ${MOUNT_TARGECTS[@]}; do
+        mkdir -p "${MOUNT_SOURCE_HOME}${t}"
+        rm -r "${t}"
+        ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+    done
 }
