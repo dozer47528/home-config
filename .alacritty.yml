@@ -1,0 +1,12 @@
+font:
+  size: 14
+  normal:
+    family: MesloLGS NF
+
+key_bindings:
+  - key: Left
+    mods: Alt
+    chars: "\x1BB"
+  - key: Right
+    mods: Alt
+    chars: "\x1BF"
