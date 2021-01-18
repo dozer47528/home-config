@@ -1,3 +1,10 @@
+shell:
+  program: zsh
+  args:
+    - -l
+    - -c
+    - "tmux attach || tmux"
+
 font:
   size: 14
   normal:
