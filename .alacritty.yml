@@ -21,7 +21,10 @@ key_bindings:
     mods: Command
     command:
       program: "/usr/local/bin/tmux"
-      args: ["new-window"]
+      args:
+        - new-window
+        - -c
+        - "#{pane_current_path}"
   - key: W
     mods: Command
     command:
