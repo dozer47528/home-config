@@ -29,7 +29,7 @@ key_bindings:
     mods: Command
     command:
       program: "/usr/local/bin/tmux"
-      args: ["kill-window"]
+      args: ["kill-pane"]
   - key: Key1
     mods: Command
     command:
