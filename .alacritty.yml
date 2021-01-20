@@ -8,7 +8,7 @@ shell:
 font:
   size: 14
   normal:
-    family: MesloLGS NF
+    family: "JetBrainsMono Nerd Font"
 
 key_bindings:
   - key: Left
