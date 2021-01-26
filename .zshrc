@@ -25,7 +25,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.p10k.zsh
 
 # Create user level tmp
-(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && touch /tmp/"$USER"_tmp_inited
+(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
 
 # Completions
 fpath=(/usr/local/share/zsh-completions $fpath)

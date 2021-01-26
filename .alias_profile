@@ -172,6 +172,7 @@ kk() {
     else
         cp ${HOME}/.kube/clusters/$1 ~/.tmp/${uuid}
     fi
+    chmod 600 ~/.tmp/*
     export KUBECONFIG=${HOME}/.tmp/${uuid}
 }
 
