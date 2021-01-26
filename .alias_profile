@@ -28,8 +28,9 @@ export PATH="$HOME/.krew/bin:$PATH"
 # ===== Misc =====
 
 git-clean-branch(){
-    git branch -d `git branch --merged | grep -v '\*'`
     git remote prune `git remote`
+    git branch -vv | grep ': gone]'|  grep -v "\*" | awk '{ print $1; }' | xargs git branch -D
+    git branch --merged | grep -v '\*' | xargs git branch -D
 }
 
 alias tt="tmux -CC attach || tmux -CC"
