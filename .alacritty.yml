@@ -24,7 +24,7 @@ key_bindings:
   - key: T
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args:
         - new-window
         - -c
@@ -32,50 +32,50 @@ key_bindings:
   - key: W
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["kill-pane"]
   - key: Key1
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 1"]
   - key: Key2
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 2"]
   - key: Key3
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 3"]
   - key: Key4
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 4"]
   - key: Key5
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 5"]
   - key: Key6
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 6"]
   - key: Key7
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 7"]
   - key: Key8
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 8"]
   - key: Key9
     mods: Command
     command:
-      program: "tmux"
+      program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 9"]
