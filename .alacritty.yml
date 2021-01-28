@@ -22,7 +22,7 @@ key_bindings:
     mods: Option
     chars: "\x1BF"
   - key: T
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args:
@@ -30,52 +30,52 @@ key_bindings:
         - -c
         - "#{pane_current_path}"
   - key: W
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["kill-pane"]
   - key: Key1
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 1"]
   - key: Key2
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 2"]
   - key: Key3
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 3"]
   - key: Key4
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 4"]
   - key: Key5
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 5"]
   - key: Key6
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 6"]
   - key: Key7
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 7"]
   - key: Key8
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 8"]
   - key: Key9
-    mods: Super
+    mods: Command
     command:
       program: "/usr/local/bin/tmux"
       args: ["select-window", "-t 9"]
