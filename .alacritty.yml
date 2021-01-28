@@ -16,10 +16,10 @@ font:
 
 key_bindings:
   - key: Left
-    mods: Alt
+    mods: Option
     chars: "\x1BB"
   - key: Right
-    mods: Alt
+    mods: Option
     chars: "\x1BF"
   - key: T
     mods: Command
