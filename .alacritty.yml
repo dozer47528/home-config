@@ -15,6 +15,7 @@ font:
     style: Regular
 
 key_bindings:
+# MacOS
   - key: Left
     mods: Option
     chars: "\x1BB"
@@ -78,4 +79,63 @@ key_bindings:
     mods: Command
     command:
       program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 9"]
+# Linux
+  - key: T
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args:
+        - new-window
+        - -c
+        - "#{pane_current_path}"
+  - key: W
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["kill-pane"]
+  - key: Key1
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 1"]
+  - key: Key2
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 2"]
+  - key: Key3
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 3"]
+  - key: Key4
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 4"]
+  - key: Key5
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 5"]
+  - key: Key6
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 6"]
+  - key: Key7
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 7"]
+  - key: Key8
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
+      args: ["select-window", "-t 8"]
+  - key: Key9
+    mods: Alt
+    command:
+      program: "/usr/bin/tmux"
       args: ["select-window", "-t 9"]
