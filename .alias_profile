@@ -35,13 +35,6 @@ git-clean-branch(){
 
 alias tt="tmux -CC attach || tmux -CC"
 
-if command -v kubens > /dev/null
-then
-    alias kn="kubens"
-else
-    alias kn="kubectl ns"
-fi
-
 alias mysql="mysql --default-character-set utf8"
 
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
@@ -183,6 +176,15 @@ _kk_completions(){
 
 complete -F _kk_completions kk
 
+kn(){
+    kubectl config set-context --current --namespace=$1
+}
+
+_kn_completions(){
+    COMPREPLY+=($(k get namespaces | tail -n +2 | awk '{print $1}'))
+}
+
+complete -F _kn_completions kn
 
 # External Disk
 
