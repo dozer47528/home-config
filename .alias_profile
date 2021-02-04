@@ -8,20 +8,20 @@ if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
-# Golang
+## Golang
 if [[ "$PROJECT_HOME" != "" ]] then
     export GOPATH="$PROJECT_HOME/go"
     export PATH="$GOPATH/bin:$PATH"
 fi
 
-# Istio
+## Istio
 export ISTIO_HOME=$PROJECT_HOME/istio/istio-$ISTIO_VERSION
 if [[ -d "$ISTIO_HOME" ]] then
     export PATH=$ISTIO_HOME/bin:$PATH
     source $ISTIO_HOME/tools/_istioctl
 fi
 
-# Kubernetes
+## Kubernetes
 
 export PATH="$HOME/.krew/bin:$PATH"
 
@@ -47,6 +47,63 @@ minikube-docker(){
     eval $(minikube -p minikube docker-env | head -n 4 | sed 's/export//g' | tr '\n' ' ') docker $@
 }
 
+external-mount(){
+    MOUNT_SOURCE_HOME=/Volumes/External
+
+    MOUNT_TARGECTS=(
+        "/Users/dozer/.minikube"
+        "/Users/dozer/Library/Containers/com.docker.docker"
+        "/Users/dozer/Projects"
+    )
+
+    for t in ${MOUNT_TARGECTS[@]}; do
+        mkdir -p "${MOUNT_SOURCE_HOME}${t}"
+        rm -r "${t}"
+        ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+    done
+}
+
+install-istio(){
+    kk default
+    kubectl create namespace istio-system || true
+    kubectl label namespace default istio-injection=enabled --overwrite=true
+    istioctl install -y -f -<< EOF
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: istio-default
+spec:
+  meshConfig:
+    accessLogFile: /dev/stdout
+  profile: default
+  components:
+    pilot:
+      k8s:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+    ingressGateways:
+    - name: istio-ingressgateway
+      enabled: false
+    egressGateways:
+    - name: istio-egressgateway
+      enabled: false
+  values:
+    global:
+      imagePullPolicy: IfNotPresent
+EOF
+}
+
+uninstall-istio(){
+    kk default
+    istioctl x uninstall --purge -y
+    kubectl delete namespace istio-system || true
+    kubectl label namespace default istio-injection-
+}
+
+
 # ===== Trip Desktop =====
 
 trip-desktop-enable-proxy(){
@@ -64,7 +121,6 @@ trip-desktop-reenable-proxy(){
     trip-desktop-disable-proxy && trip-desktop-enable-proxy
 }
 
-# Forward desktop minikube
 trip-desktop-forward-minikube(){
     scp trip.dozer.cc:/home/dozer/.kube/config ~/.kube/clusters/trip-desktop
     mkdir -p ~/.kube/clusters/trip-desktop-cert
@@ -83,7 +139,7 @@ trip-desktop-forward-minikube(){
 
 # ===== Kubernetes =====
 
-# Format: image-name[,group-name]
+## Format: image-name[,group-name]
 KUBE_CACHED_IMAGES=(
     dozer47528/devops-toolkits-docker:latest,debug
     nginx:stable,debug
@@ -107,7 +163,7 @@ if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]] then
     )
 fi
 
-# Load images to minikube, do not need to run it after create Minikube cluster everytime.
+## Load images to minikube, do not need to run it after create Minikube cluster everytime.
 minikube-remove-image(){
     minikube cache list | xargs minikube cache delete
     rm -rf ~/.minikube/cache/images/*
@@ -126,8 +182,8 @@ minikube-cache-image(){
     done
 }
 
-# Load host docker images to Kind on-demand, need to run it after create Kind cluster everytime.
-# You pass the group name to this command like: `kind-load-images nginx`
+## Load host docker images to Kind on-demand, need to run it after create Kind cluster everytime.
+## You pass the group name to this command like: `kind-load-images nginx`
 kind-load-images(){
     for i in ${KUBE_CACHED_IMAGES[@]}; do
         image=$(echo $i | awk -F ',' '{print $1}')
@@ -139,8 +195,7 @@ kind-load-images(){
     done
 }
 
-# Completions for `kind-load-images` command
-
+## Completions for `kind-load-images` command
 _kind-load-images_completions(){
     COMPREPLY+=("all")
     for i in ${KUBE_CACHED_IMAGES[@]}; do
@@ -185,21 +240,3 @@ _kn_completions(){
 }
 
 complete -F _kn_completions kn
-
-# External Disk
-
-external-mount(){
-    MOUNT_SOURCE_HOME=/Volumes/External
-
-    MOUNT_TARGECTS=(
-        "/Users/dozer/.minikube"
-        "/Users/dozer/Library/Containers/com.docker.docker"
-        "/Users/dozer/Projects"
-    )
-
-    for t in ${MOUNT_TARGECTS[@]}; do
-        mkdir -p "${MOUNT_SOURCE_HOME}${t}"
-        rm -r "${t}"
-        ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
-    done
-}
