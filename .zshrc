@@ -1,9 +1,18 @@
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [ -f ~/.init_profile ]; then
+    . ~/.init_profile
+fi
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+ZSH=$HOME/.oh-my-zsh
 
-plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel zsh-autosuggestions zsh-syntax-highlighting)
+if [[ "$LIGHT" == "1" ]]; then
+    ZSH_THEME="robbyrussell"
+    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel)
+else
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel zsh-autosuggestions zsh-syntax-highlighting)
+fi
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
@@ -22,7 +31,9 @@ fi
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 
-source ~/.p10k.zsh
+if [[ "$LIGHT" != "1" ]]; then
+    source ~/.p10k.zsh
+fi
 
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
