@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="$HOME/.bin:$PATH"
+
 # ===== Env =====
 
 if [[ "$PROJECT_HOME" == "" ]] then
@@ -27,11 +29,13 @@ fi
 
 export PATH="$HOME/.krew/bin:$PATH"
 
-alias pod-name="kubectl get pod -l app=$1 -o jsonpath=\"{.items[0].metadata.name}\""
-
 alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
+
+alias kn="kubenamespace"
+
+alias kk=". kubecluster"
 
 KUBE_CACHED_IMAGES=(
     dozer47528/devops-toolkits-docker:latest,debug
@@ -49,8 +53,6 @@ fi
 ## Misc
 
 alias mysql="mysql --default-character-set utf8mb4"
-
-export PATH="$HOME/.bin:$PATH"
 
 export PPROF_TMPDIR=/tmp/pprof
 

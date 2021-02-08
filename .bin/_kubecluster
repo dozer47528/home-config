@@ -1,6 +1,6 @@
-#compdef _kk kk
+#compdef _kubecluster kubecluster
 
-function _kk {
+function _kubecluster {
     local clusters
     clusters+=("default")
     clusters+=(`ls ~/.kube/clusters`)
