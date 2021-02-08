@@ -48,6 +48,4 @@ if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
 
-if [ -f ~/.alias_profile ]; then
-    . ~/.alias_profile
-fi
+. ~/.alias_profile
