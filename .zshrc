@@ -41,7 +41,7 @@ fi
 # Completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
-fpath=($HOME/.completions $fpath)
+fpath=($HOME/.bin $fpath)
 autoload -Uz compinit && compinit
 
 if [ -f ~/.env_profile ]; then
