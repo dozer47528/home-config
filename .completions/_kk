@@ -1,0 +1,8 @@
+#compdef _kk kk
+
+function _kk {
+    local clusters
+    clusters+=("default")
+    clusters+=(`ls ~/.kube/clusters`)
+    _arguments -C "1: :($clusters)"
+}

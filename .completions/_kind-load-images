@@ -1,0 +1,15 @@
+#compdef _kind-load-images kind-load-images
+
+function _kind-load-images {
+    local images
+    images+=("all")
+    for i in ${KUBE_CACHED_IMAGES[@]}; do
+        image=$(echo $i | awk -F ',' '{print $1}')
+        group=$(echo $i | awk -F ',' '{print $2}')
+        if [[ $image != "" ]] && (! [[ " ${images[@]} " =~ " ${group} " ]]); then
+            images+=("$group")
+        fi
+    done
+
+    _arguments -C "1: :($images)"
+}

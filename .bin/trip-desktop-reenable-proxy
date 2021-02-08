@@ -1,0 +1,3 @@
+#!/bin/bash
+
+trip-desktop-disable-proxy && trip-desktop-enable-proxy

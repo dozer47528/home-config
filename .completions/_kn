@@ -1,0 +1,5 @@
+#compdef _kn kn
+
+function _kn {
+    _arguments -C "1: :($(kubectl get namespaces | tail -n +2 | awk '{print $1}'))"
+}

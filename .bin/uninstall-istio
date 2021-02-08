@@ -1,0 +1,6 @@
+#!/bin/bash
+
+kk default
+istioctl x uninstall --purge -y
+kubectl delete namespace istio-system || true
+kubectl label namespace default istio-injection-

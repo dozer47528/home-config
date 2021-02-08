@@ -1,0 +1,5 @@
+#!/bin/bash
+
+git remote prune `git remote`
+git branch -vv | grep ': gone]'|  grep -v "\*" | awk '{ print $1; }' | xargs git branch -D
+git branch --merged | grep -v '\*' | xargs git branch -D

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for i in ${KUBE_CACHED_IMAGES[@]}; do
+    i=$(echo $i | awk -F ',' '{print $1}')
+    docker pull $i
+    if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
+        mkdir -p ~/.minikube/cache/images/${i/:/_}
+        rm -r ~/.minikube/cache/images/${i/:/_}
+    fi
+    docker save $i -o ~/.minikube/cache/images/${i/:/_}
+    minikube cache add $i
+done

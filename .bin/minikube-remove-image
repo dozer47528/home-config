@@ -1,0 +1,4 @@
+#!/bin/bash
+
+minikube cache list | xargs minikube cache delete
+rm -rf ~/.minikube/cache/images/*

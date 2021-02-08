@@ -1,0 +1,10 @@
+#!/bin/bash
+
+uuid=$(uuidgen)
+if [[ $1 == "default" ]]; then
+    cp ${HOME}/.kube/config ~/.tmp/${uuid}
+else
+    cp ${HOME}/.kube/clusters/$1 ~/.tmp/${uuid}
+fi
+chmod 600 ~/.tmp/*
+export KUBECONFIG=${HOME}/.tmp/${uuid}
