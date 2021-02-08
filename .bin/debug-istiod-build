@@ -19,6 +19,6 @@ minikube-reload-image istio/pilot:$ISTIO_VERSION
 
 kubectl scale deployment/istiod -n istio-system --replicas=1
 
-sleep 10
+sleep 5
 
-kubectl wait --for=condition=ready pod -l app=istiod
+kubectl wait --for=condition=ready -n istio-system pod -l app=istiod
