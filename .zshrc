@@ -20,12 +20,47 @@ fi
 if [[ $('uname') == 'Darwin' ]]; then
     plugins+=(brew)
     export HOMEBREW_NO_AUTO_UPDATE=1
-    alias idea="open -a '/Applications/IntelliJ IDEA.app'"
-    alias goland="open -a '/Applications/Goland.app'"
-    alias charm="open -a '/Applications/PyCharm.app'"
-    alias ws="open -a '/Applications/WebStorm.app'"
-    alias clion="open -a '/Applications/CLion.app'"
-    alias vs="open -a '/Applications/Visual Studio Code.app'"
+    if  [ -d '/Volumes/External/Applications/IntelliJ IDEA.app' ]; then
+        alias idea="open -a '/Volumes/External/Applications/IntelliJ IDEA.app'"
+    fi
+    if  [ -d '/Applications/IntelliJ IDEA.app' ]; then
+        alias idea="open -a '/Applications/IntelliJ IDEA.app'"
+    fi
+
+    if  [ -d '/Volumes/External/Applications/Goland.app' ]; then
+        alias goland="open -a '/Volumes/External/Applications/Goland.app'"
+    fi
+    if  [ -d '/Applications/Goland.app' ]; then
+        alias goland="open -a '/Applications/Goland.app'"
+    fi
+
+    if  [ -d '/Volumes/External/Applications/PyCharm.app' ]; then
+        alias pycharm="open -a '/Volumes/External/Applications/PyCharm.app'"
+    fi
+    if  [ -d '/Applications/PyCharm.app' ]; then
+        alias pycharm="open -a '/Applications/PyCharm.app'"
+    fi
+
+    if  [ -d '/Volumes/External/Applications/WebStorm.app' ]; then
+        alias webstorm="open -a '/Volumes/External/Applications/WebStorm.app'"
+    fi
+    if  [ -d '/Applications/WebStorm.app' ]; then
+        alias webstorm="open -a '/Applications/WebStorm.app'"
+    fi
+
+    if  [ -d '/Volumes/External/Applications/CLion.app' ]; then
+        alias clion="open -a '/Volumes/External/Applications/CLion.app'"
+    fi
+    if  [ -d '/Applications/CLion.app' ]; then
+        alias clion="open -a '/Applications/CLion.app'"
+    fi
+
+    if  [ -d '/Volumes/External/Applications/Visual Studio Code.app' ]; then
+        alias vs="open -a '/Volumes/External/Applications/Visual Studio Code.app'"
+    fi
+    if  [ -d '/Applications/Visual Studio Code.app' ]; then
+        alias vs="open -a '/Applications/Visual Studio Code.app'"
+    fi
 fi
 
 export DISABLE_AUTO_UPDATE="true"
