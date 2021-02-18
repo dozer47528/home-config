@@ -6,14 +6,7 @@ kubectl scale deployment/istiod -n istio-system --replicas=0
 
 BUILD_WITH_CONTAINER=0 DEBUG=1 make docker.pilot
 
-cat <<EOF > ./out/Dockerfile.pilot
-FROM golang:1.15
-run go get github.com/go-delve/delve/cmd/dlv
-FROM istio/pilot:$(git rev-parse HEAD)
-COPY --from=0 /go/bin/dlv /usr/local/bin/
-EOF
-
-docker build . -t istio/pilot:$ISTIO_VERSION -f ./out/Dockerfile.pilot
+docker tag istio/pilot:$(git rev-parse HEAD) istio/pilot:$ISTIO_VERSION
 
 minikube-reload-image istio/pilot:$ISTIO_VERSION
 

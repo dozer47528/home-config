@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+DLV_PATH="/tmp/dlv-build"
+CURRENT_DIR="$PWD"
+
+if [ ! -d "$DLV_PATH" ]; then
+    git clone https://github.com/go-delve/delve.git --depth=1 "$DLV_PATH"
+fi
+
+if [ ! -d "$DLV_PATH/dlv" ]; then
+    cd $DLV_PATH
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build ./cmd/dlv
+    chmod +x ./dlv
+    cd $CURRENT_DIR
+fi
+
+kubectl cp "$DLV_PATH/dlv" `pod-name "app=istiod"`:/tmp
