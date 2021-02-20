@@ -16,4 +16,4 @@ if [ ! -d "$DLV_PATH/dlv" ]; then
     cd $CURRENT_DIR
 fi
 
-kubectl cp "$DLV_PATH/dlv" `pod-name "app=istiod"`:/tmp
+kubectl cp "$DLV_PATH/dlv" $1:/tmp

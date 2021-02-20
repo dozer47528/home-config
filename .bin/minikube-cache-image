@@ -1,7 +1,19 @@
 #!/bin/bash
 
+KUBE_CACHED_IMAGES=(
+    dozer47528/devops-toolkits-docker:latest
+    nginx:stable
+    golang:1.15
+)
+
+if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]]; then
+    KUBE_CACHED_IMAGES+=(
+        istio/proxyv2:${ISTIO_VERSION}
+        istio/pilot:${ISTIO_VERSION}
+    )
+fi
+
 for i in ${KUBE_CACHED_IMAGES[@]}; do
-    i=$(echo $i | awk -F ',' '{print $1}')
     docker pull $i
     if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
         mkdir -p ~/.minikube/cache/images/${i/:/_}
