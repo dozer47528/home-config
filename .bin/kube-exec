@@ -1,0 +1,51 @@
+#!/bin/bash
+
+SHELL="/bin/bash"
+
+CMD_START=""
+CMD=""
+
+while :; do
+    if [[ -z "$1" ]]; then
+        break
+    fi
+
+    if [[ $CMD_START == "1" ]]; then
+        CMD="$CMD $1"
+        shift
+        continue
+    fi
+
+    case $1 in
+        --)
+        CMD_START=1
+        ;;
+        -p|--proxy-container)
+        PROXY_CONTAINER="-p"
+        ;;
+        -b|--bash)
+        ;;
+        -s|--sh) SHELL="/bin/sh"
+        ;;
+        -h|--help)
+        echo "kube-exec <pod-name> [options...] [cmds...]"
+        echo " -p, --proxy-container select proxy container instead of app container"
+        echo " -b, --bash use base"
+        echo " -s, --sh use shell"
+        exit 0
+        ;;
+        *)
+        if [[ -z "$POD_NAME" ]]; then
+            POD_NAME=$1
+        fi
+        ;;
+    esac
+    shift
+done
+
+
+if [[ -z "$CMD" ]]; then
+    kubectl exec -it $POD_NAME -c $(pod-container $POD_NAME $PROXY_CONTAINER) "$SHELL"
+else
+    kubectl exec $POD_NAME -c $(pod-container $POD_NAME $PROXY_CONTAINER) -- $CMD
+fi

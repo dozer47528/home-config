@@ -1,0 +1,32 @@
+#!/bin/bash
+
+while :; do
+    if [[ -z "$1" ]]; then
+        break
+    fi
+
+    case $1 in
+        -p|--proxy-container)
+        PROXY_CONTAINER="1"
+        ;;
+        -h|--help)
+        echo "pod-container <pod-name> [options...]"
+        echo " -p, --proxy-container select proxy container instead of app container"
+        exit 0
+        ;;
+        *)
+        if [[ -z "$POD_NAME" ]]; then
+            POD_NAME=$1
+        fi
+        ;;
+    esac
+    shift
+done
+
+if [[ $PROXY_CONTAINER == "1" ]]; then
+    container=$(kubectl get pods $POD_NAME -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}' | grep istio-proxy)
+else
+    container=$(kubectl get pods $POD_NAME -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}' | grep -v istio)
+fi
+
+echo $container
