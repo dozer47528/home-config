@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -z $1 ]]; then
+    echo "Error: please choose a cluster!"
+    return 1
+fi
+
 uuid=$(uuidgen)
 if [[ $1 == "default" ]]; then
     cp ${HOME}/.kube/config ~/.tmp/${uuid}
