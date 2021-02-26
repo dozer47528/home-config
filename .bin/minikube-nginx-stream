@@ -20,3 +20,4 @@ stream {
 EOF
 
 sudo systemctl restart nginx
+systemctl status nginx.service
