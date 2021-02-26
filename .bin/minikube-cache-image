@@ -3,7 +3,7 @@
 KUBE_CACHED_IMAGES=(
     dozer47528/devops-toolkits-docker:latest
     nginx:stable
-    golang:1.15
+    golang:1.16
 )
 
 if [[ -d "$ISTIO_HOME" ]] && [[ -x "$(command -v jq)" ]]; then
