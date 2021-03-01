@@ -43,4 +43,13 @@ alias mysql="mysql --default-character-set utf8mb4"
 
 export PPROF_TMPDIR=/tmp/pprof
 
-alias vi=vim
+if command -v vim &> /dev/null
+then
+    alias vi=vim
+fi
+
+if command -v dog &> /dev/null
+then
+    alias dig=dog
+fi
+
