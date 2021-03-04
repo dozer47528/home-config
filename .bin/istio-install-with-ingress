@@ -1,0 +1,26 @@
+#!/bin/bash
+
+kubecluster default
+kubectl create namespace istio-system || true
+kubectl label namespace default istio-injection=enabled --overwrite=true
+istioctl install -y -f -<< EOF
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: istio-default
+spec:
+  meshConfig:
+    accessLogFile: /dev/stdout
+  profile: default
+  components:
+    pilot:
+      k8s:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+  values:
+    global:
+      imagePullPolicy: IfNotPresent
+EOF

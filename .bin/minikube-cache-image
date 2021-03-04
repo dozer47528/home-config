@@ -15,5 +15,10 @@ fi
 
 for i in ${KUBE_CACHED_IMAGES[@]}; do
     docker pull $i
-    minikube image load $i
+    if [[ $i =~ "/" ]] && ! test -f ~/.minikube/cache/images/${i/:/_}; then
+        mkdir -p ~/.minikube/cache/images/${i/:/_}
+        rm -r ~/.minikube/cache/images/${i/:/_}
+    fi
+    docker save $i -o ~/.minikube/cache/images/${i/:/_}
+    minikube cache add $i
 done
