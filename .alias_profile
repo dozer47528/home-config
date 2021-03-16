@@ -33,9 +33,13 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-alias kn="kubenamespace"
+alias kn=kubenamespace
 
 alias kk=". kubecluster"
+
+alias kl=kube-log
+
+alias ke=kube-exec
 
 ## Misc
 
