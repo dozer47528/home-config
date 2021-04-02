@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export PATH="$HOME/.bin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # ===== Env =====
 
@@ -39,7 +40,13 @@ alias kk=". kubecluster"
 
 alias kl=kube-log
 
-alias ke=kube-exec
+alias kx=kube-exec
+
+alias kg="kubectl get"
+
+alias ke="kubectl edit"
+
+alias kd="kubectl delete"
 
 ## Misc
 
@@ -56,4 +63,6 @@ if command -v dog &> /dev/null
 then
     alias dig=dog
 fi
+
+alias curl="curl -s"
 

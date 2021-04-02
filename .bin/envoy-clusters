@@ -1,3 +1,0 @@
-#!/bin/bash
-
-kube-exec $1 -- curl http://localhost:15000/clusters
