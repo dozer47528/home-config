@@ -16,4 +16,6 @@ if [ ! -d "$DLV_PATH/dlv" ]; then
     cd $CURRENT_DIR
 fi
 
+echo "uploading..."
 kubectl cp "$DLV_PATH/dlv" $1:/tmp
+echo "done!"
