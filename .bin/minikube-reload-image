@@ -1,5 +1,5 @@
 #!/bin/bash
 
-minikube cache delete $1
+minikube image rm $1
 minikube-docker rmi $1 --force
-minikube cache add $1
+minikube image add $1

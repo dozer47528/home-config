@@ -34,19 +34,21 @@ alias kind="KUBECONFIG=$HOME/.kube/config kind"
 
 alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
-alias kn=kubenamespace
+alias kk=". kube-cluster"
 
-alias kk=". kubecluster"
+alias kn=kube-namespace
 
-alias kl=kube-log
+alias kl="kubectl-wrap logs"
 
-alias kx=kube-exec
+alias kx="kubectl-wrap exec"
 
 alias kg="kubectl get"
 
 alias ke="kubectl edit"
 
 alias kd="kubectl delete"
+
+complete -F __start_kubectl kubectl-wrap
 
 ## Misc
 

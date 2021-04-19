@@ -20,5 +20,5 @@ for i in ${KUBE_CACHED_IMAGES[@]}; do
         rm -r ~/.minikube/cache/images/${i/:/_}
     fi
     docker save $i -o ~/.minikube/cache/images/${i/:/_}
-    minikube cache add $i
+    minikube image load $i
 done

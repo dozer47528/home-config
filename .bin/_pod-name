@@ -1,5 +1,0 @@
-#compdef _pod-name dlv-upload dlv-attach-pod pod-container kube-exec kube-log kube-envoy
-
-function _pod-name {
-    _arguments -C "1: :($(kubectl get pods | tail -n +2 | awk '{print $1}'))"
-}
