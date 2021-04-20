@@ -3,7 +3,7 @@ shell:
   args:
     - -l
     - -c
-    - "tmux new-session"
+    - "~/.bin/tmux-wrap"
 
 font:
   size: 14

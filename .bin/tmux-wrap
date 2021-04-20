@@ -1,0 +1,3 @@
+#!/bin/bash
+
+tmux $(tmux ls | grep -vq attached && echo "attach -d" || echo "new-session")
