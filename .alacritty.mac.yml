@@ -34,6 +34,11 @@ key_bindings:
     command:
       program: "/usr/local/bin/tmux"
       args: ["kill-pane"]
+  - key: K
+    mods: Command
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["clear-history"]
   - key: Key1
     mods: Command
     command:
