@@ -1,0 +1,86 @@
+shell:
+  program: zsh
+  args:
+    - -l
+    - -c
+    - "tmux new-session"
+
+font:
+  size: 14
+  normal:
+    family: "FiraCode Nerd Font"
+    style: Light
+  bold:
+    family: "FiraCode Nerd Font"
+    style: Regular
+
+key_bindings:
+  - key: Left
+    mods: Option
+    chars: "\x1BB"
+  - key: Right
+    mods: Option
+    chars: "\x1BF"
+  - key: T
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args:
+        - new-window
+        - -c
+        - "#{pane_current_path}"
+  - key: W
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["kill-pane"]
+  - key: K
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["clear-history"]
+  - key: Key1
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 1"]
+  - key: Key2
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 2"]
+  - key: Key3
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 3"]
+  - key: Key4
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 4"]
+  - key: Key5
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 5"]
+  - key: Key6
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 6"]
+  - key: Key7
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 7"]
+  - key: Key8
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 8"]
+  - key: Key9
+    mods: Alt
+    command:
+      program: "/usr/local/bin/tmux"
+      args: ["select-window", "-t 9"]

@@ -2,3 +2,5 @@
 .vim/
 .zsh-plugins/
 .zsh-themes/
+.alacritty.yml
+
