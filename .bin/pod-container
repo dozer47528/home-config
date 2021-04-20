@@ -29,4 +29,8 @@ else
     container=$(kubectl get pods $POD_NAME -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}' | grep -v istio)
 fi
 
+if [[ -z $container ]]; then
+    container=$(kubectl get pods $POD_NAME -o jsonpath='{range .spec.containers[*]}{.name}{"\n"}{end}' | head -n 1)
+fi
+
 echo $container
