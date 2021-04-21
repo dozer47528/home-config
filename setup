@@ -24,6 +24,7 @@ rm -rf .oh-my-zsh
 rm -rf .vim
 rm -rf .zsh-plugins
 rm -rf .zsh-themes
+rm -rf .tmux
 
 # Init submodules
 git submodule init
