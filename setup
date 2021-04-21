@@ -49,6 +49,9 @@ ls -A | grep -v '^setup$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I 
 # Install vim plugins
 vim +PluginInstall +qall
 
+# Install tmux plugins
+.tmux/plugins/tpm/bin/install_plugins
+
 # Change defaull shell
 echo "Input password for change default shell"
 chsh -s `which zsh`
