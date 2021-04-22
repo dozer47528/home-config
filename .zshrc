@@ -18,6 +18,7 @@ if [[ $('uname') == 'Linux' ]]; then
 fi
 
 if [[ $('uname') == 'Darwin' ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     plugins+=(brew)
     export HOMEBREW_NO_AUTO_UPDATE=1
     if  [ -d '/Volumes/External/Applications/IntelliJ IDEA.app' ]; then

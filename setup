@@ -18,6 +18,7 @@ command -v vim >/dev/null 2>&1 || { echo >&2 "I require vim but it's not install
 command -v zsh >/dev/null 2>&1 || { echo >&2 "I require zsh but it's not installed.  Aborting."; exit 1; }
 command -v tmux >/dev/null 2>&1 || { echo >&2 "I require tmux but it's not installed.  Aborting."; exit 1; }
 command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not installed.  Aborting."; exit 1; }
+command -v fzf >/dev/null 2>&1 || { echo >&2 "I require fzf but it's not installed.  Aborting."; exit 1; }
 
 # Reset submodules
 rm -rf .oh-my-zsh
