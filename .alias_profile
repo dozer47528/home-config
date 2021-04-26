@@ -66,5 +66,7 @@ then
     alias dig=dog
 fi
 
+alias t=tmux
+
 alias curl="curl -s"
 

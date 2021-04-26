@@ -18,6 +18,10 @@ if [[ $('uname') == 'Linux' ]]; then
 fi
 
 if [[ $('uname') == 'Darwin' ]]; then
+    if [[ -f "$HOME/.iterm2_shell_integration.zsh" ]]; then
+        source $HOME/.iterm2_shell_integration.zsh
+    fi
+
     plugins+=(brew)
     export HOMEBREW_NO_AUTO_UPDATE=1
     if  [ -d '/Volumes/External/Applications/IntelliJ IDEA.app' ]; then

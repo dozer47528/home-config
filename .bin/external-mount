@@ -4,12 +4,23 @@ MOUNT_SOURCE_HOME=/Volumes/External
 
 MOUNT_TARGECTS=(
     "/Users/$USER/.minikube"
-    "/Users/$USER/Library/Containers/com.docker.docker"
+    "/Users/$USER/.m2"
     "/Users/$USER/Projects"
 )
 
 for t in ${MOUNT_TARGECTS[@]}; do
+    if [[ -d "${t}" ]] && [[ ! -L "${t}" ]] && [[ -d "${MOUNT_SOURCE_HOME}${t}" ]] && [[ ! -L "${MOUNT_SOURCE_HOME}${t}" ]]; then
+        echo "Exist in two place, failed to process ${t}, please do it manually."
+        continue
+    fi
+
     mkdir -p "${MOUNT_SOURCE_HOME}${t}"
-    rm -r "${t}"
-    ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+    if [[ -d "${t}" ]] && [[ ! -L "${t}" ]]; then
+        rm -rf "${MOUNT_SOURCE_HOME}${t}"
+        mv "${t}" "${MOUNT_SOURCE_HOME}${t}"
+        ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+    else
+        rm -rf "${t}"
+        ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
+    fi
 done
