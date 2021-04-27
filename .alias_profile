@@ -38,17 +38,13 @@ alias kk=". kube-cluster"
 
 alias kn=kube-namespace
 
-alias kl="kubectl-wrap logs"
-
-alias kx="kubectl-wrap exec"
+alias kx="kubectl exec"
 
 alias kg="kubectl get"
 
 alias ke="kubectl edit"
 
 alias kd="kubectl delete"
-
-complete -F __start_kubectl kubectl-wrap
 
 ## Misc
 
@@ -69,4 +65,3 @@ fi
 alias t=tmux
 
 alias curl="curl -s"
-

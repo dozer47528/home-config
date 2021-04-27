@@ -34,14 +34,6 @@ git submodule update
 ln -fs $PWD/.zsh-plugins/* $PWD/.oh-my-zsh/custom/plugins
 ln -fs $PWD/.zsh-themes/* $PWD/.oh-my-zsh/custom/themes
 
-# Link Alacritty config
-if [[ $('uname') == 'Darwin' ]]; then
-  ln -fs .alacritty.mac.yml .alacritty.yml
-fi
-if [[ $('uname') == 'Linux' ]]; then
-  ln -fs .alacritty.linux.yml .alacritty.yml
-fi
-
 # Link to home
 ls -A | grep -v '^setup$' | grep -v '^upgrade$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} rm -rf $HOME/{}
 ls -A | grep -v '^setup$' | grep -v '^upgrade$'| grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} ln -fs $PWD/{} $HOME/{}
