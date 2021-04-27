@@ -5,13 +5,16 @@ import sys
 RED = '\033[0;31m'
 YELLOW = '\033[1;33m'
 NC = '\033[0m'
-
+CUSTOM_ARGS = ["-s", "--sidecar", "--sh"]
 
 # run command with pipeline
+
+
 def command(cmds):
     sp = None
     for cmd in cmds:
-        sp = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE, stdin=sp.stdout if sp is not None else None)
+        sp = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE,
+                              stdin=sp.stdout if sp is not None else None)
     return sp.communicate()[0].decode("utf-8").strip("\n")
 
 
@@ -29,15 +32,18 @@ Exec Help:
 
 
 if __name__ == "__main__":
-    kubectl_cmd = command([["which", "-a", "kubectl"], ["head", "-n", "2"], ["tail", "-n", "1"]])  # fetch real kubectl path
+    kubectl_cmd = command([["which", "-a", "kubectl"], ["head",
+                          "-n", "2"], ["tail", "-n", "1"]])  # fetch real kubectl path
     full_args = sys.argv[1:]
     if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
         print(command([[kubectl_cmd, "--help"]]))
         exit(1)
 
     kube_command = sys.argv[1]
-    has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
-    raw_args = [a for a in full_args[1:] if not a.startswith("-") and a != "--"]
+    has_container_args = "-c, --container" in command(
+        [[kubectl_cmd, kube_command, "--help"]])
+    raw_args = [a for a in full_args[1:]
+                if not a.startswith("-") and a != "--"]
     crd_name = None
     obj_name = None
 
@@ -64,7 +70,8 @@ if __name__ == "__main__":
 
     # enhance container
     if has_container_args and "-c" not in full_args and "--container" not in full_args:
-        containers = command([[kubectl_cmd, "get", "pods", obj_name, "-o" 'jsonpath="{.spec.containers[*].name}"']]).strip('"').split(" ")
+        containers = command([[kubectl_cmd, "get", "pods", obj_name,
+                             "-o" 'jsonpath="{.spec.containers[*].name}"']]).strip('"').split(" ")
         use_sidecar = "-s" in full_args or "--sidecar" in full_args
 
         target_container = None
@@ -78,7 +85,8 @@ if __name__ == "__main__":
             target_container = [c for c in containers if c != "istio-proxy"][0]
 
         if use_sidecar and target_container != "istio-proxy":
-            print('%s"istio-proxy" not found, using "%s" %s' % (YELLOW, target_container, NC))
+            print('%s"istio-proxy" not found, using "%s" %s' %
+                  (YELLOW, target_container, NC))
 
         if target_container:
             full_args.insert(1, "--container")
@@ -100,8 +108,10 @@ if __name__ == "__main__":
         if kube_command == "delete":
             color = RED
 
-        print("%sContext: %s%s" % (color, command([[kubectl_cmd, "config", "current-context"]]), NC))
-        print("%sNamespace: %s%s" % (color, command([[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]]), NC))
+        print("%sContext: %s%s" % (color, command(
+            [[kubectl_cmd, "config", "current-context"]]), NC))
+        print("%sNamespace: %s%s" % (color, command(
+            [[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]]), NC))
         if obj_name:
             print("%sResource: %s/%s%s" % (color, crd_name, obj_name, NC))
         else:
@@ -118,8 +128,15 @@ if __name__ == "__main__":
         if answer.lower()[0] != "y":
             exit(1)
 
-    full_args.insert(0, kubectl_cmd)
+    final_commands = [kubectl_cmd]
+    exec_cmd = False
+    for arg in full_args:
+        if not exec_cmd and arg == "--":
+            exec_cmd = True
+        if arg not in CUSTOM_ARGS or exec_cmd:
+            final_commands.append(arg)
+
     try:
-        subprocess.run(full_args)
+        subprocess.run(final_commands)
     except KeyboardInterrupt:
         pass
