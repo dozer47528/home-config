@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import subprocess
 import sys
 
@@ -7,9 +8,8 @@ YELLOW = '\033[1;33m'
 NC = '\033[0m'
 CUSTOM_ARGS = ["-s", "--sidecar", "--sh"]
 
+
 # run command with pipeline
-
-
 def command(cmds):
     sp = None
     for cmd in cmds:
@@ -32,101 +32,115 @@ Exec Help:
 
 
 if __name__ == "__main__":
-    kubectl_cmd = command([["which", "-a", "kubectl"], ["head",
-                          "-n", "2"], ["tail", "-n", "1"]])  # fetch real kubectl path
+    kubectl_cmd = command([["which", "-a", "kubectl"], ["grep", "-v", "'%s'" % sys.argv[0]], ["tail", "-n", "1"]])  # fetch real kubectl path
     full_args = sys.argv[1:]
     if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
         print(command([[kubectl_cmd, "--help"]]))
         exit(1)
 
     kube_command = sys.argv[1]
-    has_container_args = "-c, --container" in command(
-        [[kubectl_cmd, kube_command, "--help"]])
+    has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
+    from_file = "-f" in full_args or "--filename" in full_args
     raw_args = [a for a in full_args[1:]
                 if not a.startswith("-") and a != "--"]
     crd_name = None
     obj_name = None
 
-    if len(raw_args) == 0:
-        print(command([[kubectl_cmd, kube_command, "--help"]]))
-        if has_container_args:
-            container_help()
-        if kube_command == "exec":
-            exec_help()
-        exit(1)
+    read_stdin = False
+    if from_file and not os.path.isfile("-") and not sys.stdin.isatty():
+        for arg in full_args:
+            if arg == "--":
+                break
+            if arg == "-":
+                read_stdin = True
+                break
 
-    # detect command target
-    if kube_command in ["logs", "exec", "attach", "cp"]:
-        crd_name = "pods"
-        obj_name = raw_args[0]
-    else:
-        crd_name = raw_args[0]
-        if "/" in crd_name:
-            split_crd_name = crd_name.split("/", 1)
-            crd_name = split_crd_name[0]
-            obj_name = split_crd_name[1]
-        elif len(raw_args) >= 2:
-            obj_name = raw_args[1]
+    if not from_file:
+        if len(raw_args) == 0:
+            print(command([[kubectl_cmd, kube_command, "--help"]]))
+            if has_container_args:
+                container_help()
+            if kube_command == "exec":
+                exec_help()
+            exit(1)
 
-    # enhance container
-    if has_container_args and "-c" not in full_args and "--container" not in full_args:
-        containers = command([[kubectl_cmd, "get", "pods", obj_name,
-                             "-o" 'jsonpath="{.spec.containers[*].name}"']]).strip('"').split(" ")
-        use_sidecar = "-s" in full_args or "--sidecar" in full_args
-
-        target_container = None
-        if len(containers) == 0:
-            pass
-        elif len(containers) == 1:
-            target_container = containers[0]
-        elif "istio-proxy" in containers and use_sidecar:
-            target_container = "istio-proxy"
+        # detect command target
+        if kube_command in ["logs", "exec", "attach", "cp"]:
+            crd_name = "pods"
+            obj_name = raw_args[0]
         else:
-            target_container = [c for c in containers if c != "istio-proxy"][0]
+            crd_name = raw_args[0]
+            if "/" in crd_name:
+                split_crd_name = crd_name.split("/", 1)
+                crd_name = split_crd_name[0]
+                obj_name = split_crd_name[1]
+            elif len(raw_args) >= 2:
+                obj_name = raw_args[1]
 
-        if use_sidecar and target_container != "istio-proxy":
-            print('%s"istio-proxy" not found, using "%s" %s' %
-                  (YELLOW, target_container, NC))
+        # enhance container
+        if has_container_args and "-c" not in full_args and "--container" not in full_args:
+            containers = command([[kubectl_cmd, "get", "pods", obj_name, "-o" 'jsonpath="{.spec.containers[*].name}"']]).strip('"').split(" ")
+            use_sidecar = "-s" in full_args or "--sidecar" in full_args
 
-        if target_container:
-            full_args.insert(1, "--container")
-            full_args.insert(2, target_container)
-
-    # enhance exec
-    if kube_command == "exec":
-        if len(raw_args) == 1:
-            if "--" not in full_args:
-                full_args.append("-it")
-            if "--sh" in full_args:
-                full_args.append("/bin/sh")
+            target_container = None
+            if len(containers) == 0:
+                pass
+            elif len(containers) == 1:
+                target_container = containers[0]
+            elif "istio-proxy" in containers and use_sidecar:
+                target_container = "istio-proxy"
             else:
-                full_args.append("/bin/bash")
+                target_container = [c for c in containers if c != "istio-proxy"][0]
+
+            if use_sidecar and target_container != "istio-proxy":
+                print('%s"istio-proxy" not found, using "%s" %s' %
+                      (YELLOW, target_container, NC))
+
+            if target_container:
+                full_args.insert(1, "--container")
+                full_args.insert(2, target_container)
+
+        # enhance exec
+        if kube_command == "exec":
+            if len(raw_args) == 1:
+                if "--" not in full_args:
+                    full_args.append("-it")
+                if "--sh" in full_args:
+                    full_args.append("/bin/sh")
+                else:
+                    full_args.append("/bin/bash")
 
     # delete edit double check
-    if kube_command in ["delete", "edit"]:
+    if not read_stdin and kube_command in ["delete", "edit"]:
         color = YELLOW
         if kube_command == "delete":
             color = RED
 
-        print("%sContext: %s%s" % (color, command(
-            [[kubectl_cmd, "config", "current-context"]]), NC))
-        print("%sNamespace: %s%s" % (color, command(
-            [[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]]), NC))
-        if obj_name:
-            print("%sResource: %s/%s%s" % (color, crd_name, obj_name, NC))
+        if os.getenv("UNPROTECTED_CONTEXT") is not None:
+            unprotected_context = [c.lower() for c in os.getenv("UNPROTECTED_CONTEXT").split(":")]
         else:
-            print("%sResource: %s%s" % (color, crd_name, NC))
+            unprotected_context = []
+        current_context = command([[kubectl_cmd, "config", "current-context"]])
+        current_namespace = command([[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]])
+        if current_context and current_context.lower() not in unprotected_context:
+            print("%sContext: %s%s" % (color, current_context, NC))
+            print("%sNamespace: %s%s" % (color, current_namespace, NC))
+            if obj_name:
+                print("%sResource: %s/%s%s" % (color, crd_name, obj_name, NC))
+            else:
+                print("%sResource: %s%s" % (color, crd_name, NC))
 
-        if kube_command == "delete":
-            answer = input('%sContinue? (y/N):%s' % (color, NC))
-            if not answer:
-                answer = "n"
-        else:
-            answer = input('%sContinue? (Y/n):%s' % (color, NC))
-            if not answer:
-                answer = "y"
-        if answer.lower()[0] != "y":
-            exit(1)
+            if kube_command == "delete":
+                answer = input('%sContinue? (y/N):%s' % (color, NC))
+                if not answer:
+                    answer = "n"
+            else:
+                answer = input('%sContinue? (Y/n):%s' % (color, NC))
+                if not answer:
+                    answer = "y"
+            if answer.lower()[0] != "y":
+                print("Abort!")
+                exit(1)
 
     final_commands = [kubectl_cmd]
     exec_cmd = False
@@ -137,6 +151,11 @@ if __name__ == "__main__":
             final_commands.append(arg)
 
     try:
-        subprocess.run(final_commands)
+        if read_stdin:
+            result = subprocess.run(final_commands, stdin=sys.stdin)
+        else:
+            result = subprocess.run(final_commands)
+        if result.returncode != 0:
+            exit(result.returncode)
     except KeyboardInterrupt:
         pass

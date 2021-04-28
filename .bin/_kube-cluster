@@ -3,6 +3,6 @@
 function _kube-cluster {
     local clusters
     clusters+=("default")
-    clusters+=(`ls ~/.kube/clusters`)
+    clusters+=(`ls -F ~/.kube/clusters/ | grep -v /`)
     _arguments -C "1: :($clusters)"
 }

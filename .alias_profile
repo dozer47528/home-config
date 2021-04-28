@@ -28,6 +28,8 @@ fi
 
 ## Kubernetes
 
+export UNPROTECTED_CONTEXT=default:ntgxh-c:ntgxh-x:ntgxy-e:trip-desktop
+
 export PATH="$HOME/.krew/bin:$PATH"
 
 alias kind="KUBECONFIG=$HOME/.kube/config kind"
