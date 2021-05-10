@@ -3,9 +3,16 @@
 MOUNT_SOURCE_HOME=/Volumes/External
 
 MOUNT_TARGECTS=(
-    "/Users/$USER/.minikube"
-    "/Users/$USER/.m2"
-    "/Users/$USER/Projects"
+    "$HOME/.minikube"
+    "$HOME/.m2"
+    "$HOME/Projects"
+    "$HOME/Library/Caches/JetBrains"
+    "$HOME/Library/Caches/go-build"
+    "/private/var/tmp/_bazel_$USER"
+)
+
+MOUNT_APPLICATIONS=(
+
 )
 
 for t in ${MOUNT_TARGECTS[@]}; do

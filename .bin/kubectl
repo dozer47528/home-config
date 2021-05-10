@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     kube_command = sys.argv[1]
     has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
-    from_file = "-f" in full_args or "--filename" in full_args
+    from_file = kube_command not in ("logs") and ("-f" in full_args or "--filename" in full_args)
     raw_args = [a for a in full_args[1:]
                 if not a.startswith("-") and a != "--"]
     crd_name = None
