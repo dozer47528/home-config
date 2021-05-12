@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Front end
+duti -s com.microsoft.VSCode .js all
+duti -s com.microsoft.VSCode .css all
+
+# Java
+duti -s com.microsoft.VSCode .java all
+
+# C
+duti -s com.microsoft.VSCode .c all
+duti -s com.microsoft.VSCode .h all
+duti -s com.microsoft.VSCode .cpp all
+
+# Python
+duti -s com.microsoft.VSCode .py all
+
+# Go
+duti -s com.microsoft.VSCode .go all
+
+# Misc
+duti -s com.microsoft.VSCode .md all

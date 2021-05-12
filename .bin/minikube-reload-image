@@ -1,5 +1,5 @@
 #!/bin/bash
 
 minikube image rm $1
-minikube-docker rmi $1 --force
-minikube image add $1
+minikube-docker rmi $1 --force 2>/dev/null | true
+minikube image load $1
