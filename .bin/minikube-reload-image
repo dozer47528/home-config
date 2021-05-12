@@ -1,5 +1,5 @@
 #!/bin/bash
 
 minikube image rm $1
-minikube-docker rmi $1 --force 2>/dev/null | true
+rm -rf $HOME/.minikube/cache/images/${1/:/_}
 minikube image load $1
