@@ -4,3 +4,7 @@
 **/._.DS_Store
 **/.idea/
 **/.clwb/
+.java-version
+**/.java-version
+.python-version
+**/.python-version
