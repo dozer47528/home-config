@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     kube_command = sys.argv[1]
     has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
-    from_file = kube_command not in ("logs") and ("-f" in full_args or "--filename" in full_args)
+    from_file = kube_command not in ["logs"] and ("-f" in full_args or "--filename" in full_args)
     raw_args = [a for a in full_args[1:]
                 if not a.startswith("-") and a != "--"]
     crd_name = None
@@ -56,7 +56,7 @@ if __name__ == "__main__":
                 break
 
     if not from_file:
-        if len(raw_args) == 0:
+        if len(raw_args) == 0 and kube_command not in ["version", "api-resources", "api-versions"]:
             print(command([[kubectl_cmd, kube_command, "--help"]]))
             if has_container_args:
                 container_help()
@@ -64,8 +64,10 @@ if __name__ == "__main__":
                 exec_help()
             exit(1)
 
-        # detect command target
-        if kube_command in ["logs", "exec", "attach", "cp"]:
+        if kube_command in ["version", "api-resources", "api-versions"]:
+            crd_name = ""
+            obj_name = ""
+        elif kube_command in ["logs", "exec", "attach", "cp"]:
             crd_name = "pods"
             obj_name = raw_args[0]
         else:
