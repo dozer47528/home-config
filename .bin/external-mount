@@ -2,13 +2,18 @@
 
 MOUNT_SOURCE_HOME=/Volumes/External
 
+# MOUNT_TARGECTS=(
+#     "$HOME/.minikube"
+#     "$HOME/.m2"
+#     "$HOME/Projects"
+#     "$HOME/Library/Caches/JetBrains"
+#     "$HOME/Library/Caches/go-build"
+#     "/private/var/tmp/_bazel_$USER"
+# )
+
 MOUNT_TARGECTS=(
-    "$HOME/.minikube"
-    "$HOME/.m2"
-    "$HOME/Projects"
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
-    "/private/var/tmp/_bazel_$USER"
 )
 
 MOUNT_APPLICATIONS=(
