@@ -1,7 +1,9 @@
 #!/bin/bash
 
 export PATH="$HOME/.bin:$PATH"
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+if [[ -n "$HOMEBREW_REPOSITORY" ]] then
+    export PATH="$HOMEBREW_REPOSITORY/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
 
 # ===== Env =====
 
@@ -10,13 +12,9 @@ if [[ "$PROJECT_HOME" == "" ]] then
 fi
 
 ## Golang
-if [[ "$PROJECT_HOME" != "" ]] then
-    export GOPATH="$PROJECT_HOME/go"
-    export PATH="$GOPATH/bin:$PATH"
-fi
-
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
-
 alias dlv-exec="dlv --listen=:2345 --headless=true --api-version=2 exec"
 
 ## Istio
