@@ -2,15 +2,18 @@
 
 MOUNT_SOURCE_HOME=/Volumes/External
 
-# MOUNT_TARGECTS=(
-#     "$HOME/Projects"
-# )
-
 MOUNT_TARGECTS=(
+    "$HOME/Downloads"
     "$HOME/.go"
+    "$HOME/.npm"
+    "$HOME/.vscode"
     "$HOME/.m2"
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
+    "$HOME/Library/Caches/Homebrew"
+    "$HOME/Library/Application Support/Code"
+    "$HOME/Library/Application Support/TripPal"
+    "$HOME/Library/Developer/CoreSimulator/Caches"
     "/private/var/tmp/_bazel_$USER"
 )
 
@@ -18,19 +21,19 @@ MOUNT_APPLICATIONS=(
 
 )
 
-for t in ${MOUNT_TARGECTS[@]}; do
+for t in "${MOUNT_TARGECTS[@]}"; do
     if [[ -d "${t}" ]] && [[ ! -L "${t}" ]] && [[ -d "${MOUNT_SOURCE_HOME}${t}" ]] && [[ ! -L "${MOUNT_SOURCE_HOME}${t}" ]]; then
         echo "Exist in two place, failed to process ${t}, please do it manually."
         continue
     fi
 
+    mkdir -p "${MOUNT_SOURCE_HOME}${t}"
     if [[ -d "${t}" ]] && [[ ! -L "${t}" ]]; then
         rm -rf "${MOUNT_SOURCE_HOME}${t}"
         mv -v "${t}" "${MOUNT_SOURCE_HOME}${t}"
         ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
     else
         rm -rf "${t}"
-        mkdir -p "${MOUNT_SOURCE_HOME}${t}"
         ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
     fi
 done
