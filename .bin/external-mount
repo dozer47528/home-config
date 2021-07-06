@@ -11,14 +11,11 @@ MOUNT_TARGECTS=(
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
     "$HOME/Library/Caches/Homebrew"
+    "$HOME/Library/Application Support/JetBrains"
     "$HOME/Library/Application Support/Code"
     "$HOME/Library/Application Support/TripPal"
     "$HOME/Library/Developer/CoreSimulator/Caches"
     "/private/var/tmp/_bazel_$USER"
-)
-
-MOUNT_APPLICATIONS=(
-
 )
 
 for t in "${MOUNT_TARGECTS[@]}"; do
