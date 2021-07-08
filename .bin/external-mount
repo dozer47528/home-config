@@ -34,3 +34,5 @@ for t in "${MOUNT_TARGECTS[@]}"; do
         ln -s "${MOUNT_SOURCE_HOME}${t}" "${t}"
     fi
 done
+
+chmod 700 ${MOUNT_SOURCE_HOME}${HOME}/*
