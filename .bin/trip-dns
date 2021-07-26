@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ $('uname') == 'Darwin' ]]; then
+    networksetup -setdnsservers Ethernet 192.168.11.1 192.168.102.20 192.168.102.21
+fi
+
+if [[ $('uname') == 'Linux' ]]; then
 cat <<EOF > /etc/resolv.conf
 search *.global.ctrip.com *.ctripcorp.com
 nameserver 192.168.102.20
@@ -8,3 +13,4 @@ nameserver 192.168.102.22
 nameserver 192.168.102.24
 nameserver 192.168.102.25
 EOF
+fi
