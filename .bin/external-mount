@@ -3,7 +3,6 @@
 MOUNT_SOURCE_HOME=/Volumes/External
 
 MOUNT_TARGECTS=(
-    "$HOME/Downloads"
     "$HOME/.go"
     "$HOME/.npm"
     "$HOME/.vscode"
