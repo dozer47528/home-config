@@ -11,6 +11,9 @@ if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
+## Java
+export JAVA_TOOL_OPTIONS=-Duser.language=en
+
 ## Golang
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
