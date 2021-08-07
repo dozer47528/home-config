@@ -2,6 +2,7 @@
 
 if [[ $('uname') == 'Darwin' ]]; then
     networksetup -setdnsservers Ethernet 192.168.11.1 192.168.102.20 192.168.102.21
+    networksetup -setdnsservers Wi-Fi 192.168.11.1 192.168.102.20 192.168.102.21
 fi
 
 if [[ $('uname') == 'Linux' ]]; then
