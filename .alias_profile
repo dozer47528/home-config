@@ -12,7 +12,12 @@ if [[ "$PROJECT_HOME" == "" ]] then
 fi
 
 ## Java
+
 export JAVA_TOOL_OPTIONS=-Duser.language=en
+
+mvn-version(){
+    mvn versions:set -DnewVersion=$1
+}
 
 ## Golang
 export GOPATH="$HOME/.go"
