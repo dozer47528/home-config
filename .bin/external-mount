@@ -14,6 +14,7 @@ MOUNT_TARGECTS=(
     "$HOME/Library/Application Support/Code"
     "$HOME/Library/Application Support/TripPal"
     "$HOME/Library/Developer/CoreSimulator/Caches"
+    "$HOME/Library/Logs/JetBrains"
     "$HOME/Music/Music"
     "/private/var/tmp/_bazel_$USER"
 )
