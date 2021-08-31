@@ -7,6 +7,7 @@ MOUNT_TARGECTS=(
     "$HOME/.npm"
     "$HOME/.vscode"
     "$HOME/.m2"
+    "$HOME/.gradle"
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
     "$HOME/Library/Caches/Homebrew"
@@ -15,6 +16,7 @@ MOUNT_TARGECTS=(
     "$HOME/Library/Application Support/TripPal"
     "$HOME/Library/Developer/CoreSimulator/Caches"
     "$HOME/Library/Logs/JetBrains"
+    "$HOME/Library/Containers/com.tencent.qq/Data/Library/Caches"
     "$HOME/Music/Music"
     "/private/var/tmp/_bazel_$USER"
 )
