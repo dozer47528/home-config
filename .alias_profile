@@ -34,7 +34,7 @@ fi
 
 ## Kubernetes
 
-export UNPROTECTED_CONTEXT=default:ntgxh-c:ntgxh-d:ntgxh-h:ntgxh-x:ntgxy-e:trip-desktop
+export UNPROTECTED_CONTEXT=default:minikube:ntgxh-c:ntgxh-d:ntgxh-h:ntgxh-x:ntgxy-e:trip-desktop
 
 export PATH="$HOME/.krew/bin:$PATH"
 
