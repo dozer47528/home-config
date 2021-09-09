@@ -85,18 +85,23 @@ if __name__ == "__main__":
             containers = command([[kubectl_cmd, "get", "pods", obj_name, "-o" 'jsonpath="{.spec.containers[*].name}"']]).strip('"').split(" ")
             use_sidecar = "-s" in full_args or "--sidecar" in full_args
 
+            sidecar_containers = [c for c in containers if c == "istio-proxy" or c.startswith("sidecar-")]
+            first_sidecar_container = sidecar_containers[0] if len(sidecar_containers) > 0 else None
+            app_containers = [c for c in containers if c != "istio-proxy" and c != "istio-init" and not c.startswith("sidecar-") and not c.startswith("init-")]
+            first_app_container = app_containers[0] if len(app_containers) > 0 else None
+
             target_container = None
             if len(containers) == 0:
                 pass
             elif len(containers) == 1:
                 target_container = containers[0]
-            elif "istio-proxy" in containers and use_sidecar:
-                target_container = "istio-proxy"
+            elif first_sidecar_container is not None and use_sidecar:
+                target_container = first_sidecar_container
             else:
-                target_container = [c for c in containers if c != "istio-proxy"][0]
+                target_container = first_app_container
 
-            if use_sidecar and target_container != "istio-proxy":
-                print('%s"istio-proxy" not found, using "%s" %s' %
+            if use_sidecar and first_sidecar_container is None:
+                print('%ssidecar container not found, using "%s" %s' %
                       (YELLOW, target_container, NC))
 
             if target_container:
