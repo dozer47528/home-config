@@ -16,7 +16,6 @@ MOUNT_TARGECTS=(
     "$HOME/Library/Application Support/TripPal"
     "$HOME/Library/Developer/CoreSimulator/Caches"
     "$HOME/Library/Logs/JetBrains"
-    "$HOME/Library/Containers/com.tencent.qq/Data/Library/Caches"
     "$HOME/Music/Music"
     "/private/var/tmp/_bazel_$USER"
 )
