@@ -8,10 +8,10 @@ ZSH=$HOME/.oh-my-zsh
 
 if [[ "$LIGHT" == "1" ]]; then
     ZSH_THEME="example"
-    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel jenv)
+    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
 else
     ZSH_THEME="powerlevel10k/powerlevel10k"
-    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel jenv zsh-autosuggestions zsh-syntax-highlighting)
+    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
 fi
 
 if [[ $('uname') == 'Linux' ]]; then
@@ -42,6 +42,12 @@ fi
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
 
+# Sdkman
+if [[ -d $HOME/.sdkman ]]; then
+  export SDKMAN_DIR="$HOME/.sdkman"
+  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
+
 # Completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=(/usr/local/share/zsh/site-functions $fpath)
@@ -52,4 +58,5 @@ if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
 
+# Alias
 . ~/.alias_profile

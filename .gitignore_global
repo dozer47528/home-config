@@ -8,3 +8,5 @@
 **/.java-version
 .python-version
 **/.python-version
+.sdkmanrc
+**/.sdkmanrc

@@ -8,6 +8,7 @@ MOUNT_TARGECTS=(
     "$HOME/.vscode"
     "$HOME/.m2"
     "$HOME/.gradle"
+    "$HOME/.sdkman"
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
     "$HOME/Library/Caches/Homebrew"
