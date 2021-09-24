@@ -2,6 +2,15 @@
 
 MOUNT_SOURCE_HOME=/Volumes/External
 
+CLEANUP_TARGECTS=(
+    "/Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/AppleTVSimulator.platform"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/WatchOS.platform"
+    "/Applications/Xcode.app/Contents/Developer/Platforms/WatchSimulator.platform" 
+)
+
 MOUNT_TARGECTS=(
     "$HOME/.go"
     "$HOME/.npm"
@@ -39,3 +48,7 @@ for t in "${MOUNT_TARGECTS[@]}"; do
 done
 
 chmod 700 ${MOUNT_SOURCE_HOME}${HOME}/*
+
+for t in "${CLEANUP_TARGECTS[@]}"; do
+    sudo rm -rf "${t}"
+done
