@@ -12,6 +12,7 @@
 	editor = /usr/bin/vim
 	trustctime = false
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [push]
 	default = simple
 [pull]
