@@ -8,10 +8,10 @@ ZSH=$HOME/.oh-my-zsh
 
 if [[ "$LIGHT" == "1" ]]; then
     ZSH_THEME="example"
-    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
+    plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
 else
     ZSH_THEME="powerlevel10k/powerlevel10k"
-    plugins=(extract z git tmux git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
+    plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
 fi
 
 if [[ $('uname') == 'Linux' ]]; then

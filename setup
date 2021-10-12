@@ -16,7 +16,6 @@ fi
 # Check dependency
 command -v vim >/dev/null 2>&1 || { echo >&2 "I require vim but it's not installed.  Aborting."; exit 1; }
 command -v zsh >/dev/null 2>&1 || { echo >&2 "I require zsh but it's not installed.  Aborting."; exit 1; }
-command -v tmux >/dev/null 2>&1 || { echo >&2 "I require tmux but it's not installed.  Aborting."; exit 1; }
 command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not installed.  Aborting."; exit 1; }
 
 # Reset submodules
@@ -24,7 +23,6 @@ rm -rf .oh-my-zsh
 rm -rf .vim
 rm -rf .zsh-plugins
 rm -rf .zsh-themes
-rm -rf .tmux
 
 # Init submodules
 git submodule init
@@ -40,9 +38,6 @@ ls -A | grep -v '^setup$' | grep -v '^upgrade$'| grep -v '^README.md$' | grep -v
 
 # Install vim plugins
 vim +PluginInstall +qall
-
-# Install tmux plugins
-.tmux/plugins/tpm/bin/install_plugins
 
 # Change defaull shell
 echo "Input password for change default shell"
