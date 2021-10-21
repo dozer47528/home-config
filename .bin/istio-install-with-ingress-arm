@@ -15,6 +15,7 @@ spec:
     defaultConfig:
       concurrency: 1
   profile: default
+  hub: docker.io/querycapistio
   components:
     pilot:
       k8s:
