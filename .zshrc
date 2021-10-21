@@ -49,10 +49,11 @@ if [[ -d $HOME/.sdkman ]]; then
 fi
 
 # Completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-fpath=(/usr/local/share/zsh/site-functions $fpath)
-fpath=($HOME/.bin $fpath)
-autoload -Uz compinit && compinit
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$HOME/.bin:$FPATH
+    autoload -Uz compinit
+    compinit
+fi
 
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile
