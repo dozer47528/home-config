@@ -12,6 +12,8 @@ metadata:
 spec:
   meshConfig:
     accessLogFile: /dev/stdout
+    defaultConfig:
+      concurrency: 1
   profile: default
   hub: docker.io/querycapistio
   components:
