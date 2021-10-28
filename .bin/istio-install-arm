@@ -31,5 +31,7 @@ spec:
       enabled: false
   values:
     global:
+      arch:
+        arm64: 1
       imagePullPolicy: IfNotPresent
 EOF
