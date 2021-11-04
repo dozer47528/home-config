@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ssh trip.dozer.cc -- "cat /etc/resolv.conf | perl -pe 's/^nameserver.*/nameserver 127.0.0.53/g' | sudo tee /etc/resolv.conf"
-ssh trip.dozer.cc -- "sudo ip route delete default"

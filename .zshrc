@@ -50,10 +50,11 @@ fi
 
 # Completions
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$HOME/.bin:$FPATH
-    autoload -Uz compinit
-    compinit
+    export FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
+export FPATH=$HOME/.bin:$FPATH
+autoload -Uz compinit
+compinit
 
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile

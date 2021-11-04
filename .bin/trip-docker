@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker --host=tcp://dozer-qitianm520-n070.local:4243 $@

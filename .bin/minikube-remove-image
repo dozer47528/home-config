@@ -1,4 +1,0 @@
-#!/bin/bash
-
-minikube image list | xargs minikube image rm
-rm -rf ~/.minikube/cache/images/*

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-LAN_IP=$(ip addr show $(ip -4 route ls | grep default | awk '{print $5}') | grep 'inet ' |  perl -pe 's/(.*inet )(\d+\.\d+\.\d+\.\d+)(\/\d+.*)/$2/g')
-ssh trip.dozer.cc -- "cat /etc/resolv.conf | perl -pe 's/^nameserver.*/nameserver 198.18.0.2/g' | sudo tee /etc/resolv.conf"
-ssh trip.dozer.cc -- "sudo ip route add default via $LAN_IP"
