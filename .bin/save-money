@@ -52,5 +52,9 @@ for t in "${CLEANUP_TARGECTS[@]}"; do
     sudo rm -rf "${t}"
 done
 
-mdfind -onlyin /Applications kMDItemKind="Alias" | xargs -I{} rm '{}'
+for app in /Applications/* ; do
+    if [[ $(file "$app") == *"MacOS Alias file"* ]]; then
+        sudo rm -rf "$app"
+    fi
+done
 ls $MOUNT_SOURCE_HOME/Applications | grep "\.app" | xargs -I{} osascript -e "tell application \"Finder\" to make alias file to POSIX file \"$MOUNT_SOURCE_HOME/Applications/{}\" at POSIX file \"/Applications\""
