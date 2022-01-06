@@ -57,4 +57,5 @@ for app in /Applications/* ; do
         sudo rm -rf "$app"
     fi
 done
+sleep 1
 ls $MOUNT_SOURCE_HOME/Applications | grep "\.app" | xargs -I{} osascript -e "tell application \"Finder\" to make alias file to POSIX file \"$MOUNT_SOURCE_HOME/Applications/{}\" at POSIX file \"/Applications\""
