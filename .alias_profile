@@ -19,6 +19,13 @@ mvn-version(){
     mvn versions:set -DnewVersion=$1
 }
 
+## Xcode
+
+if [[ -d /Applications/Xcode.app ]] then
+    export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer/"
+    export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
+fi
+
 ## Golang
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
