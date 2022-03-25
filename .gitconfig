@@ -27,5 +27,9 @@
 	insteadOf = https://github.com/ctripcorp
 [url "git@git.dev.sh.ctripcorp.com:servicemesh"]
 	insteadOf = http://git.dev.sh.ctripcorp.com/servicemesh
+[url "git@git.dev.sh.ctripcorp.com:framework"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/framework
+[url "git@git.dev.sh.ctripcorp.com:container"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/container
 [alias]
 	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
