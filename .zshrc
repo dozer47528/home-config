@@ -18,15 +18,8 @@ if [[ $('uname') == 'Linux' ]]; then
 fi
 
 if [[ $('uname') == 'Darwin' ]]; then
-    if [[ -f "$HOME/.iterm2_shell_integration.zsh" ]]; then
-        source $HOME/.iterm2_shell_integration.zsh
-    fi
-
     plugins+=(brew)
     export HOMEBREW_NO_AUTO_UPDATE=1
-    if  [ -d '/Volumes/External/Applications/Visual Studio Code.app' ]; then
-        alias vs="open -a '/Volumes/External/Applications/Visual Studio Code.app'"
-    fi
     if  [ -d '/Applications/Visual Studio Code.app' ]; then
         alias vs="open -a '/Applications/Visual Studio Code.app'"
     fi
