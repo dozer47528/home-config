@@ -13,8 +13,6 @@ fi
 
 ## Java
 
-export JAVA_TOOL_OPTIONS=-Duser.language=en
-
 mvn-version(){
     mvn versions:set -DnewVersion=$1
 }
