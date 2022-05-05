@@ -79,9 +79,4 @@ then
     alias vi=vim
 fi
 
-if command -v dog &> /dev/null
-then
-    alias dig=dog
-fi
-
 alias curl="curl -s"
