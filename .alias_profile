@@ -49,7 +49,9 @@ alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
 
 alias kk=". kube-cluster"
 
-alias kn=kube-namespace
+alias kc="kubectl config use-context"
+
+alias kn="kube-namespace"
 
 alias kx="kubectl exec"
 

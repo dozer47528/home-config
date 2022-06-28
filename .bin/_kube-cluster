@@ -4,5 +4,6 @@ function _kube-cluster {
     local clusters
     clusters+=("default")
     clusters+=(`ls -F ~/.kube/clusters/ | grep -v /`)
+    clusters+=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`)
     _arguments -C "1: :($clusters)"
 }
