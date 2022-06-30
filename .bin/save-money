@@ -21,7 +21,6 @@ MOUNT_TARGECTS=(
     "$HOME/Library/Caches/JetBrains"
     "$HOME/Library/Caches/go-build"
     "$HOME/Library/Caches/Homebrew"
-    "$HOME/Library/Developer/CoreSimulator/Caches"
     "$HOME/Library/Logs/JetBrains"
     "$HOME/Music/Music"
     "/private/var/tmp/_bazel_$USER"
