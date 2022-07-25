@@ -34,6 +34,11 @@ Exec Help:
 
 if __name__ == "__main__":
     kubectl_cmd = command([["which", "-a", "kubectl"], ["grep", "-v", "'%s'" % sys.argv[0]], ["tail", "-n", "1"]])  # fetch real kubectl path
+
+    if kubectl_cmd == sys.argv[0]:
+        print("Missing kubectl command!")
+        exit(1)
+
     full_args = sys.argv[1:]
     if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
         print(command([[kubectl_cmd, "--help"]]))
