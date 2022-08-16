@@ -9,13 +9,15 @@ uuid=$(uuidgen)
 
 ctrip_clusters=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`)
 
+mkdir -p ~/.tmp/kube
+
 if [[ $1 == "default" ]]; then
-    cp ${HOME}/.kube/config ~/.tmp/${uuid}
+    cp ${HOME}/.kube/config ~/.tmp/kube/${uuid}
 elif [[ $ctrip_clusters == *$1* ]]; then
-    cp ${HOME}/.kube/clusters/ocid/ctrip ~/.tmp/${uuid}
-    kubectl config use-context --kubeconfig ~/.tmp/${uuid} $1
+    cp ${HOME}/.kube/clusters/ocid/ctrip ~/.tmp/kube/${uuid}
+    kubectl config use-context --kubeconfig ~/.tmp/kube/${uuid} $1
 else
-    cp ${HOME}/.kube/clusters/$1 ~/.tmp/${uuid}
+    cp ${HOME}/.kube/clusters/$1 ~/.tmp/kube/${uuid}
 fi
-chmod 600 ~/.tmp/*
-export KUBECONFIG=${HOME}/.tmp/${uuid}
+
+export KUBECONFIG=${HOME}/.tmp/kube/${uuid}

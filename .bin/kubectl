@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import time
 
 RED = '\033[0;31m'
 YELLOW = '\033[1;33m'
@@ -9,6 +10,7 @@ NC = '\033[0m'
 CUSTOM_ARGS = ["-s", "--sidecar", "--sh"]
 KUBE_COMMAND_WITHOUT_TARGET = ["version", "api-resources", "api-versions", "proxy"]
 
+KUBE_CTX_EXPIRED_TIME=10*60
 
 # run command with pipeline
 def command(cmds):
@@ -33,11 +35,33 @@ Exec Help:
 
 
 if __name__ == "__main__":
+    # Get real kubectl
     kubectl_cmd = command([["which", "-a", "kubectl"], ["grep", "-v", "'%s'" % sys.argv[0]], ["tail", "-n", "1"]])  # fetch real kubectl path
-
     if kubectl_cmd == sys.argv[0]:
         print("Missing kubectl command!")
         exit(1)
+
+    # Fetch unprotected_context
+    if os.getenv("UNPROTECTED_CONTEXT") is not None:
+        unprotected_context = [c.lower() for c in os.getenv("UNPROTECTED_CONTEXT").split(":")]
+    else:
+        unprotected_context = []
+
+    # Check session expired
+    kube_config = os.getenv("KUBECONFIG")
+    if kube_config and os.path.exists(kube_config):
+        if os.path.getatime(kube_config) + KUBE_CTX_EXPIRED_TIME < time.time():
+            current_context = command([[kubectl_cmd, "config", "current-context"]])
+            current_namespace = command([[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]])
+            if current_context and current_context.lower() not in unprotected_context:
+                print("%sContext: %s%s" % (RED, current_context, NC))
+                print("%sNamespace: %s%s" % (RED, current_namespace if current_namespace else "default", NC))
+                answer = input('%sSession expired after %d seconds. Continue? (y/N):%s' % (RED, KUBE_CTX_EXPIRED_TIME, NC))
+                if not answer:
+                    answer = "n"
+                if answer != "y":
+                    exit(1)
+        os.utime(kube_config)
 
     full_args = sys.argv[1:]
     if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
@@ -129,10 +153,7 @@ if __name__ == "__main__":
         if kube_command == "delete":
             color = RED
 
-        if os.getenv("UNPROTECTED_CONTEXT") is not None:
-            unprotected_context = [c.lower() for c in os.getenv("UNPROTECTED_CONTEXT").split(":")]
-        else:
-            unprotected_context = []
+
         current_context = command([[kubectl_cmd, "config", "current-context"]])
         current_namespace = command([[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]])
         if current_context and current_context.lower() not in unprotected_context:
