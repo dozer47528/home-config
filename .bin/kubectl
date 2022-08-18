@@ -40,6 +40,7 @@ if __name__ == "__main__":
     if kubectl_cmd == sys.argv[0]:
         print("Missing kubectl command!")
         exit(1)
+    kube_command = sys.argv[1]
 
     # Fetch unprotected_context
     if os.getenv("UNPROTECTED_CONTEXT") is not None:
@@ -49,7 +50,7 @@ if __name__ == "__main__":
 
     # Check session expired
     kube_config = os.getenv("KUBECONFIG")
-    if kube_config and os.path.exists(kube_config):
+    if kube_config and os.path.exists(kube_config) and kube_command not in ["config", "plugin", "version"]:
         if os.path.getatime(kube_config) + KUBE_CTX_EXPIRED_TIME < time.time():
             current_context = command([[kubectl_cmd, "config", "current-context"]])
             current_namespace = command([[kubectl_cmd, "config", "view", "--minify", "--output", "jsonpath={..namespace}"]])
@@ -68,7 +69,6 @@ if __name__ == "__main__":
         print(command([[kubectl_cmd, "--help"]]))
         exit(1)
 
-    kube_command = sys.argv[1]
     has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
     from_file = kube_command not in ["logs"] and ("-f" in full_args or "--filename" in full_args)
     raw_args = [a for a in full_args[1:]
