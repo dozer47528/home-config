@@ -20,4 +20,6 @@ else
     cp ${HOME}/.kube/clusters/$1 ~/.tmp/kube/${uuid}
 fi
 
+chmod 600 ${HOME}/.tmp/kube/${uuid}
+
 export KUBECONFIG=${HOME}/.tmp/kube/${uuid}

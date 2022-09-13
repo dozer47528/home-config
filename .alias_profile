@@ -69,6 +69,9 @@ alias mysql="mysql --default-character-set utf8mb4"
 
 alias x86="arch -x86_64"
 
+alias j="jump jumpserver.ops.ctripcorp.com `bw get password http://home.ctripcorp.com`"
+alias jj="jump ssh.fws.jumpserver.sys.ctripcorp.com `bw get password http://home.ctripcorp.com`"
+
 export PPROF_TMPDIR=/tmp/pprof
 
 if command -v bat &> /dev/null
