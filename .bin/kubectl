@@ -3,6 +3,9 @@ import os
 import subprocess
 import sys
 import time
+import signal
+
+signal.signal(signal.SIGINT, lambda x, y: sys.exit(0))
 
 RED = '\033[0;31m'
 YELLOW = '\033[1;33m'
