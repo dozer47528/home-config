@@ -1,0 +1,10 @@
+#!/usr/bin/expect -f
+
+set target [lindex $argv 0]
+set password [lindex $argv 1]
+
+spawn ssh $target
+expect "password:*"
+send "$password\n"
+expect "Opt"
+interact

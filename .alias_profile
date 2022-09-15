@@ -69,8 +69,17 @@ alias mysql="mysql --default-character-set utf8mb4"
 
 alias x86="arch -x86_64"
 
-alias j="jump jumpserver.ops.ctripcorp.com `bw get password http://home.ctripcorp.com`"
-alias jj="jump ssh.fws.jumpserver.sys.ctripcorp.com `bw get password http://home.ctripcorp.com`"
+function j {
+    echo -n Token: 
+    read -s token
+    sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+}
+
+function jj {
+    echo -n Token: 
+    read -s token
+    sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+}
 
 export PPROF_TMPDIR=/tmp/pprof
 
