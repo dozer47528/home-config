@@ -43,6 +43,11 @@ if __name__ == "__main__":
     if kubectl_cmd == sys.argv[0]:
         print("Missing kubectl command!")
         exit(1)
+    
+    full_args = sys.argv[1:]
+    if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
+        print(command([[kubectl_cmd, "--help"]]))
+        exit(1)
     kube_command = sys.argv[1]
 
     # Fetch unprotected_context
@@ -66,11 +71,6 @@ if __name__ == "__main__":
                 if answer != "y":
                     exit(1)
         os.utime(kube_config)
-
-    full_args = sys.argv[1:]
-    if len(full_args) == 0 or full_args[0] in ["-h", "--help"]:
-        print(command([[kubectl_cmd, "--help"]]))
-        exit(1)
 
     has_container_args = "-c, --container" in command([[kubectl_cmd, kube_command, "--help"]])
     from_file = kube_command not in ["logs"] and ("-f" in full_args or "--filename" in full_args)
