@@ -19,8 +19,6 @@
 	rebase = true
 [mergetool]
 	keepBackup = false
-[include]
-	path = ~/.gitconfig_local
 [includeIf "gitdir:**/Projects/trip/"]
 	path = .gitconfig_trip
 [url "git@git.dev.sh.ctripcorp.com:ctripgo"]
