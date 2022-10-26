@@ -6,8 +6,12 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="simple"
-plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
+ZSH_THEME=""
+plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
+
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+    plugins+=(zsh-autosuggestions zsh-syntax-highlighting)
+fi
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
@@ -45,10 +49,12 @@ if [ -f ~/.env_profile ]; then
 fi
 
 # Prompt
-# fpath+=($HOME/.zsh-themes/pure)
-# autoload -U promptinit; promptinit
-# zstyle :prompt:pure:git:stash show yes
-# prompt pure
+if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
+    fpath+=($HOME/.zsh-themes/pure)
+    autoload -U promptinit; promptinit
+    zstyle :prompt:pure:git:stash show yes
+    prompt pure
+fi
 
 # Alias
 . ~/.alias_profile
