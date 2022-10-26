@@ -10,6 +10,6 @@
 [submodule ".zsh-plugins/zsh-syntax-highlighting"]
 	path = .zsh-plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule ".zsh-themes/powerlevel10k"]
-	path = .zsh-themes/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".zsh-themes/pure"]
+	path = .zsh-themes/pure
+	url = https://github.com/sindresorhus/pure.git

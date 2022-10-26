@@ -6,13 +6,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
-if [[ "$LIGHT" == "1" ]]; then
-    ZSH_THEME="example"
-    plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
-else
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-    plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
-fi
+ZSH_THEME="simple"
+plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
@@ -27,10 +22,6 @@ fi
 
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
-
-if [[ "$LIGHT" != "1" ]]; then
-    source ~/.p10k.zsh
-fi
 
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
@@ -52,6 +43,12 @@ compinit
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
+
+# Prompt
+# fpath+=($HOME/.zsh-themes/pure)
+# autoload -U promptinit; promptinit
+# zstyle :prompt:pure:git:stash show yes
+# prompt pure
 
 # Alias
 . ~/.alias_profile
