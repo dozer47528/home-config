@@ -75,12 +75,6 @@ function j {
     sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
 }
 
-function jj {
-    echo -n Token: 
-    read -s token
-    sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
-}
-
 export PPROF_TMPDIR=/tmp/pprof
 
 if command -v bat &> /dev/null

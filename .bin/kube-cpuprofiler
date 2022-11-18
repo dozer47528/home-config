@@ -1,0 +1,10 @@
+export POD=$1
+export PROFILER="cpu" # Can also be "heap", for a heap profile
+kubectl exec "$POD" -c sidecar-istio-envoy -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=y"
+sleep 15
+kubectl exec "$POD" -c sidecar-istio-envoy -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=n"
+rm -rf /tmp/envoy
+mkdir -p /tmp/envoy
+kubectl cp "$POD":/var/log/envoy/envoy.prof /tmp/envoy/envoy.prof -c sidecar-istio-envoy
+kubectl cp "$POD":/lib/x86_64-linux-gnu /tmp/envoy/lib -c sidecar-istio-envoy
+kubectl cp "$POD":/usr/local/bin/envoy /tmp/envoy/lib/envoy -c sidecar-istio-envoy
