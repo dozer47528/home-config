@@ -13,7 +13,7 @@ NC = '\033[0m'
 CUSTOM_ARGS = ["-s", "--sidecar", "--sh"]
 KUBE_COMMAND_WITHOUT_TARGET = ["version", "api-resources", "api-versions", "proxy"]
 
-KUBE_CTX_EXPIRED_TIME=10*60
+KUBE_CTX_EXPIRED_TIME=60*60
 
 # run command with pipeline
 def command(cmds):
