@@ -1,10 +1,11 @@
 export POD=$1
 export PROFILER="cpu" # Can also be "heap", for a heap profile
-kubectl exec "$POD" -c sidecar-istio-envoy -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=y"
+CONTAINER=$(kubectl get pods mesh-soa-gateway-32-blue-b656d69bf-w2dc7 -o 'jsonpath="{.spec.containers[*].name}"' | grep istio | grep -v init | sed "s/\"//g")
+kubectl exec "$POD" -c "$CONTAINER" -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=y"
 sleep 15
-kubectl exec "$POD" -c sidecar-istio-envoy -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=n"
+kubectl exec "$POD" -c "$CONTAINER" -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=n"
 rm -rf /tmp/envoy
 mkdir -p /tmp/envoy
-kubectl cp "$POD":/var/log/envoy/envoy.prof /tmp/envoy/envoy.prof -c sidecar-istio-envoy
-kubectl cp "$POD":/lib/x86_64-linux-gnu /tmp/envoy/lib -c sidecar-istio-envoy
-kubectl cp "$POD":/usr/local/bin/envoy /tmp/envoy/lib/envoy -c sidecar-istio-envoy
+kubectl cp "$POD":/var/log/envoy/envoy.prof /tmp/envoy/envoy.prof -c "$CONTAINER"
+kubectl cp "$POD":/lib/x86_64-linux-gnu /tmp/envoy/lib -c "$CONTAINER"
+kubectl cp "$POD":/usr/local/bin/envoy /tmp/envoy/lib/envoy -c "$CONTAINER"
