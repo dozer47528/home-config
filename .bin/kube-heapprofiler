@@ -1,5 +1,5 @@
 export POD=$1
-export PROFILER="cpu" # Can also be "heap", for a heap profile
+export PROFILER="heap" # Can also be "heap", for a heap profile
 export CONTAINER=$(kubectl get pods $POD -o 'jsonpath={.spec.containers[*].name}' | tr " " "\n" | grep istio | grep -v init | sed "s/\"//g")
 kubectl exec "$POD" -c "$CONTAINER" -- curl -X POST -s "http://localhost:15000/${PROFILER}profiler?enable=y"
 sleep 15
