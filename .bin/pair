@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import random
+
+candidates = [
+    "张聪颖",
+    "钱瑾",
+    "李怡",
+    "严忠远",
+    "王健",
+    "林国",
+    "龚昱阳",
+    "罗一凡",
+]
+
+random.shuffle(candidates)
+
+for idx in range(len(candidates)):
+    print(candidates[idx], end="")
+    if idx % 2 == 0:
+        print(" ", end="")
+    else:
+        print("\n", end="")
