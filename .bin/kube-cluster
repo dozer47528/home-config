@@ -5,6 +5,13 @@ if [[ -z $1 ]]; then
     return 1
 fi
 
+if [[ $1 == "-l" ]]; then
+    echo "default"
+    echo `ls -F ~/.kube/clusters/ | grep -v /`
+    echo `kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`
+    return
+fi
+
 uuid=$(uuidgen)
 
 ctrip_clusters=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`)
