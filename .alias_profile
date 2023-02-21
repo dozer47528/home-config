@@ -11,6 +11,14 @@ if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
+## Trip Env
+TRIP_ENVS=(`ls /opt/settings | egrep '\w+\.\w+\.\w+' | awk -F. '{print $1}'`)
+for TRIP_ENV in "${TRIP_ENVS[@]}"
+do
+    # echo "alias ${TRIP_ENV}=\"ln -s -f ${TRIP_ENV}.server.properties server.properties\""
+    eval "alias ${TRIP_ENV}=\"ln -s -f ${TRIP_ENV}.server.properties server.properties\""
+done
+
 ## Java
 
 mvn-version(){
