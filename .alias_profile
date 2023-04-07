@@ -5,13 +5,13 @@ if [[ -n "$HOMEBREW_REPOSITORY" ]] then
     export PATH="$HOMEBREW_REPOSITORY/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-# ===== Env =====
+# Env
 
 if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
-## Trip Env
+# Trip Env
 TRIP_ENVS=(`ls /opt/settings | egrep '\w+\.\w+\.\w+' | awk -F. '{print $1}'`)
 for TRIP_ENV in "${TRIP_ENVS[@]}"
 do
@@ -19,33 +19,33 @@ do
     eval "alias ${TRIP_ENV}=\"ln -s -f /opt/settings/${TRIP_ENV}.server.properties /opt/settings/server.properties\""
 done
 
-## Java
+# Java
 
 mvn-version(){
     mvn versions:set -DnewVersion=$1
 }
 
-## Xcode
+# Xcode
 
 if [[ -d /Applications/Xcode.app ]] then
     export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer/"
     export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
 fi
 
-## Golang
+# Golang
 export GOPATH="$HOME/.go"
 export PATH="$GOPATH/bin:$PATH"
 alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
 alias dlv-exec="dlv --listen=:2345 --headless=true --api-version=2 exec"
 
-## Istio
+# Istio
 export ISTIO_HOME=$PROJECT_HOME/istio/istio-$ISTIO_VERSION
 if [[ -d "$ISTIO_HOME" ]] then
     export PATH=$ISTIO_HOME/bin:$PATH
     source $ISTIO_HOME/tools/_istioctl
 fi
 
-## Kubernetes
+# Kubernetes
 
 export UNPROTECTED_CONTEXT=default:rancher-desktop:docker-desktop:minikube
 
@@ -69,7 +69,24 @@ alias ke="kubectl edit"
 
 alias kd="kubectl delete"
 
-## Misc
+# App
+
+if [[ $('uname') == 'Darwin' ]]; then
+    if  [ -d '/Applications/Visual Studio Code.app' ]; then
+        alias vs="open -a '/Applications/Visual Studio Code.app'"
+    fi
+    if  [ -d '/Applications/IntelliJ IDEA.app' ]; then
+        alias idea="open -a '/Applications/IntelliJ IDEA.app'"
+    fi
+    if  [ -d '/Applications/WebStorm.app' ]; then
+        alias webstorm="open -a '/Applications/WebStorm.app'"
+    fi
+    if  [ -d '/Applications/GoLand.app' ]; then
+        alias goland="open -a '/Applications/GoLand.app'"
+    fi
+fi
+
+# Misc
 
 alias quarantine="xattr -rd com.apple.quarantine"
 

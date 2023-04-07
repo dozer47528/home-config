@@ -7,11 +7,7 @@ export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME=""
-plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
-
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-    plugins+=(zsh-autosuggestions zsh-syntax-highlighting)
-fi
+plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
@@ -19,16 +15,20 @@ fi
 if [[ $('uname') == 'Darwin' ]]; then
     plugins+=(brew)
     export HOMEBREW_NO_AUTO_UPDATE=1
-    if  [ -d '/Applications/Visual Studio Code.app' ]; then
-        alias vs="open -a '/Applications/Visual Studio Code.app'"
-    fi
 fi
+
+# Create user level tmp
+(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
+
+if [ -f ~/.env_profile ]; then
+    . ~/.env_profile
+fi
+
+. ~/.alias_profile
 
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 
-# Create user level tmp
-(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
 
 # Sdkman
 if [[ -d $HOME/.sdkman ]]; then
@@ -44,17 +44,8 @@ export FPATH=$HOME/.bin:$FPATH
 autoload -Uz compinit
 compinit
 
-if [ -f ~/.env_profile ]; then
-    . ~/.env_profile
-fi
-
 # Prompt
-if [[ $TERM_PROGRAM != "WarpTerminal" ]]; then
-    fpath+=($HOME/.zsh-themes/pure)
-    autoload -U promptinit; promptinit
-    zstyle :prompt:pure:git:stash show yes
-    prompt pure
-fi
-
-# Alias
-. ~/.alias_profile
+fpath+=($HOME/.zsh-themes/pure)
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+prompt pure
