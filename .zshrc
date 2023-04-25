@@ -1,7 +1,3 @@
-if [ -f ~/.init_profile ]; then
-    . ~/.init_profile
-fi
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
@@ -20,15 +16,16 @@ fi
 # Create user level tmp
 (! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
 
+# Env
 if [ -f ~/.env_profile ]; then
     . ~/.env_profile
 fi
 
+# Alias
 . ~/.alias_profile
 
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
-
 
 # Sdkman
 if [[ -d $HOME/.sdkman ]]; then
@@ -47,5 +44,4 @@ compinit
 # Prompt
 fpath+=($HOME/.zsh-themes/pure)
 autoload -U promptinit; promptinit
-zstyle :prompt:pure:git:stash show yes
 prompt pure
