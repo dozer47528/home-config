@@ -15,8 +15,7 @@ fi
 TRIP_ENVS=(`ls /opt/settings | egrep '\w+\.\w+\.\w+' | awk -F. '{print $1}'`)
 for TRIP_ENV in "${TRIP_ENVS[@]}"
 do
-    # echo "alias ${TRIP_ENV}=\"ln -s -f ${TRIP_ENV}.server.properties server.properties\""
-    eval "alias ${TRIP_ENV}=\"ln -s -f /opt/settings/${TRIP_ENV}.server.properties /opt/settings/server.properties\""
+    eval "alias env-${TRIP_ENV}=\"ln -s -f /opt/settings/${TRIP_ENV}.server.properties /opt/settings/server.properties\""
 done
 
 # Java
