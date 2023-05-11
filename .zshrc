@@ -3,7 +3,7 @@ export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME=""
-plugins=(extract z git git-extras kubectl minikube helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(extract z git git-extras kubectl helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
