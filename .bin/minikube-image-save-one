@@ -1,0 +1,7 @@
+#!/bin/bash
+
+IMAGE_NAME=$1
+FILE_NAME=`echo $1 | sed 's/[\/:]/-/g'`
+
+minikube image save $IMAGE_NAME ~/.minikube/cache/images/$FILE_NAME.tar
+echo saved $IMAGE_NAME
