@@ -1,5 +1,0 @@
-#!/bin/bash
-
-ls ~/.minikube/cache/images/*.tar | xargs -I {} minikube image load {}
-
-ls ~/.minikube/cache/images/*.tar | xargs -I {} echo "loaded {}"

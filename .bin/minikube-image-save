@@ -1,7 +1,0 @@
-#!/bin/bash
-
-minikube image ls | \
-    grep -v registry.k8s.io | \
-    grep -v k8s.gcr.io | \
-    grep -v gcr.io/k8s-minikube | \
-    xargs -I {} minikube-image-save-one {}
