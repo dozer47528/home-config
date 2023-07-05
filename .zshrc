@@ -18,20 +18,14 @@ fi
 
 # Env
 if [ -f ~/.env_profile ]; then
-    . ~/.env_profile
+    source ~/.env_profile
 fi
 
 # Alias
-. ~/.alias_profile
+source ~/.alias_profile
 
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
-
-# Sdkman
-if [[ -d $HOME/.sdkman ]]; then
-  export SDKMAN_DIR="$HOME/.sdkman"
-  [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
 
 # Completions
 if type brew &>/dev/null; then
