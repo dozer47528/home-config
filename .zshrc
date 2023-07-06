@@ -14,7 +14,7 @@ if [[ $('uname') == 'Darwin' ]]; then
 fi
 
 # Create user level tmp
-(! test -e /tmp/"$USER"_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/"$USER"_tmp_inited
+(! test -e /tmp/$USER_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/$USER_tmp_inited
 
 # Env
 if [ -f ~/.env_profile ]; then
@@ -39,3 +39,6 @@ compinit
 fpath+=($HOME/.zsh-themes/pure)
 autoload -U promptinit; promptinit
 prompt pure
+
+# Path
+export ORIGIN_PATH=$PATH

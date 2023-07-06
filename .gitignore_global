@@ -11,3 +11,5 @@
 **/.python-version
 .sdkmanrc
 **/.sdkmanrc
+.devcontainer
+**/.devcontainer
