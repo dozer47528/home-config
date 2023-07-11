@@ -39,6 +39,3 @@ compinit
 fpath+=($HOME/.zsh-themes/pure)
 autoload -U promptinit; promptinit
 prompt pure
-
-# Path
-export ORIGIN_PATH=$PATH
