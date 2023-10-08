@@ -4,7 +4,5 @@ set target [lindex $argv 0]
 set password [lindex $argv 1]
 
 spawn ssh $target
-expect "password:*"
-send "$password\n"
-expect "Opt"
-interact
+expect "assword:*"
+send "$password\n"; interact
