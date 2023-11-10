@@ -98,7 +98,7 @@ alias x86="arch -x86_64"
 function j {
     echo -n Token: 
     read -s token
-    sshpass yy_gong@jumpnew.infosec.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+    sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
 }
 
 function jj {
