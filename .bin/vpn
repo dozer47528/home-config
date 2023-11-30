@@ -1,0 +1,98 @@
+#!/bin/bash
+
+set -e 
+
+if [ `whoami` != "root" ]; then
+    echo "Please run as root"
+    exit -1
+fi
+
+action=$1
+
+install-coredns () {
+    version=`curl --silent "https://api.github.com/repos/coredns/coredns/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/'`
+    architecture=`arch`
+    platform=`uname`
+    if [ $architecture == "aarch64" ]; then
+        architecture="arm64"
+    elif [ $architecture == "x86_64" ]; then
+        architecture="amd64"
+    fi
+    curl -LO https://github.com/coredns/coredns/releases/download/v${version}/coredns_${version}_${platform}_${architecture}.tgz
+    tar -xvzf coredns_${version}_${platform}_${architecture}.tgz
+    install coredns /usr/bin/coredns
+    mkdir -p /var/lib/coredns
+    curl -L https://raw.githubusercontent.com/coredns/deployment/master/systemd/coredns.service  --output /etc/systemd/system/coredns.service
+    useradd -r coredns
+    systemctl daemon-reload
+    systemctl enable coredns
+    systemctl start coredns
+    systemctl status coredns
+}
+
+if [ $action == "server" ]; then
+    # Enable IP forwarding
+    if sysctl -a | grep "net.ipv4.ip_forward = 1" ; then
+        echo "IP forwarding already enabled"
+    else
+        echo "Enabling IP forwarding"
+        echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+        sysctl -p
+    fi
+
+    # Config coredns
+    mkdir -p /etc/coredns
+    if [ -f /etc/coredns/Corefile ]; then
+        mv /etc/coredns/Corefile /etc/coredns/Corefile.bak
+    fi
+    echo ". {" >> /etc/coredns/Corefile
+    echo "    forward . /etc/resolv.conf" >> /etc/coredns/Corefile
+    echo "}" >> /etc/coredns/Corefile
+
+    echo "Coredns config"
+    cat /etc/coredns/Corefile
+    
+    # Install coredns
+    install-coredns
+
+    echo Finish
+elif [ $action == "client" ]; then
+    routerIP=$2
+    vpnIP=$3
+    domains=$4
+    domain_array=($(echo $domains | tr "," " "))
+
+    echo "========================="
+    echo "routerIP: $routerIP"
+    echo "vpnIP:    $vpnIP"
+    echo "domains:  $domains"
+    echo "========================="
+
+    # Config coredns
+    mkdir -p /etc/coredns
+    if [ -f /etc/coredns/Corefile ]; then
+        mv /etc/coredns/Corefile /etc/coredns/Corefile.bak
+    fi
+    echo ". {" >> /etc/coredns/Corefile
+    echo "    cache 60 $(echo $domains | tr "," " ")" >> /etc/coredns/Corefile
+    for domain in "${domain_array[@]}"
+    do
+        echo "    forward $domain $vpnIP" >> /etc/coredns/Corefile
+    done
+    echo "    forward . $routerIP" >> /etc/coredns/Corefile
+    echo "}" >> /etc/coredns/Corefile
+
+    echo "Coredns config"
+    cat /etc/coredns/Corefile
+
+    # Install coredns
+    install-coredns
+
+    # Manually
+    echo "Local coredns install successfully, please manually config your dns server and route table"
+    echo "1. change dns server to 127.0.0.1"
+    echo "2. add fake ip route 198.18.0.0/15 to $vpnIP"
+    echo "3. add internal ip route like 10.0.0.0/8 to $vpnIP"
+else
+    echo "Invalid action, should be 'server' or 'client'"
+fi
