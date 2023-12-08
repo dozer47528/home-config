@@ -1,0 +1,15 @@
+#!/bin/bash
+
+version=`cat pom.xml | xq -x "/project/version"`
+branch=feature/jdk21-version
+
+git branch -D $branch
+git checkout -b $branch
+
+mvn versions:set -DgenerateBackupPoms=false -DnewVersion=${version}-Java21
+
+git add --all
+git commit --message "Java 21 version"
+git push --set-upstream origin $branch -f
+
+git checkout -
