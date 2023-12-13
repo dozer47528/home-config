@@ -11,7 +11,7 @@ action=$1
 
 install-coredns () {
     version=`curl --silent "https://api.github.com/repos/coredns/coredns/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/'`
-    architecture=`arch`
+    architecture=`uname -m`
     platform=`uname`
     if [ $architecture == "aarch64" ]; then
         architecture="arm64"
