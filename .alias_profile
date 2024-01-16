@@ -1,9 +1,6 @@
 #!/bin/bash
 
 export PATH="$HOME/.bin:$PATH"
-if [[ -n "$HOMEBREW_REPOSITORY" ]] then
-    export PATH="$HOMEBREW_REPOSITORY/opt/gnu-sed/libexec/gnubin:$PATH"
-fi
 
 # Env
 
