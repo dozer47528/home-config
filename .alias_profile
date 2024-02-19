@@ -8,7 +8,10 @@ if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
-# Trip Env
+# Trip
+
+alias docker-atrust="docker run --name atrust -d  --device /dev/net/tun --cap-add NET_ADMIN --dns 119.29.29.29 -e PASSWORD=localhost -e URLWIN=1 -v $HOME/.atrust-data:/root -p 127.0.0.1:5901:5901 -p 127.0.0.1:1080:1080 hagb/docker-atrust"
+
 if [[ -d /opt/settings ]] then
     TRIP_ENVS=(`ls /opt/settings | grep -E '\w+\.\w+\.\w+' | awk -F. '{print $1}'`)
     for TRIP_ENV in "${TRIP_ENVS[@]}"
@@ -85,6 +88,8 @@ if [[ $('uname') == 'Darwin' ]]; then
 fi
 
 # Misc
+
+alias bb="brew update && brew outdated && brew upgrade --greedy && brew cleanup --prune=all"
 
 alias quarantine="xattr -rd com.apple.quarantine"
 
