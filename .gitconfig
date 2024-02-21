@@ -9,15 +9,12 @@
 [core]
 	quotepath = false
 	mergeoptions = --no-edit
-	editor = /usr/bin/vim
 	trustctime = false
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 [push]
 	default = simple
 	autoSetupRemote = true
-[pull]
-	rebase = true
 [mergetool]
 	keepBackup = false
 [includeIf "gitdir:**/Projects/trip/"]
@@ -32,5 +29,3 @@
 	insteadOf = http://git.dev.sh.ctripcorp.com/container
 [url "git@git.dev.sh.ctripcorp.com:ctripgo"]
 	insteadOf = http://git.dev.sh.ctripcorp.com/ctripgo
-[alias]
-	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
