@@ -3,7 +3,11 @@ export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME=""
-plugins=(extract z git git-extras kubectl helm gitignore mvn bower gitfast github npm python pip docker bazel sdk zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(extract z git git-extras kubectl helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
+
+if [ ! -n "$WARP_IS_LOCAL_SHELL_SESSION" ]; then
+    plugins+=(zsh-autosuggestions zsh-syntax-highlighting)
+fi
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
@@ -31,11 +35,12 @@ source $ZSH/oh-my-zsh.sh
 if type brew &>/dev/null; then
     export FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
-export FPATH=$HOME/.bin:$FPATH
 autoload -Uz compinit
 compinit
 
 # Prompt
-fpath+=($HOME/.zsh-themes/pure)
-autoload -U promptinit; promptinit
-prompt pure
+if [ ! -n "$WARP_IS_LOCAL_SHELL_SESSION" ]; then
+    fpath+=($HOME/.zsh-themes/pure)
+    autoload -U promptinit; promptinit
+    prompt pure
+fi

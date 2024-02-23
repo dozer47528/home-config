@@ -1,5 +1,0 @@
-#compdef _kube-namespace kube-namespace
-
-function _kube-namespace {
-    _arguments -C "1: :($(kubectl get namespaces | tail -n +2 | awk '{print $1}'))"
-}

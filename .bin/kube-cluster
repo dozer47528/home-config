@@ -1,13 +1,10 @@
 #!/bin/bash
 
 if [[ -z $1 ]]; then
-    echo "Error: please choose a cluster!"
-    return 1
-fi
-
-if [[ $1 == "-l" ]]; then
+    echo "Available clusters"
+    echo "------------------"
     echo "default"
-    echo `ls -F ~/.kube/clusters/ | grep -v /`
+    echo `ls -p ~/.kube/clusters/ | grep -v /`
     echo `kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`
     return
 fi
