@@ -1,0 +1,38 @@
+#!/bin/bash
+# The shell is used to sync multi-arch image from external image registry.
+IMAGE_NAME=${1##*/}
+REPOSITORY=${2}
+REGISTRY="hub.cloud.ctripcorp.com"
+IMAGE=${REGISTRY}/${REPOSITORY}/${IMAGE_NAME}
+
+PLATFORMS=("linux/amd64" "linux/arm64")
+MANIFEST_SOURCE=""
+
+## pull single arch image
+echo "-------------------------------------"
+echo "start syncing multi-arch image from ${1} to ${IMAGE}..."
+
+for PLATFORM in ${PLATFORMS[@]}
+do
+  ARCH=${PLATFORM##*/}
+  echo "-------------------------------------"
+  echo "pulling ${PLATFORM} image..."
+  docker pull ${1} --platform=${PLATFORM}
+  docker tag ${1} ${IMAGE}-${ARCH}
+  docker push ${IMAGE}-${ARCH}
+  docker rmi ${1}
+  docker rmi ${IMAGE}-${ARCH}
+  MANIFEST_SOURCE=${MANIFEST_SOURCE}"${IMAGE}-${ARCH} "
+done
+
+## create manifest
+echo "-------------------------------------"
+echo "composing multi-arch image..."
+echo ${MANIFEST_SOURCE}
+docker manifest create ${IMAGE} ${MANIFEST_SOURCE}
+## push manifest
+docker manifest push ${IMAGE}
+
+## clean manifest
+echo "cleaning..."
+docker manifest rm ${IMAGE}
