@@ -146,8 +146,10 @@ if __name__ == "__main__":
                 if "--" not in full_args:
                     full_args.append("-it")
                 if "--sh" in full_args:
+                    full_args.append("--")
                     full_args.append("/bin/sh")
                 else:
+                    full_args.append("--")
                     full_args.append("/bin/bash")
 
     # delete edit double check

@@ -76,6 +76,9 @@ if [[ $('uname') == 'Darwin' ]]; then
     if  [ -d '/Applications/Visual Studio Code.app' ]; then
         alias vs="open -a '/Applications/Visual Studio Code.app'"
     fi
+    if  [ -d '/Applications/Zed.app' ]; then
+        alias vs="open -a '/Applications/Zed.app'"
+    fi
     if  [ -d '/Applications/IntelliJ IDEA.app' ]; then
         alias idea="open -a '/Applications/IntelliJ IDEA.app'"
     fi

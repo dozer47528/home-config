@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "default jdk password is: 'changeit'"
-sudo $JAVA_HOME/bin/keytool -import -alias ctrip -keystore "$JAVA_HOME/jre/lib/security/cacerts" -file "$1" -trustcacerts
+sudo $JAVA_HOME/bin/keytool -import -alias ctrip -keystore "$JAVA_HOME/lib/security/cacerts" -file "$1" -trustcacerts
