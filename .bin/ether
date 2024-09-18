@@ -1,0 +1,22 @@
+#!/bin/bash
+
+IFACE=$1
+ETHER=$2
+
+date
+
+IFACE_INFO=`/sbin/ifconfig $IFACE`
+IFACE_ETHER=`echo $IFACE_INFO | grep 'ether '`
+
+if [[ $IFACE_ETHER == *"not exist"* ]]; then
+    echo "Interface $IFACE not exist"
+    exit 0
+fi
+
+if [[ $IFACE_ETHER == *"$ETHER"* ]]; then
+    echo "Interface $IFACE ether already changed"
+    exit 0
+fi
+
+echo "Try to changing $IFACE ether"
+sudo /sbin/ifconfig $IFACE ether $ETHER
