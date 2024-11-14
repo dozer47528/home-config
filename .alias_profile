@@ -16,13 +16,13 @@ if [[ -d /opt/settings ]] then
     done
 fi
 
-function j {
+j(){
     echo -n Token: 
     read -s token
     sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
 }
 
-function jj {
+jj(){
     echo -n Token: 
     read -s token
     sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
@@ -37,7 +37,6 @@ mvn-version(){
 # Kubernetes
 export UNPROTECTED_CONTEXT=default:rancher-desktop:docker-desktop:minikube:orbstack
 export PATH="$HOME/.krew/bin:$PATH"
-alias kind="KUBECONFIG=$HOME/.kube/config kind"
 alias kk=". kube-cluster"
 alias kc="kubectl config use-context"
 alias kn="kube-namespace"
@@ -80,3 +79,14 @@ if command -v vim &> /dev/null
 then
     alias vi=vim
 fi
+
+# Env
+_set_env(){
+    _current_dir=$(pwd)
+    while [ "$_current_dir" != "/" ]; do
+        source "$_current_dir/.env" 2> /dev/null && break
+        _current_dir=$(dirname "$_current_dir")
+    done
+}
+_set_env
+add-zsh-hook chpwd _set_env

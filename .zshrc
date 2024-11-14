@@ -21,7 +21,7 @@ fi
 # Create user level tmp
 (! test -e /tmp/$USER_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/$USER_tmp_inited
 
-# Env
+# Env Profile
 if [ -f ~/.env_profile ]; then
     source ~/.env_profile
 fi
