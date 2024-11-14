@@ -1,9 +1,10 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME=""
-plugins=(extract z git git-extras kubectl helm gitignore mvn bower gitfast github npm python pip docker bazel sdk)
+plugins=(extract z git kubectl helm mvn npm docker bazel sdk)
 
 if [ ! -n "$WARP_IS_LOCAL_SHELL_SESSION" ]; then
     plugins+=(zsh-autosuggestions zsh-syntax-highlighting)

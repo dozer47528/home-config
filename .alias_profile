@@ -3,15 +3,11 @@
 export PATH="$HOME/.bin:$PATH"
 
 # Env
-
 if [[ "$PROJECT_HOME" == "" ]] then
     echo "Missing Environment Variable `PROJECT_HOME`"
 fi
 
 # Trip
-
-alias docker-atrust="docker run --name atrust -d  --device /dev/net/tun --cap-add NET_ADMIN --dns 119.29.29.29 -e PASSWORD=localhost -e URLWIN=1 -v $HOME/.atrust-data:/root -p 127.0.0.1:5901:5901 -p 127.0.0.1:1080:1080 hagb/docker-atrust"
-
 if [[ -d /opt/settings ]] then
     TRIP_ENVS=(`ls /opt/settings | grep -E '\w+\.\w+\.\w+' | awk -F. '{print $1}'`)
     for TRIP_ENV in "${TRIP_ENVS[@]}"
@@ -20,58 +16,37 @@ if [[ -d /opt/settings ]] then
     done
 fi
 
-# Java
+function j {
+    echo -n Token: 
+    read -s token
+    sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+}
 
+function jj {
+    echo -n Token: 
+    read -s token
+    sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+}
+
+# Java
 mvn-version(){
     mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$1
 }
 
-# Xcode
-
-if [[ -d /Applications/Xcode.app ]] then
-    export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer/"
-    export SDKROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk"
-fi
-
-# Golang
-export GOPATH="$HOME/.go"
-export PATH="$GOPATH/bin:$PATH"
-alias dlv-attach="dlv --listen=:2345 --headless=true --api-version=2 attach"
-alias dlv-exec="dlv --listen=:2345 --headless=true --api-version=2 exec"
-
-# Istio
-export ISTIO_HOME=$PROJECT_HOME/istio/istio-$ISTIO_VERSION
-if [[ -d "$ISTIO_HOME" ]] then
-    export PATH=$ISTIO_HOME/bin:$PATH
-    source $ISTIO_HOME/tools/_istioctl
-fi
 
 # Kubernetes
-
 export UNPROTECTED_CONTEXT=default:rancher-desktop:docker-desktop:minikube:orbstack
-
 export PATH="$HOME/.krew/bin:$PATH"
-
 alias kind="KUBECONFIG=$HOME/.kube/config kind"
-
-alias minikube="KUBECONFIG=$HOME/.kube/config minikube"
-
 alias kk=". kube-cluster"
-
 alias kc="kubectl config use-context"
-
 alias kn="kube-namespace"
-
 alias kx="kubectl exec"
-
 alias kg="kubectl get"
-
 alias ke="kubectl edit"
-
 alias kd="kubectl delete"
 
 # App
-
 if [[ $('uname') == 'Darwin' ]]; then
     if  [ -d '/Applications/Visual Studio Code.app' ]; then
         alias vs="open -a '/Applications/Visual Studio Code.app'"
@@ -91,28 +66,10 @@ if [[ $('uname') == 'Darwin' ]]; then
 fi
 
 # Misc
-
 alias bb="brew update && brew outdated && brew upgrade --greedy && brew cleanup --prune=all"
-
 alias quarantine="xattr -rd com.apple.quarantine"
-
 alias mysql="mysql --default-character-set utf8mb4"
-
 alias x86="arch -x86_64"
-
-function j {
-    echo -n Token: 
-    read -s token
-    sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
-}
-
-function jj {
-    echo -n Token: 
-    read -s token
-    sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
-}
-
-export PPROF_TMPDIR=/tmp/pprof
 
 if command -v bat &> /dev/null
 then
@@ -123,5 +80,3 @@ if command -v vim &> /dev/null
 then
     alias vi=vim
 fi
-
-alias curl="curl -s"
