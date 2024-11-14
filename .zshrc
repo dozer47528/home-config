@@ -38,9 +38,8 @@ fi
 autoload -Uz compinit
 compinit
 
-# Prompt
-if [ ! -n "$WARP_IS_LOCAL_SHELL_SESSION" ]; then
-    fpath+=($HOME/.zsh-themes/pure)
-    autoload -U promptinit; promptinit
-    prompt pure
+# Starship
+if type starship &>/dev/null; then
+  export STARSHIP_CONFIG="$HOME/.starship.toml"
+  eval "$(starship init zsh)"
 fi
