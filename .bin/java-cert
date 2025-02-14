@@ -4,7 +4,7 @@ echo "default jdk password is: 'changeit'"
 
 
 # check $JAVA_HOME if is jdk8 
-if [[ $JAVA_HOME == *"jdk-8"* ]]; then
+if [[ $JAVA_HOME == *"-8."* ]]; then
     sudo $JAVA_HOME/bin/keytool -import -alias ctrip -keystore "$JAVA_HOME/jre/lib/security/cacerts" -file "$1" -trustcacerts
 else
     sudo $JAVA_HOME/bin/keytool -import -alias ctrip -keystore "$JAVA_HOME/lib/security/cacerts" -file "$1" -trustcacerts
