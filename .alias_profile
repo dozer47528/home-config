@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export EDITOR=vim
 export PATH="$HOME/.bin:$PATH"
 
 # Env
@@ -70,6 +71,8 @@ alias quarantine="xattr -rd com.apple.quarantine"
 alias mysql="mysql --default-character-set utf8mb4"
 alias x86="arch -x86_64"
 alias lo0alias="sudo ifconfig lo0 alias 192.168.88.88"
+alias '??'="AI_STYLE=simple ask-ai"
+alias '???'="AI_STYLE=full ask-ai"
 
 if command -v bat &> /dev/null
 then
