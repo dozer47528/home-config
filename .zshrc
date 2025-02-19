@@ -29,6 +29,9 @@ fi
 # Alias
 source ~/.alias_profile
 
+# AI
+source ~/.ai_profile
+
 export DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
 

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+alias '??'="mods --role shell --api ollama --model $OLLAMA_DEFAULT_MODEL"
