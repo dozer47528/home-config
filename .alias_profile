@@ -71,8 +71,22 @@ alias quarantine="xattr -rd com.apple.quarantine"
 alias mysql="mysql --default-character-set utf8mb4"
 alias x86="arch -x86_64"
 alias lo0alias="sudo ifconfig lo0 alias 192.168.88.88"
-alias '??'="AI_STYLE=simple ask-ai"
-alias '???'="AI_STYLE=full ask-ai"
+
+_AI_PROMPT_SIMPLE="
+role: 你现在是一名资深的软件工程师，你擅长解决技术问题，并具有优秀的逻辑思维能力，请在这个角色下为我解答以下问题;
+language: 简体中文;
+operating system: `uname -a`;
+shell: `echo $SHELL`;
+style: 回答简洁不需要过多解释，尽量用一句话解决问题，尽量直接说出相关代码;"
+
+_AI_PROMPT_FULL="
+role: 你现在是一名资深的软件工程师，你擅长解决技术问题，并具有优秀的逻辑思维能力，请在这个角色下为我解答以下问题;
+language: 简体中文;
+operating system: `uname -a`;
+shell: `echo $SHELL`;"
+
+alias '??'="mods --quiet --api ollama --model $OLLAMA_DEFAULT_MODEL --prompt \"$_AI_PROMPT_SIMPLE\""
+alias '???'="mods --quiet --api ollama --model $OLLAMA_DEFAULT_MODEL --prompt \"$_AI_PROMPT_FULL\""
 
 if command -v bat &> /dev/null
 then
