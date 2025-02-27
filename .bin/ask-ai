@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# alias '??'="AI_STYLE=simple ask-ai"
+# alias '???'="AI_STYLE=full ask-ai"
+
 _PROMPT="
 role: 你现在是一名资深的软件工程师，你擅长解决技术问题，并具有优秀的逻辑思维能力，请在这个角色下为我解答以下问题;
 language: 简体中文;
