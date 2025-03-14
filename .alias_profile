@@ -18,15 +18,11 @@ if [[ -d /opt/settings ]] then
 fi
 
 j(){
-    echo -n Token: 
-    read -s token
-    sshpass yy_gong@jumpserver.ops.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+    sshpass -p "`bw get password http://home.ctripcorp.com` `bw get totp http://home.ctripcorp.com`" ssh yy_gong@jumpserver.ops.ctripcorp.com
 }
 
 jj(){
-    echo -n Token: 
-    read -s token
-    sshpass yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com "`bw get password http://home.ctripcorp.com` $token"
+    sshpass -p "`bw get password http://home.ctripcorp.com` `bw get totp http://home.ctripcorp.com`" ssh yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com
 }
 
 # Java

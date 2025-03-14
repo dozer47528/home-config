@@ -1,3 +1,17 @@
 [user]
 	name = Yuyang Gong (龚昱阳)
 	email = yy_gong@trip.com
+[url "git@git.dev.sh.ctripcorp.com:ctripgo"]
+	insteadOf = https://github.com/ctripcorp
+[url "git@git.dev.sh.ctripcorp.com:servicemesh"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/servicemesh
+[url "git@git.dev.sh.ctripcorp.com:framework"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/framework
+[url "git@git.dev.sh.ctripcorp.com:container"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/container
+[url "git@git.dev.sh.ctripcorp.com:ctripgo"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/ctripgo
+[url "git@git.dev.sh.ctripcorp.com:hickwall"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/hickwall
+[url "git@git.dev.sh.ctripcorp.com:es_scrum_team"]
+	insteadOf = http://git.dev.sh.ctripcorp.com/es_scrum_team
