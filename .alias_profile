@@ -42,25 +42,6 @@ alias kg="kubectl get"
 alias ke="kubectl edit"
 alias kd="kubectl delete"
 
-# App
-if [[ $('uname') == 'Darwin' ]]; then
-    if  [ -d '/Applications/Visual Studio Code.app' ]; then
-        alias vs="open -a '/Applications/Visual Studio Code.app'"
-    fi
-    if  [ -d '/Applications/Zed.app' ]; then
-        alias zed="open -a '/Applications/Zed.app'"
-    fi
-    if  [ -d '/Applications/IntelliJ IDEA.app' ]; then
-        alias idea="open -a '/Applications/IntelliJ IDEA.app'"
-    fi
-    if  [ -d '/Applications/WebStorm.app' ]; then
-        alias webstorm="open -a '/Applications/WebStorm.app'"
-    fi
-    if  [ -d '/Applications/GoLand.app' ]; then
-        alias goland="open -a '/Applications/GoLand.app'"
-    fi
-fi
-
 # Misc
 alias bb="brew update && brew outdated && brew upgrade --greedy && brew cleanup --prune=all"
 alias quarantine="xattr -rd com.apple.quarantine"
