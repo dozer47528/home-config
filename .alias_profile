@@ -54,7 +54,7 @@ alias tomcat10="/opt/homebrew/opt/tomcat@10/bin/catalina"
 alias code-c="code --profile C"
 alias code-java="code --profile Java"
 alias code-golang="code --profile Golang"
-alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -geosync=+08:00:00"
+alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -overwrite_original -geosync=+08:00:00"
 
 _AI_PROMPT_SIMPLE="
 role: 你现在是一名资深的软件工程师，你擅长解决技术问题，并具有优秀的逻辑思维能力，请在这个角色下为我解答以下问题;
