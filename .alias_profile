@@ -48,14 +48,38 @@ alias quarantine="xattr -rd com.apple.quarantine"
 alias mysql="mysql --default-character-set utf8mb4"
 alias x86="arch -x86_64"
 alias lo0alias="sudo ifconfig lo0 alias 192.168.88.88"
-alias tomcat8="/opt/homebrew/opt/tomcat@8/bin/catalina"
-alias tomcat9="/opt/homebrew/opt/tomcat@9/bin/catalina"
-alias tomcat10="/opt/homebrew/opt/tomcat@10/bin/catalina"
 alias code-c="code --profile C"
 alias code-java="code --profile Java"
 alias code-golang="code --profile Golang"
 alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -overwrite_original -geosync=+08:00:00"
 
+# Tomcat
+tomcat () {
+    $TOMCAT_HOME/bin/catalina.sh $@
+}
+
+tomcat-undeploy () {
+    echo "Deleting WARs in webapps:"
+    ls $TOMCAT_HOME/webapps/
+    rm -rf $TOMCAT_HOME/webapps/*
+}
+
+tomcat-deploy () {
+    if [[ -z "$1" ]]; then
+        cp target/*.war $TOMCAT_HOME/webapps/        
+    else
+        echo "Deploying WAR from $1/target/*.war"
+        ls $1/target/*.war
+        
+        echo ""
+
+        cp $1/target/*.war $TOMCAT_HOME/webapps/
+        echo "WARs in webapps:"
+        ls $TOMCAT_HOME/webapps/
+    fi
+}
+
+# AI
 _AI_PROMPT_SIMPLE="
 role: 你现在是一名资深的软件工程师，你擅长解决技术问题，并具有优秀的逻辑思维能力，请在这个角色下为我解答以下问题;
 language: 简体中文;
