@@ -5,20 +5,25 @@ if [[ -z $1 ]]; then
     echo "------------------"
     echo "default"
     echo `ls -p ~/.kube/clusters/ | grep -v /`
-    echo `kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`
+    echo `kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/trip-testing.config -o name`
+    echo `kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/trip-prod.config -o name`
     return
 fi
 
 uuid=$(uuidgen)
 
-ctrip_clusters=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/ctrip -o name`)
+trip_testing_clusters=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/trip-testing.config -o name`)
+trip_prod_clusters=(`kubectl config get-contexts --kubeconfig ~/.kube/clusters/ocid/trip-prod.config -o name`)
 
 mkdir -p ~/.tmp/kube
 
 if [[ $1 == "default" ]]; then
     cp ${HOME}/.kube/config ~/.tmp/kube/${uuid}
-elif [[ $ctrip_clusters == *$1* ]]; then
-    cp ${HOME}/.kube/clusters/ocid/ctrip ~/.tmp/kube/${uuid}
+elif [[ $trip_testing_clusters == *$1* ]]; then
+    cp ${HOME}/.kube/clusters/ocid/trip-testing.config ~/.tmp/kube/${uuid}
+    kubectl config use-context --kubeconfig ~/.tmp/kube/${uuid} $1
+elif [[ $trip_prod_clusters == *$1* ]]; then
+    cp ${HOME}/.kube/clusters/ocid/trip-prod.config ~/.tmp/kube/${uuid}
     kubectl config use-context --kubeconfig ~/.tmp/kube/${uuid} $1
 else
     cp ${HOME}/.kube/clusters/$1 ~/.tmp/kube/${uuid}
