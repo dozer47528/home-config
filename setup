@@ -2,6 +2,13 @@
 
 set -e
 
+
+# Check for -s flag to skip interactive mode
+SKIP_INTERACTIVE=false
+if [ "$1" = "-s" ]; then
+  SKIP_INTERACTIVE=true
+fi
+
 # Check working directory
 if [ $HOME == $PWD ]; then
   echo "Error: can not put this project in home directory!"
@@ -39,6 +46,10 @@ ls -A | grep -v '^setup$' | grep -v '^upgrade$'| grep -v '^README.md$' | grep -v
 # Install vim plugins
 vim +PluginInstall +qall
 
-# Change defaull shell
-echo "Input password for change default shell"
-chsh -s `which zsh`
+# Change default shell
+if [ "$SKIP_INTERACTIVE" = true ]; then
+  echo "Skipping interactive shell change due to -s flag"
+else
+  echo "Input password for change default shell"
+  chsh -s `which zsh`
+fi
