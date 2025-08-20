@@ -4,11 +4,9 @@ export LANG=en_US.UTF-8
 ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME=""
-plugins=(extract z git kubectl helm mvn npm docker bazel)
 
-if [ ! -n "$WARP_IS_LOCAL_SHELL_SESSION" ]; then
-    plugins+=(zsh-autosuggestions zsh-syntax-highlighting)
-fi
+export ZSH_CUSTOM=$HOME/.zsh-custom
+plugins=(extract z git kubectl helm mvn npm docker bazel zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi

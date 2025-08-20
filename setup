@@ -28,16 +28,11 @@ command -v ctags >/dev/null 2>&1 || { echo >&2 "I require ctags but it's not ins
 # Reset submodules
 rm -rf .oh-my-zsh
 rm -rf .vim
-rm -rf .zsh-plugins
-rm -rf .zsh-themes
+rm -rf .zsh-custom
 
 # Init submodules
 git submodule init
 git submodule update
-
-# Link plugins and themes
-ln -fs $PWD/.zsh-plugins/* $PWD/.oh-my-zsh/custom/plugins
-ln -fs $PWD/.zsh-themes/* $PWD/.oh-my-zsh/custom/themes
 
 # Link to home
 ls -A | grep -v '^setup$' | grep -v '^upgrade$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} rm -rf $HOME/{}
