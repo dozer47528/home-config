@@ -65,18 +65,32 @@ tomcat-undeploy () {
 }
 
 tomcat-deploy () {
-    if [[ -z "$1" ]]; then
-        cp target/*.war $TOMCAT_HOME/webapps/        
-    else
-        echo "Deploying WAR from $1/target/*.war"
-        ls $1/target/*.war
-        
-        echo ""
+    FROM="."
+    TO=""
 
-        cp $1/target/*.war $TOMCAT_HOME/webapps/
-        echo "WARs in webapps:"
-        ls $TOMCAT_HOME/webapps/
+    if [[ -n "$1"  && -n "$2" ]]; then
+        FROM="$1"
+        TO="$2"
+    elif [[ -n "$1" ]]; then
+        TO="$1"
     fi
+
+    WAR=$(find "$FROM/target" -name "*.war" -type f 2>/dev/null | head -n 1)
+    if [[ -z "$WAR" ]]; then
+        echo "No WAR file found in $FROM"
+        return 1
+    fi
+
+    if [[ -z "$TO" ]]; then
+        echo "Deploying WAR from $WAR to $TOMCAT_HOME/webapps/"
+        cp $WAR $TOMCAT_HOME/webapps/
+    else
+        echo "Deploying WAR from $WAR to $TOMCAT_HOME/webapps/$TO.war"
+        cp $WAR $TOMCAT_HOME/webapps/$TO.war
+    fi
+    echo ""
+    echo "WARs in webapps:"
+    ls $TOMCAT_HOME/webapps/
 }
 
 if command -v bat &> /dev/null
