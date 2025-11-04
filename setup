@@ -41,6 +41,9 @@ ls -A | grep -v '^setup$' | grep -v '^upgrade$'| grep -v '^README.md$' | grep -v
 # Install vim plugins
 vim +PluginInstall +qall
 
+# Fix permission
+compaudit | xargs chmod g-w
+
 # Change default shell
 if [ "$SKIP_INTERACTIVE" = true ]; then
   echo "Skipping interactive shell change due to -s flag"
