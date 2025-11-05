@@ -102,14 +102,3 @@ if command -v vim &> /dev/null
 then
     alias vi=vim
 fi
-
-# Env
-_set_env(){
-    _current_dir=$(pwd)
-    while [ "$_current_dir" != "/" ]; do
-        source "$_current_dir/.env" 2> /dev/null && break
-        _current_dir=$(dirname "$_current_dir")
-    done
-}
-_set_env
-add-zsh-hook chpwd _set_env

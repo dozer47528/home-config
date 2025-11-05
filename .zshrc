@@ -42,3 +42,7 @@ if type starship &>/dev/null; then
   export STARSHIP_CONFIG="$HOME/.starship.toml"
   eval "$(starship init zsh)"
 fi
+
+if type mise &>/dev/null; then
+    eval "$(mise activate zsh)"
+fi
