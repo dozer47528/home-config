@@ -54,19 +54,20 @@ alias code-golang="code --profile Golang"
 alias code-node="code --profile Node"
 alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -overwrite_original -geosync=+08:00:00"
 
-tomcat () {
-    $TOMCAT_HOME/bin/catalina.sh $@
-}
+alias tomcat=catalina.sh
 
 tomcat-undeploy () {
+    local TOMCAT_HOME=$(dirname $(dirname $(mise which catalina.sh)))
     echo "Deleting WARs in webapps:"
     ls $TOMCAT_HOME/webapps/
+    echo ""
     rm -rf $TOMCAT_HOME/webapps/*
 }
 
 tomcat-deploy () {
-    FROM="."
-    TO=""
+    local TOMCAT_HOME=$(dirname $(dirname $(mise which catalina.sh)))
+    local FROM="."
+    local TO=""
 
     if [[ -n "$1"  && -n "$2" ]]; then
         FROM="$1"
@@ -75,7 +76,7 @@ tomcat-deploy () {
         TO="$1"
     fi
 
-    WAR=$(find "$FROM/target" -name "*.war" -type f 2>/dev/null | head -n 1)
+    local WAR=$(find "$FROM/target" -name "*.war" -type f 2>/dev/null | head -n 1)
     if [[ -z "$WAR" ]]; then
         echo "No WAR file found in $FROM"
         return 1
