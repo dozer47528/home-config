@@ -6,41 +6,7 @@ const xlsx = require("node-xlsx");
 const inputFile = process.argv[2];
 const outputFile = process.argv[3];
 
-// 读取 Excel 文件
 const workbook = xlsx.parse(inputFile);
-
-// 获取定位信息
-
-let lastPoint = null;
-const track = [];
-for (const sheet of workbook) {
-    for (const row of sheet.data) {
-        if (row[0] === "卫星定位" || row[0] === "基站定位") {
-            const currentPoint = {
-                longitude: parseFloat(row[1].split(",")[0]),
-                latitude: parseFloat(row[1].split(",")[1]),
-                timestamp: new Date(row[6])
-            }
-
-            if (lastPoint != null && lastPoint.timestamp.getTime() + 5 * 60 * 1000 < currentPoint.timestamp.getTime()) {
-                const insertCount = Math.round((currentPoint.timestamp.getTime() - lastPoint.timestamp.getTime()) / (5 * 60 * 1000));
-                const longitudeDelta = (currentPoint.longitude - lastPoint.longitude) / insertCount;
-                const latitudeDelta = (currentPoint.latitude - lastPoint.latitude) / insertCount;
-                const timestampDelta = (currentPoint.timestamp.getTime() - lastPoint.timestamp.getTime()) / insertCount;
-                for (let i = 1; i < insertCount; i++) {
-                    track.push({
-                        longitude: lastPoint.longitude + longitudeDelta * i,
-                        latitude: lastPoint.latitude + latitudeDelta * i,
-                        timestamp: new Date(lastPoint.timestamp.getTime() + timestampDelta * i)
-                    })
-                }
-            }
-
-            track.push(currentPoint);
-            lastPoint = currentPoint;
-        }
-    }
-}
 
 let gpxXml = ""
 
@@ -51,10 +17,18 @@ gpxXml += `<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
     <trkseg>
 `
 
-for (const trackElement of track) {
+for (const sheet of workbook) {
+  for (let i = 1; i < sheet.data.length; i++) {
+    const row = sheet.data[i];
+    const trackElement = {
+      latitude: row[9],
+      longitude: row[10],
+      timestamp: new Date(row[2])
+    }
     gpxXml += `<trkpt lat="${trackElement.latitude}" lon="${trackElement.longitude}">
-        <time>${trackElement.timestamp.toISOString()}</time>
+      <time>${trackElement.timestamp.toISOString()}</time>
       </trkpt>`
+  }
 }
 
 gpxXml += `
@@ -64,7 +38,7 @@ gpxXml += `
 `
 
 if (fs.existsSync(outputFile)) {
-    fs.rmSync(outputFile);
+  fs.rmSync(outputFile);
 }
 fs.writeFileSync(outputFile, gpxXml);
 
