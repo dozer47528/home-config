@@ -8,5 +8,4 @@
 .python-version
 .devcontainer
 custom_phrase.txt
-*.gram
 mise.toml
