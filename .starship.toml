@@ -4,5 +4,11 @@ disabled=true
 [docker_context]
 disabled=true
 
+[git_branch]
+symbol = "🔀 "
+
 [git_status]
 disabled=true
+
+[nodejs]
+symbol = "🟢 "

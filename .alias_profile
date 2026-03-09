@@ -18,11 +18,15 @@ if [[ -d /opt/settings ]] then
 fi
 
 j(){
-    sshpass -p "`bw get password http://home.ctripcorp.com` `bw get totp http://home.ctripcorp.com`" ssh yy_gong@jumpserver.ops.ctripcorp.com
+    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip corp")
+    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip corp")
+    sshpass -p "$password $totp" ssh yy_gong@jumpserver.ops.ctripcorp.com
 }
 
 jj(){
-    sshpass -p "`bw get password http://home.ctripcorp.com` `bw get totp http://home.ctripcorp.com`" ssh yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com
+    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip corp")
+    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip corp")
+    sshpass -p "$password $totp" ssh yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com
 }
 
 # Java
