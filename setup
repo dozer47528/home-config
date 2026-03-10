@@ -44,6 +44,11 @@ vim +PluginInstall +qall
 # Fix permission
 compaudit | xargs chmod g-w
 
+# Install perl module
+cpan Authen::OATH # for kpcli totp support
+cpan Convert::Base32 # for kpcli totp support
+cpan File::KDBX # for kpcli kdbx support
+
 # Change default shell
 if [ "$SKIP_INTERACTIVE" = true ]; then
   echo "Skipping interactive shell change due to -s flag"

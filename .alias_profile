@@ -18,14 +18,14 @@ if [[ -d /opt/settings ]] then
 fi
 
 j(){
-    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip corp")
-    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip corp")
+    local password=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="show -f 公司/trip-corp" | awk '/^ Pass:/{print $2}')
+    local totp=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="xo 公司/trip-corp" > /dev/null && get-clipboard)
     sshpass -p "$password $totp" ssh yy_gong@jumpserver.ops.ctripcorp.com
 }
 
 jj(){
-    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip corp")
-    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip corp")
+    local password=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="show -f 公司/trip-corp" | awk '/^ Pass:/{print $2}')
+    local totp=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="xo 公司/trip-corp" > /dev/null && get-clipboard)
     sshpass -p "$password $totp" ssh yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com
 }
 
@@ -56,6 +56,25 @@ alias lo0alias="sudo ifconfig lo0 alias 192.168.88.88"
 alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -overwrite_original"
 
 alias tomcat=catalina.sh
+
+get-clipboard() {
+    if command -v pbpaste &> /dev/null; then
+        # macOS
+        pbpaste
+    elif command -v wl-paste &> /dev/null; then
+        # Wayland
+        wl-paste
+    elif command -v xclip &> /dev/null; then
+        # X11 (xclip)
+        xclip -o -selection clipboard
+    elif command -v xsel &> /dev/null; then
+        # X11 (xsel)
+        xsel -o -b
+    else
+        echo "Failed to find pbpaste, xclip, xsel or wl-clipboard" >&2
+        return 1
+    fi
+}
 
 tomcat-undeploy () {
     local TOMCAT_HOME=$(dirname $(dirname $(mise which catalina.sh)))
