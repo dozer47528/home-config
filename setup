@@ -35,8 +35,21 @@ git submodule init
 git submodule update
 
 # Link to home
-ls -A | grep -v '^setup$' | grep -v '^upgrade$' | grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} rm -rf $HOME/{}
-ls -A | grep -v '^setup$' | grep -v '^upgrade$'| grep -v '^README.md$' | grep -v '^.git$' | xargs -I {} ln -fs $PWD/{} $HOME/{}
+rm -rf $HOME/.zshrc && ln -fs $PWD/.zshrc $HOME/.zshrc
+rm -rf $HOME/.zsh-custom && ln -fs $PWD/.zsh-custom $HOME/.zsh-custom
+rm -rf $HOME/.oh-my-zsh && ln -fs $PWD/.oh-my-zsh $HOME/.oh-my-zsh
+rm -rf $HOME/.bin && ln -fs $PWD/.bin $HOME/.bin
+rm -rf $HOME/.alias_profile && ln -fs $PWD/.alias_profile $HOME/.alias_profile
+rm -rf $HOME/.gitconfig && ln -fs $PWD/.gitconfig $HOME/.gitconfig
+rm -rf $HOME/.gitconfig_trip && ln -fs $PWD/.gitconfig_trip $HOME/.gitconfig_trip
+rm -rf $HOME/.gitignore && ln -fs $PWD/.gitignore $HOME/.gitignore
+rm -rf $HOME/.gitignore_global && ln -fs $PWD/.gitignore_global $HOME/.gitignore_global
+rm -rf $HOME/.gitmodules && ln -fs $PWD/.gitmodules $HOME/.gitmodules
+rm -rf $HOME/.vim && ln -fs $PWD/.vim $HOME/.vim
+rm -rf $HOME/.vimrc && ln -fs $PWD/.vimrc $HOME/.vimrc
+rm -rf $HOME/.starship.toml && ln -fs $PWD/.starship.toml $HOME/.starship.toml
+rm -rf $HOME/.agents && ln -fs $PWD/.agents $HOME/.agents
+mkdir -p $HOME/.config/mise && rm -rf $HOME/.config/mise/config.toml && ln -fs $PWD/mise-config.toml $HOME/.config/mise/config.toml
 
 # Install vim plugins
 vim +PluginInstall +qall

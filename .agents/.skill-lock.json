@@ -1,0 +1,64 @@
+{
+  "version": 3,
+  "skills": {
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
+      "skillPath": "skills/agent-browser/SKILL.md",
+      "skillFolderHash": "ef3abe1fe6f259718037dc6131d332c7571292c3",
+      "pluginName": "agent-browser",
+      "installedAt": "2026-03-11T13:19:03.835Z",
+      "updatedAt": "2026-03-11T13:19:03.835Z"
+    },
+    "git-workflow": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/git-workflow/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-11T13:59:17.216Z",
+      "updatedAt": "2026-03-11T14:44:28.262Z"
+    },
+    "app-env": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/app-env/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-11T14:18:55.252Z",
+      "updatedAt": "2026-03-11T14:44:28.256Z"
+    },
+    "development-environment": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/development-environment/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-11T14:18:55.255Z",
+      "updatedAt": "2026-03-11T14:44:28.261Z"
+    },
+    "ctrip-soa-metadata": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/ctrip-soa-metadata/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-11T14:44:28.261Z",
+      "updatedAt": "2026-03-11T14:44:28.261Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "gemini-cli",
+    "github-copilot",
+    "kimi-cli",
+    "opencode"
+  ]
+}

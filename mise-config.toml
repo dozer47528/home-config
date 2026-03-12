@@ -1,0 +1,13 @@
+[tools]
+go = "latest"
+java = "21"
+maven = "latest"
+rust = "stable"
+tomcat = "9"
+
+[tool_alias]
+
+[tool_alias.java]
+
+[tool_alias.java.versions]
+8 = "zulu-8.90.0.19"
