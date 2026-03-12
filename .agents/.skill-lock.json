@@ -18,7 +18,7 @@
       "skillPath": "skills/git-workflow/SKILL.md",
       "skillFolderHash": "",
       "installedAt": "2026-03-11T13:59:17.216Z",
-      "updatedAt": "2026-03-11T14:44:28.262Z"
+      "updatedAt": "2026-03-12T09:26:25.692Z"
     },
     "app-env": {
       "source": "framework/monitor-team-skills",
@@ -27,7 +27,7 @@
       "skillPath": "skills/app-env/SKILL.md",
       "skillFolderHash": "",
       "installedAt": "2026-03-11T14:18:55.252Z",
-      "updatedAt": "2026-03-11T14:44:28.256Z"
+      "updatedAt": "2026-03-12T09:24:00.537Z"
     },
     "development-environment": {
       "source": "framework/monitor-team-skills",
@@ -36,7 +36,7 @@
       "skillPath": "skills/development-environment/SKILL.md",
       "skillFolderHash": "",
       "installedAt": "2026-03-11T14:18:55.255Z",
-      "updatedAt": "2026-03-11T14:44:28.261Z"
+      "updatedAt": "2026-03-12T09:26:25.691Z"
     },
     "ctrip-soa-metadata": {
       "source": "framework/monitor-team-skills",
@@ -45,7 +45,43 @@
       "skillPath": "skills/ctrip-soa-metadata/SKILL.md",
       "skillFolderHash": "",
       "installedAt": "2026-03-11T14:44:28.261Z",
-      "updatedAt": "2026-03-11T14:44:28.261Z"
+      "updatedAt": "2026-03-12T09:26:25.691Z"
+    },
+    "artifact-repository-management": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/artifact-repository-management/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-12T09:24:00.541Z",
+      "updatedAt": "2026-03-12T09:26:25.690Z"
+    },
+    "polyglot-tool-version-manager": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/polyglot-tool-version-manager/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-12T09:24:00.544Z",
+      "updatedAt": "2026-03-12T09:26:25.692Z"
+    },
+    "trip-root-cert": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/trip-root-cert/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-12T09:24:00.545Z",
+      "updatedAt": "2026-03-12T09:26:25.693Z"
+    },
+    "application-runtime-envnvironment": {
+      "source": "framework/monitor-team-skills",
+      "sourceType": "git",
+      "sourceUrl": "git@git.dev.sh.ctripcorp.com:framework/monitor-team-skills.git",
+      "skillPath": "skills/application-runtime-envnvironment/SKILL.md",
+      "skillFolderHash": "",
+      "installedAt": "2026-03-12T09:26:25.688Z",
+      "updatedAt": "2026-03-12T09:26:25.688Z"
     }
   },
   "dismissed": {
