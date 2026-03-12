@@ -54,14 +54,6 @@ mkdir -p $HOME/.config/mise && rm -rf $HOME/.config/mise/config.toml && ln -fs $
 # Install vim plugins
 vim +PluginInstall +qall
 
-# Fix permission
-compaudit | xargs chmod g-w
-
-# Install perl module
-sudo cpan -T Authen::OATH # for kpcli totp support
-sudo cpan -T Convert::Base32 # for kpcli totp support
-sudo cpan -T File::KDBX # for kpcli kdbx support
-
 # Change default shell
 if [ "$SKIP_INTERACTIVE" = true ]; then
   echo "Skipping interactive shell change due to -s flag"

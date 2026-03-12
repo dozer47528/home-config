@@ -18,14 +18,14 @@ if [[ -d /opt/settings ]] then
 fi
 
 j(){
-    local password=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="show -f 公司/trip-corp" | awk '/^ Pass:/{print $2}')
-    local totp=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="xo 公司/trip-corp" > /dev/null && get-clipboard)
+    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip-corp")
+    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip-corp")
     sshpass -p "$password $totp" ssh yy_gong@jumpserver.ops.ctripcorp.com
 }
 
 jj(){
-    local password=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="show -f 公司/trip-corp" | awk '/^ Pass:/{print $2}')
-    local totp=$(echo "" | kpcli --readonly --kdb=$KP_DB --key=$KP_KEY --command="xo 公司/trip-corp" > /dev/null && get-clipboard)
+    local password=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --attributes Password --show-protected "$KP_DB" "trip-corp")
+    local totp=$(keepassxc-cli show -k "$KP_KEY" --no-password --quiet --totp "$KP_DB" "trip-corp")
     sshpass -p "$password $totp" ssh yy_gong@ssh.fws.jumpserver.sys.ctripcorp.com
 }
 
