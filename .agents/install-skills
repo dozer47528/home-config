@@ -3,3 +3,4 @@
 npx skills add http://git.dev.sh.ctripcorp.com/framework/monitor-team-skills.git -g -y
 npx skills add tavily-ai/skills -g -y
 npx skills add vercel-labs/agent-browser -g -y --skill agent-browser
+npx skills add https://github.com/markdown-viewer/skills -g -y --skill drawio --skill mermaid
