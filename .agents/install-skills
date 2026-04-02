@@ -2,4 +2,7 @@
 
 npx skills add http://git.dev.sh.ctripcorp.com/framework/monitor-team-skills.git -g -y
 npx skills add tavily-ai/skills -g -y
-npx skills add https://github.com/markdown-viewer/skills -g -y --skill drawio --skill mermaid
+npx skills add markdown-viewer/skills -g -y --skill drawio --skill mermaid
+npx skills add sanyuan0704/sanyuan-skills -g -y --skill code-review-expert
+npx skills add sundial-org/awesome-openclaw-skills -g -y --skill glab
+npx skills add vercel-labs/agent-browser -g -y --skill agent-browser

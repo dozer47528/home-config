@@ -2,6 +2,7 @@
 go = "latest"
 java = "21"
 maven = "latest"
+python = "3.11"
 rust = "stable"
 tomcat = "9"
 
