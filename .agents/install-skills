@@ -6,3 +6,4 @@ npx skills add markdown-viewer/skills -g -y --skill drawio --skill mermaid
 npx skills add sanyuan0704/sanyuan-skills -g -y --skill code-review-expert
 npx skills add sundial-org/awesome-openclaw-skills -g -y --skill glab
 npx skills add vercel-labs/agent-browser -g -y --skill agent-browser
+npx skills add larksuite/cli -g -y
