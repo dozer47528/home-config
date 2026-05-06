@@ -1,6 +1,12 @@
 [aws]
 disabled=true
 
+[gradle]
+disabled=true
+
+[maven]
+disabled=true
+
 [docker_context]
 disabled=true
 
