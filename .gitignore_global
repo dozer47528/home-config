@@ -6,5 +6,6 @@
 .devcontainer/
 .github/
 .opencode/
+.settings/
 custom_phrase.txt
 mise.toml
