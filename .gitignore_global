@@ -1,11 +1,10 @@
-.env
 .DS_Store
 ._.DS_Store
 .idea/
 .vscode/
 .clwb/
-.java-version
-.python-version
-.devcontainer
+.devcontainer/
+.github/
+.opencode/
 custom_phrase.txt
 mise.toml
