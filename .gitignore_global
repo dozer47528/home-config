@@ -6,6 +6,7 @@
 .devcontainer/
 .github/
 .opencode/
+.playwright-cli/
 .settings/
 custom_phrase.txt
 mise.toml
