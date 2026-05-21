@@ -42,9 +42,12 @@ alias kg="kubectl get"
 alias ke="kubectl edit"
 alias kd="kubectl delete"
 
-# Misc
+# OpenCode
 alias aa="opencode run"
 alias aaa="opencode"
+export OPENCODE_ENABLE_EXA=1
+
+# Misc
 alias bb="brew update && brew outdated && brew upgrade --greedy && brew cleanup --prune=all"
 alias quarantine="xattr -rd com.apple.quarantine"
 alias mysql="mysql --default-character-set utf8mb4"
