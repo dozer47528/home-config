@@ -1,5 +1,6 @@
 #!/bin/bash
 
+rm -rf ~/.agents/skills/*
 npx skills add http://git.dev.sh.ctripcorp.com/framework/monitor-team-skills.git -g -y
 npx skills add markdown-viewer/skills -g -y --skill drawio --skill mermaid
 npx skills add sanyuan0704/sanyuan-skills -g -y --skill code-review-expert
