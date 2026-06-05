@@ -1,5 +1,7 @@
 #!/bin/bash
 
+JAVA_HOME="$(mise which java | sed 's|/bin/java||')"
+
 # check $JAVA_HOME if is jdk8 
 if [[ $JAVA_HOME == *"-8."* ]]; then
     sudo $JAVA_HOME/bin/keytool -J-Duser.language=en -import -alias ctrip -keystore "$JAVA_HOME/jre/lib/security/cacerts" -file "$1" -trustcacerts -storepass changeit
