@@ -16,6 +16,12 @@ if [[ $('uname') == 'Darwin' ]]; then
     export HOMEBREW_NO_AUTO_UPDATE=1
 fi
 
+# Warp has built-in autosuggestions & syntax-highlighting; skip these plugins
+if [[ "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+    plugins=(${plugins:#zsh-autosuggestions})
+    plugins=(${plugins:#zsh-syntax-highlighting})
+fi
+
 # Create user level tmp
 (! test -e /tmp/$USER_tmp_inited) && rm -rf ~/.tmp && mkdir -p ~/.tmp && chmod 700 ~/.tmp && touch /tmp/$USER_tmp_inited
 
@@ -27,18 +33,16 @@ fi
 # Alias
 source ~/.alias_profile
 
-export DISABLE_AUTO_UPDATE="true"
-source $ZSH/oh-my-zsh.sh
-
-# Completions
+# Completions (FPATH must be set before oh-my-zsh, which calls compinit internally)
 if type brew &>/dev/null; then
     export FPATH=$(brew --prefix)/share/zsh-completions:$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
-autoload -Uz compinit
-compinit
 
-# Starship
-if type starship &>/dev/null; then
+export DISABLE_AUTO_UPDATE="true"
+source $ZSH/oh-my-zsh.sh
+
+# Starship (skip in Warp, which has its own prompt)
+if [[ "$TERM_PROGRAM" != "WarpTerminal" ]] && type starship &>/dev/null; then
   export STARSHIP_CONFIG="$HOME/.starship.toml"
   eval "$(starship init zsh)"
 fi
