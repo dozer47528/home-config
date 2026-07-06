@@ -5,3 +5,5 @@ npx skills add http://git.dev.sh.ctripcorp.com/framework/bat-mcp-function.git -g
 npx skills add microsoft/playwright-cli -g -y --skill playwright-cli
 npx skills add ast-grep/agent-skill -g -y
 npx skills add agents365-ai/drawio-skill -g -y
+
+glab skills install --global --force
