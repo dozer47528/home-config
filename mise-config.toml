@@ -12,3 +12,6 @@ tomcat = "9"
 
 [tool_alias.java.versions]
 8 = "zulu-8.94.0.17"
+
+[settings.java]
+shorthand_vendor = "temurin"
