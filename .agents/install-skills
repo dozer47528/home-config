@@ -3,7 +3,4 @@
 npx skills add http://git.dev.sh.ctripcorp.com/framework/monitor-team-skills.git -g -y
 npx skills add http://git.dev.sh.ctripcorp.com/framework/bat-mcp-function.git -g -y
 npx skills add microsoft/playwright-cli -g -y --skill playwright-cli
-npx skills add agents365-ai/drawio-skill -g -y
-npx skills add larksuite/cli -g -y
-
 glab skills install --global --force
