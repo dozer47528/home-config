@@ -55,6 +55,7 @@ alias x86="arch -x86_64"
 alias lo0alias="sudo ifconfig lo0 alias 192.168.88.88"
 alias exifsync="exiftool -api GeoMaxIntSecs=86400 -api GeoMaxExtSecs=86400 -overwrite_original"
 alias lark-cli="mise exec node@lts -- lark-cli"
+alias pi="mise exec node@lts -- pi"
 alias whiteboard-cli="mise exec node@lts -- whiteboard-cli"
 
 alias tomcat=catalina.sh
