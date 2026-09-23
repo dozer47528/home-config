@@ -6,28 +6,29 @@ const xlsx = require("node-xlsx");
 const inputFile = process.argv[2];
 const outputFile = process.argv[3];
 
-const workbook = xlsx.parse(inputFile);
+const workbook = xlsx.parse(inputFile, { cellDates: true });
 
-let gpxXml = ""
+let gpxXml = "";
 
 gpxXml += `<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <gpx version="1.1" xmlns="http://www.topografix.com/GPX/1/1" xmlns:geotracker="http://ilyabogdanovich.com/gpx/extensions/geotracker" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" creator="Node.js">
   <trk>
     <name>Tracker</name>
     <trkseg>
-`
+`;
 
 for (const sheet of workbook) {
   for (let i = 1; i < sheet.data.length; i++) {
     const row = sheet.data[i];
     const trackElement = {
-      latitude: row[9],
-      longitude: row[10],
-      timestamp: new Date(row[2])
-    }
+      longitude: row[4].split(",")[0],
+      latitude: row[4].split(",")[1],
+      timestamp: row[2],
+    };
+
     gpxXml += `<trkpt lat="${trackElement.latitude}" lon="${trackElement.longitude}">
       <time>${trackElement.timestamp.toISOString()}</time>
-      </trkpt>`
+      </trkpt>`;
   }
 }
 
@@ -35,11 +36,9 @@ gpxXml += `
     </trkseg>
   </trk>
 </gpx>
-`
+`;
 
 if (fs.existsSync(outputFile)) {
   fs.rmSync(outputFile);
 }
 fs.writeFileSync(outputFile, gpxXml);
-
-
