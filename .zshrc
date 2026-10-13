@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME=""
 
 export ZSH_CUSTOM=$HOME/.zsh-custom
-plugins=(extract z git kubectl helm mvn npm docker bazel zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(extract z git kubectl mvn npm zsh-autosuggestions zsh-syntax-highlighting)
 
 if [[ $('uname') == 'Linux' ]]; then
 fi
